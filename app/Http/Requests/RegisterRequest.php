@@ -29,7 +29,7 @@ class RegisterRequest extends FormRequest
             'name' => 'required',
             'age' => 'required',
             'phone' => 'required',
-            'confirm-password' =>'required_with:password|same:password'
+            'password_confirmation' =>'required_with:password|same:password'
         ];
     }
 
