@@ -41,7 +41,7 @@ abstract class BaseRepository implements IBaseRepository
         try {
             $this->app = $app;
             $this->makeModel();
-            $this->requestData = Mapper::toUnderScore(\Request()->all());
+            //$this->requestData = Mapper::toUnderScore(\Request()->all());
         } catch (\Exception $exception) {
             throw new \Exception(trans($exception->getMessage()));
         }

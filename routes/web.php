@@ -8,7 +8,8 @@ use Spatie\Honeypot\ProtectAgainstSpam;
 Route::group(['prefix' => 'user', 'middleware' => 'auth','middleware' => 'Lang'],
 
 	function () {
-		Route::any('logout', 'Auth\LoginController@logout')->name('web.logout');
+		//Route::any('logout', 'Auth\LoginController@logout')->name('web.logout');
+        Route::POST('/logout', [App\Http\Controllers\User\LoginController::class, 'logoutUser'])->name('user.logout');
 
 		Route::get('/eth/signature', [App\Http\Controllers\Web3\Web3AuthController::class, 'signature'])->name('metamask.signature');
 		Route::post('/eth/authenticate', [App\Http\Controllers\Web3\Web3AuthController::class, 'authenticate'])->name('metamask.authenticate');
@@ -68,15 +69,17 @@ Route::get('/about', [App\Http\Controllers\User\HomeController::class, 'about'])
 Route::get('/Beteam', [App\Http\Controllers\User\HomeController::class, 'Beteam'])->name('Beteam');
 
 //login
-Route::post('user/login',  [App\Http\Controllers\User\LoginController::class, 'login'])->name('user.login');
-Route::get('user/login',  [App\Http\Controllers\User\LoginController::class, 'login'])->name('user.loginUser');
+Route::group(['middleware' => ['guest:web']], function () {
+    Route::get('user/login',  [App\Http\Controllers\User\LoginController::class, 'getLogin'])->name('user.getLogin');
+    Route::post('user/login',  [App\Http\Controllers\User\LoginController::class, 'login'])->name('user.login');
 
+});
 //register
 Route::get('user/register', [App\Http\Controllers\User\RegisterController::class, 'register'])->name('user.getRegister');
 Route::post('user/register/create', [App\Http\Controllers\User\RegisterController::class, 'create'])->name('user.register.create');
 
 
-Auth::routes();
+//Auth::routes();
 
 
 

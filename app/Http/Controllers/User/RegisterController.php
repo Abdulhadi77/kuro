@@ -27,23 +27,28 @@ class RegisterController extends Controller
 
     public function register()
     {
-        return view('user.register');
+        return view('auth.register');
     }
 
     public function create(RegisterRequest $request)
     {
+
+
         try {
             $user= User::create([
                 'name' => $request->name,
                 'user_name' => $request->user_name,
                 'age' => $request->age,
-                'phone' => $request->phone,
+                //'phone' => $request->phone,
                 'email' => $request->email,
                 'password' => Hash::make($request->password),
             ]);
             $user->attempt(['email' => $request->input("email"), 'password' => $request->input("password")]);
             return redirect()->route('home');
         }catch(\Exception $ex){
+
+
+
             return redirect()->back()->with(['error',$ex->getMessage()]);
 
         }

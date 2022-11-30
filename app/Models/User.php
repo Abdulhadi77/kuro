@@ -18,7 +18,7 @@ class User extends Authenticatable  implements JWTSubject {
 protected $table    = 'users';
 protected $fillable = [
 		'id',
-		'admin_id',
+		//'admin_id',
         'name',
         'email',
         'user_name',
@@ -60,7 +60,7 @@ protected $fillable = [
 	protected $casts = [
 		'email_verified_at' => 'datetime',
 	];
-	
+
 	/**
 	 * The accessors to append to the model's array form.
 	 *
@@ -175,15 +175,15 @@ protected $fillable = [
 	public function vote_revenue(VotePlan $vote_plan){
 		//check if conditions are true
 
-		
+
 		$unpaid_votes = ($this->votes() - $this->num_paid_votes);
 		$unpaid_balance = ($this->kuro_balance - $this->paid_vote_plan_balance);
 
 		/*check if num_cond not 0 nor 1*/
-		
+
 		if (($unpaid_votes >= $vote_plan->num_votes_cond) &&
 		($unpaid_balance >= $vote_plan->kuro_balance_cond)){
-			
+
 		   	//check paid_prizes (VERY IMPORTANT: integers not double, closest to the smallest number 1.9=>1)
 			if ($vote_plan->num_votes_cond == 0)
 			   $num_prizes_based_on_votes = 1000000;
@@ -212,11 +212,11 @@ protected $fillable = [
 				$num_of_prizes = 0;
 			else
 				$num_of_prizes = min($num_prizes_based_on_votes, $num_prizes_based_on_kuro_balance);
-			return ($num_of_prizes * $vote_plan->revenue);  
+			return ($num_of_prizes * $vote_plan->revenue);
 		}
 		return 0;
 	}
-	
+
 	public function bfot_revenue(BFOTPlan $bfot_plan){
 		$refs =  $this->referrals()->count();
 		$unpaid_refs = ($refs - $this->num_paid_refs);
@@ -248,7 +248,7 @@ protected $fillable = [
 				$num_of_prizes = 0;
 			else
 				$num_of_prizes = min($num_prizes_based_on_refs, $num_prizes_based_on_kuro_balance);
-			return ($num_of_prizes * $bfot_plan->revenue);  
+			return ($num_of_prizes * $bfot_plan->revenue);
 		}
 		return 0;
 	}
@@ -280,7 +280,7 @@ protected $fillable = [
 		}
 	}
 
- 	
+
 
    protected static function boot() {
       parent::boot();
@@ -293,6 +293,6 @@ protected $fillable = [
    }
 
 
-	
-		
+
+
 }

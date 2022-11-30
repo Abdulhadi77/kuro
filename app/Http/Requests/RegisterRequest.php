@@ -27,8 +27,9 @@ class RegisterRequest extends FormRequest
             'email' => 'required|unique|email',
             'password' => 'required',
             'name' => 'required',
+            'user_name' => 'unique',
             'age' => 'required',
-            'phone' => 'required',
+            //'phone' => 'required',
             'password_confirmation' =>'required_with:password|same:password'
         ];
     }
@@ -37,11 +38,12 @@ class RegisterRequest extends FormRequest
     {
         return [
             'email.unique' => 'email is already used',
+            'user_name.unique' => 'user_name is already used',
             'email.email' => 'email is not correct form',
             'password.required' => 'password is required',
             'name.required' => 'name is required',
             'age.required' => 'age is required',
-            'phone.required' => 'phone is required',
+           // 'phone.required' => 'phone is required',
             'confirm-password.required' => 'confirm-password is required',
         ];
     }

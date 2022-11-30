@@ -46,9 +46,6 @@ class BlogController extends Controller
                 $userBlog->dislike=0;
                 $userBlog->save();
             }
-
-            $userBlog->save();
-
             return redirect()->back();
         }
         catch(\Exception $ex){
@@ -77,9 +74,6 @@ class BlogController extends Controller
                 $userBlog->dislike=1;
                 $userBlog->save();
             }
-
-            $userBlog->save();
-
             return redirect()->back();
         }
         catch(\Exception $ex){
