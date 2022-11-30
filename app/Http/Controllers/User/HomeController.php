@@ -57,7 +57,9 @@ class HomeController extends Controller
     }
     public function Vote()
     {
-        return view('Vote-earn');
+        $settings = Setting::find(1);
+        $socials= Social::all();
+        return view('Vote-earn' , compact('settings','socials'));
     }
    
 }
