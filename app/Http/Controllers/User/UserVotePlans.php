@@ -2,9 +2,10 @@
 namespace App\Http\Controllers\User;
 use App\Http\Controllers\Controller;
 use App\DataTables\UserVotePlansDataTable;
+use App\Http\Requests\VotePlanRequest;
 use Carbon\Carbon;
 use App\Models\VotePlan;
-
+use Illuminate\Http\Request;
 use App\Http\Controllers\Validations\VotePlansRequest;
 use App\Models\BFOTPlan;
 use App\Models\User;
@@ -15,44 +16,44 @@ class UserVotePlans extends Controller
 {
 /*
 ->addColumn('num_comments', function ($vote_plan_for_this_user) {
-			return $vote_plan_for_this_user->users()->find(auth()->user()->id)->comments()->count();	
+			return $vote_plan_for_this_user->users()->find(auth()->user()->id)->comments()->count();
 		})
 		->addColumn('num_likes', function ($vote_plan_for_this_user) {
-			return $vote_plan_for_this_user->users()->find(auth()->user()->id)->likes();	
+			return $vote_plan_for_this_user->users()->find(auth()->user()->id)->likes();
 		})
 		->addColumn('num_dislikes', function ($vote_plan_for_this_user) {
-			return $vote_plan_for_this_user->users()->find(auth()->user()->id)->dislikes();	
+			return $vote_plan_for_this_user->users()->find(auth()->user()->id)->dislikes();
 		})
 		->addColumn('vote_revenue', function ($vote_plan_for_this_user) {
-			return $vote_plan_for_this_user->users()->find(auth()->user()->id)->vote_revenue($vote_plan_for_this_user);	
+			return $vote_plan_for_this_user->users()->find(auth()->user()->id)->vote_revenue($vote_plan_for_this_user);
 		})
 		->addColumn('kuro_balance', function ($vote_plan_for_this_user) {
-			return $vote_plan_for_this_user->users()->find(auth()->user()->id)->kuro_balance;	
+			return $vote_plan_for_this_user->users()->find(auth()->user()->id)->kuro_balance;
 		})
 
 
 
 
-			
+
 
 */
 	public function __construct() {
 
-	
-    
+
+
 	}
 
-	
 
-           
+
+
             public function index(UserVotePlansDataTable $voteplans)
             {
 
                return $voteplans->render('user.voteplans.index',['title'=>trans('user.voteplans')]);
             }
-         
-         
-            
+
+
+
             public function show($id)
             {
               $voteplans =  VotePlan::find($id);
@@ -64,8 +65,16 @@ class UserVotePlans extends Controller
               ]);
             }
 
+    public function joinVotePlan(VotePlanRequest $request)
+    {
+        $user=auth()->user();
+        $user->vote_plan_id=$request->id;
+        $user->save();
+        return redirect()->back();
 
-         
-            
+    }
+
+
+
 
 }
