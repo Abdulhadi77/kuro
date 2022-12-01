@@ -10,18 +10,8 @@
 				<span class="sr-only"></span>
 			</a>
 			<div class="dropdown-menu" role="menu">
-				<a href="{{aurl('voteplans')}}" class="dropdown-item"  style="color:#343a40">
+				<a href="{{url('user/voteplans')}}" class="dropdown-item"  style="color:#343a40">
 				<i class="fas fa-list"></i> {{trans('user.show_all')}}</a>
-				<a class="dropdown-item"  style="color:#343a40" href="{{aurl('voteplans/'.$voteplans->id.'/edit')}}">
-					<i class="fas fa-edit"></i> {{trans('user.edit')}}
-				</a>
-				<a class="dropdown-item"  style="color:#343a40" href="{{aurl('voteplans/create')}}">
-					<i class="fas fa-plus"></i> {{trans('user.create')}}
-				</a>
-				<div class="dropdown-divider"></div>
-				<a data-toggle="modal" data-target="#deleteRecord{{$voteplans->id}}" class="dropdown-item"  style="color:#343a40" href="#">
-					<i class="fas fa-trash"></i> {{trans('user.delete')}}
-				</a>
 			</div>
 		</div>
 		</h3>
