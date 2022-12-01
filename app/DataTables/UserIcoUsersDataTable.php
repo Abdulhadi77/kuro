@@ -33,7 +33,7 @@ class UserIcoUsersDataTable extends DataTable
 
 	public function query()
     {
-        return IcoUser::query()->select("ico_users.*");
+        return IcoUser::query()->select("ico_users.*")->where('user_id', auth()->user()->id);
 
     }
     	

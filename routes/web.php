@@ -31,6 +31,8 @@ Route::group(['prefix' => 'user', 'middleware' => 'auth','middleware' => 'Lang']
 		Route::resource('/voteplans','User\UserVotePlans'); 
 		Route::resource('/bfotplans','User\UserBFOTPlans'); 
 		Route::resource('/icousers','User\UserICOsUsers'); 
+		Route::resource('/reactions','User\UserReactions'); 
+		Route::resource('/comments','User\UserComments'); 
 
 		Route::get('/dashboard', 'User\Dashboard@home');
 		});
