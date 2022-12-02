@@ -55,9 +55,14 @@ class UserICOsUsers extends Controller
                 $ico_user=new IcoUser();
                 $ico_user->user_id =$user->id;
                 $ico_user->i_c_o_id  =$request->id;
-                $ico_user->amount =$user->amount;
+                $ico_user->amount =$request->amount;
+                $ico_user->purchase_method =$request->purchase_method;
+                if($request->status == 'opened')
+                    $ico_user->statua = 'joined';
+                elseif ($request->status == 'closed')
+                    $ico_user->statua = 'pending';
                 $ico_user->save();
-                return redirect()->back();
+                return redirect('user/icousers');
 
             }
 }

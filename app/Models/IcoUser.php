@@ -13,7 +13,6 @@ class IcoUser extends Model {
 protected $table    = 'ico_users';
 protected $fillable = [
 		'id',
-		'admin_id',
         'amount',
         'status',
 
