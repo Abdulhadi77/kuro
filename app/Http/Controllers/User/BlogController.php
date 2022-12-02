@@ -15,6 +15,7 @@ use App\Models\Profile;
 use App\Models\Student;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -87,11 +88,18 @@ class BlogController extends Controller
     {
         try {
             $blog=Blog::find($id);
-            $comment=new Comment();
-            $comment->user_id=auth()->user()->id;
-            $comment->blog_id=$blog->id;
-            $comment->contect=$request->desc;
-            $comment->save();
+            if(Comment::where('blog_id',$blog->id)->where('user_id',auth()->user()->id)->first())
+            {
+                return redirect()->back()->with(['error','you have a comment before']);
+            }
+            else{
+                $comment=new Comment();
+                $comment->user_id=auth()->user()->id;
+                $comment->blog_id=$blog->id;
+                $comment->contect=$request->desc;
+                $comment->save();
+            }
+
 
             return redirect()->back();
         }

@@ -40,6 +40,7 @@ Route::group(['prefix' => 'user', 'middleware' => 'auth','middleware' => 'Lang']
 
             ///join ICO
             Route::post('/joinICO', [\App\Http\Controllers\User\UserICOsUsers::class, 'joinICO'])->name('user_join_ico');
+            Route::post('/joinICO', [\App\Http\Controllers\User\UserICOsUsers::class, 'joinICO'])->name('user_join_ico');
 
         });
 	}
@@ -75,8 +76,8 @@ Route::group(['middleware' => ['guest:web']], function () {
 
 });
 //register
-Route::get('user/register', [App\Http\Controllers\User\RegisterController::class, 'register'])->name('user.getRegister');
-Route::post('user/register/create', [App\Http\Controllers\User\RegisterController::class, 'create'])->name('user.register.create');
+Route::get('user/register', [App\Http\Controllers\Auth\RegisterController::class, 'showRegistrationForm'])->name('user.getRegister');
+Route::post('user/register/create', [App\Http\Controllers\Auth\RegisterController::class, 'create'])->name('user.register.create');
 
 
 //Auth::routes();
