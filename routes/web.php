@@ -72,13 +72,13 @@ Route::get('/Beteam', [App\Http\Controllers\User\HomeController::class, 'Beteam'
 
 //login
 Route::group(['middleware' => ['guest:web']], function () {
-    Route::get('user/login',  [App\Http\Controllers\User\LoginController::class, 'getLogin'])->name('user.getLogin');
-    Route::post('user/login',  [App\Http\Controllers\User\LoginController::class, 'login'])->name('user.login');
+    Route::get('login',  [App\Http\Controllers\User\LoginController::class, 'getLogin'])->name('user.getLogin');
+    Route::post('login',  [App\Http\Controllers\User\LoginController::class, 'login'])->name('user.login');
 
 });
 //register
-Route::get('user/register', [App\Http\Controllers\Auth\RegisterController::class, 'showRegistrationForm'])->name('register');
-Route::post('user/register/create', [App\Http\Controllers\Auth\RegisterController::class, 'create'])->name('user.register.create');
+Route::get('register', [App\Http\Controllers\Auth\RegisterController::class, 'showRegistrationForm'])->name('register');
+Route::post('register/create', [App\Http\Controllers\Auth\RegisterController::class, 'create'])->name('user.register.create');
 
 
 //Auth::routes();

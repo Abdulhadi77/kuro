@@ -61,7 +61,7 @@ class RegisterController extends Controller
             'eth_address' => ['string'],
         ]);
     }
-    
+
     /**
      * Create a new user instance after a valid registration.
      *

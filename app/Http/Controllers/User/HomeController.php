@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers\User;
 
+use App\Http\Controllers\Admin\BFOTPlans;
 use App\Models\Banner;
+use App\Models\BFOTPlan;
 use App\Models\ICO;
 use App\Models\Blog;
 use App\Models\Info;
@@ -23,7 +25,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-       
+
     }
 
     /**
@@ -63,5 +65,17 @@ class HomeController extends Controller
         $vote = true;
         return view('Vote-earn' , compact('settings','socials','vote'));
     }
-   
+
+    public function about()
+    {
+
+    }
+    public function Beteam()
+    {
+        $settings = Setting::find(1);
+        $socials= Social::all();
+        $Bfotplane = BFOTPlan::all();
+        return view('BeTeam', compact('settings','socials','Bfotplane'));
+    }
+
 }
