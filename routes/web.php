@@ -42,7 +42,6 @@ Route::group(['prefix' => 'user', 'middleware' => 'auth','middleware' => 'Lang']
 
             ///join ICO
             Route::post('/joinICO', [\App\Http\Controllers\User\UserICOsUsers::class, 'joinICO'])->name('user_join_ico');
-            Route::post('/joinICO', [\App\Http\Controllers\User\UserICOsUsers::class, 'joinICO'])->name('user_join_ico');
 
         });
 	}

@@ -9,7 +9,7 @@
 <!-- Section: Design Block -->
 <section class="login">
     <!-- Jumbotron -->
-    <form method="POST" action="{{ route('login') }}">
+    <form method="POST" action="{{ route('user.login') }}">
         @csrf
     <div class="px-4 py-5 px-md-5 text-center text-lg-start" style="background-color: hsl(0, 0%, 96%)">
       <div class="container">
