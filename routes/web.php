@@ -77,7 +77,7 @@ Route::group(['middleware' => ['guest:web']], function () {
 
 });
 //register
-Route::get('user/register', [App\Http\Controllers\Auth\RegisterController::class, 'showRegistrationForm'])->name('user.getRegister');
+Route::get('user/register', [App\Http\Controllers\Auth\RegisterController::class, 'showRegistrationForm'])->name('register');
 Route::post('user/register/create', [App\Http\Controllers\Auth\RegisterController::class, 'create'])->name('user.register.create');
 
 
