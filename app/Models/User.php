@@ -120,7 +120,7 @@ protected $fillable = [
 	 */
 	public function getReferralLinkAttribute()
 	{
-		return $this->referral_link = route('register', ['ref' => $this->username]);
+		return $this->referral_link = route('register', ['ref' => $this->user_name]);
 	}
 
 	/**

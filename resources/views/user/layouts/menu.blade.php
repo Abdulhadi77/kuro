@@ -12,7 +12,7 @@ with font-awesome or any other icon font library -->
 
 @if(auth()->user())
 
-
+@if(auth()->user()->eth_address)
   <!--voteplans_start_route-->
 @if(auth()->user()->role("voteplans_show"))
 <li class="nav-item {{active_link('voteplans','menu-open')}} ">
@@ -80,8 +80,51 @@ with font-awesome or any other icon font library -->
   </ul>
 </li>
 @endif
+@endif
 <!--icousers_end_route-->
+<!--comments_start_route-->
+@if(auth()->user()->role("comments_show"))
+<li class="nav-item {{active_link('comments','menu-open')}} ">
+  <a href="#" class="nav-link {{active_link('comments','active')}}">
+    <i class="nav-icon fa fa-icons"></i>
+    <p>
+      {{trans('user.comments')}} 
+      <i class="right fas fa-angle-left"></i>
+    </p>
+  </a>
+  <ul class="nav nav-treeview">
+    <li class="nav-item">
+      <a href="{{url('user/comments')}}" class="nav-link  {{active_link('comments','active')}}">
+        <i class="fa fa-icons nav-icon"></i>
+        <p>{{trans('user.comments')}} </p>
+      </a>
+    </li>
+  </ul>
+</li>
+@endif
+<!--comments_end_route-->
 
+<!--reactions_start_route-->
+@if(auth()->user()->role("reactions_show"))
+<li class="nav-item {{active_link('reactions','menu-open')}} ">
+  <a href="#" class="nav-link {{active_link('reactions','active')}}">
+    <i class="nav-icon fa fa-icons"></i>
+    <p>
+      {{trans('user.reactions')}} 
+      <i class="right fas fa-angle-left"></i>
+    </p>
+  </a>
+  <ul class="nav nav-treeview">
+    <li class="nav-item">
+      <a href="{{url('user/reactions')}}" class="nav-link  {{active_link('reactions','active')}}">
+        <i class="fa fa-icons nav-icon"></i>
+        <p>{{trans('user.reactions')}} </p>
+      </a>
+    </li>
+  </ul>
+</li>
+@endif
+<!--reactions_end_route-->
   <!--This endif for check if the user is User Role-->
 @endif
 

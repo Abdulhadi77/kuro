@@ -48,7 +48,17 @@ class UserVotePlans extends Controller
 
             public function index(UserVotePlansDataTable $voteplans)
             {
-
+				//dd(VotePlan::query()->select("vote_plans.*")->where('id', auth()->user()->vote_plan_id));
+				//dd(auth()->user()->vote_plan_id);
+				/*$voteplans = VotePlan::all();
+				dd(auth()->user()->vote()->get());
+				foreach($voteplans as $voteplan){
+					if ($voteplan->users->where('vote_plan_id', $voteplan->id)){
+						dd($voteplan->users->where('vote_plan_id', $voteplan->id));
+						dd($voteplan);
+					}
+				}*/
+					  //return VotePlan::query()->select("vote_plans.*")->where('id', $voteplan->id);
                return $voteplans->render('user.voteplans.index',['title'=>trans('user.voteplans')]);
             }
 

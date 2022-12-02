@@ -12,6 +12,10 @@ class UserVotePlansDataTable extends DataTable
     public function dataTable(DataTables $dataTables, $query)
     {
         return datatables($query)
+			->addColumn('type', function ($vote_plan_for_this_user) {
+				return "<a href=voteplans/".$vote_plan_for_this_user->id. ">".$vote_plan_for_this_user->type."</a>";	
+			})
+
 			->addColumn('num_comments', function ($vote_plan_for_this_user) {
 				return $vote_plan_for_this_user->users()->find(auth()->user()->id)->comments()->count('id');	
 			})
@@ -27,33 +31,28 @@ class UserVotePlansDataTable extends DataTable
 			->addColumn('kuro_balance', function ($vote_plan_for_this_user) {
 				return $vote_plan_for_this_user->users()->find(auth()->user()->id)->kuro_balance;	
 			})
+			->addColumn('num_paid_votes', function ($vote_plan_for_this_user) {
+				return $vote_plan_for_this_user->users()->find(auth()->user()->id)->num_paid_votes;	
+			})
+			->addColumn('paid_vote_plan_balance', function ($vote_plan_for_this_user) {
+				return $vote_plan_for_this_user->users()->find(auth()->user()->id)->paid_vote_plan_balance;	
+			})
 
-			->addColumn('kuro_balance', function ($vote_plan_for_this_user) {
-				return $vote_plan_for_this_user->users()->find(auth()->user()->id)->kuro_balance;	
-			})
-			->addColumn('kuro_balance', function ($vote_plan_for_this_user) {
-				return $vote_plan_for_this_user->users()->find(auth()->user()->id)->kuro_balance;	
-			})
+
    		->addColumn('created_at', '{{ date("Y-m-d H:i:s",strtotime($created_at)) }}')
 		   		->addColumn('updated_at', '{{ date("Y-m-d H:i:s",strtotime($updated_at)) }}')            ->addColumn('checkbox', '<div  class="icheck-danger">
                   <input type="checkbox" class="selected_data" name="selected_data[]" id="selectdata{{ $id }}" value="{{ $id }}" >
                   <label for="selectdata{{ $id }}"></label>
                 </div>')
-            ->rawColumns(['checkbox','actions',]);
+            ->rawColumns(['checkbox','actions','type']);
     }
   
 
 	public function query()
     {
 		if (auth()->user()){
-			$voteplans = VotePlan::all();
-              foreach($voteplans as $voteplan)
-              	if ($voteplan->users->find(auth()->user()->id))
-					return VotePlan::query()->select("vote_plans.*")->where('id', $voteplan->id);
-
+			return VotePlan::query()->select("vote_plans.*")->where('id', auth()->user()->vote_plan_id);
 		}
-        //return VotePlan::query()->select("vote_plans.*");
-
     }
     	
 
@@ -97,7 +96,7 @@ class UserVotePlansDataTable extends DataTable
 
 
             
-            ". filterElement('1,2,3,4,5', 'input') . "
+            ". filterElement('', 'input') . "
 
             
 
@@ -214,12 +213,12 @@ class UserVotePlansDataTable extends DataTable
 			[
 				'name'=>'num_paid_votes',
 				'data'=>'num_paid_votes',
-				'title'=>trans('admin.num_paid_votes'),
+				'title'=>trans('user.num_paid_votes'),
 		   ],
 		   [
 				'name'=>'paid_vote_plan_balance',
 				'data'=>'paid_vote_plan_balance',
-				'title'=>trans('admin.paid_vote_plan_balance'),
+				'title'=>trans('user.paid_vote_plan_balance'),
 	  	 	],
             
     	 ];

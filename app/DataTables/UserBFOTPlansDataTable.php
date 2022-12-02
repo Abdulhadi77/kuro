@@ -11,32 +11,39 @@ class UserBFOTPlansDataTable extends DataTable
     public function dataTable(DataTables $dataTables, $query)
     {
         return datatables($query)
+		->addColumn('type', function ($bfot_plan_for_this_user) {
+			return "<a href=bfotplans/".$bfot_plan_for_this_user->id. ">".$bfot_plan_for_this_user->type."</a>";	
+		})
+
 		->addColumn('num_refs', function ($bfot_plan_for_this_user) {
 			return $bfot_plan_for_this_user->users()->find(auth()->user()->id)->referrals()->count();	
 		})
 		->addColumn('bfot_revenue', function ($bfot_plan_for_this_user) {
 			return $bfot_plan_for_this_user->users()->find(auth()->user()->id)->bfot_revenue($bfot_plan_for_this_user);	
 		})
+		->addColumn('kuro_balance', function ($vote_plan_for_this_user) {
+			return $vote_plan_for_this_user->users()->find(auth()->user()->id)->kuro_balance;	
+		})
+		->addColumn('num_paid_refs', function ($vote_plan_for_this_user) {
+			return $vote_plan_for_this_user->users()->find(auth()->user()->id)->num_paid_refs;	
+		})
+		->addColumn('paid_vote_plan_balance', function ($vote_plan_for_this_user) {
+			return $vote_plan_for_this_user->users()->find(auth()->user()->id)->paid_vote_plan_balance;	
+		})
    		->addColumn('created_at', '{{ date("Y-m-d H:i:s",strtotime($created_at)) }}')
 		   		->addColumn('updated_at', '{{ date("Y-m-d H:i:s",strtotime($updated_at)) }}')            ->addColumn('checkbox', '<div  class="icheck-danger">
                   <input type="checkbox" class="selected_data" name="selected_data[]" id="selectdata{{ $id }}" value="{{ $id }}" >
                   <label for="selectdata{{ $id }}"></label>
                 </div>')
-            ->rawColumns(['checkbox',]);
+            ->rawColumns(['checkbox','type']);
     }
  
 	public function query()
     {
 		if (auth()->user()){
-			$bfotplans = BFOTPlan::all();
-			//Get VotePlan's user
-              foreach($bfotplans as $bfotplan)
-              	if ($bfotplan->users->find(auth()->user()->id))
-					return BFOTPlan::query()->select("b_f_o_t_plans.*")->where('id', $bfotplan->id);
+			return BFOTPlan::query()->select("b_f_o_t_plans.*")->where('id', auth()->user()->b_f_o_t_plan_id);
 
 		}
-        //return BFOTPlan::query()->select("b_f_o_t_plans.*");
-
     }
     	
 
@@ -80,7 +87,7 @@ class UserBFOTPlansDataTable extends DataTable
 
 
             
-            ". filterElement('1,2,3,4,5', 'input') . "
+            ". filterElement('', 'input') . "
 
             
 
