@@ -23,6 +23,7 @@ protected $fillable = [
         'email',
         'user_name',
         'age',
+		'phone',
 		'kuro_balance',
 		'vote_plan_id',
 		'vote_revenue',

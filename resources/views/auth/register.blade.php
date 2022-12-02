@@ -28,12 +28,13 @@
           <div class="col-lg-6 mb-5 mb-lg-0">
             <div class="card">
               <div class="card-body py-5 px-md-5">
-
+                <form method="POST" action="{{ route('register') }}">
+                  @csrf
                   <!-- 2 column grid layout with text inputs for the first and last names -->
                   <div class="row">
                     <div class="col-md-6 mb-4">
                       <div class="form-outline">
-                          <label class="form-label" for="form3Example1">User Name</label>
+                          <label class="form-label" for="form3Example1">Name</label>
                           <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
 
                           @error('name')
@@ -44,12 +45,14 @@
                       </div>
 
                     </div>
-                    <div class="col-md-6 mb-4">
-                      <div class="form-outline">
-                          <label class="form-label" for="form3Example2">Type</label>
-                          <input id="type" type="text" class="form-control @error('type') is-invalid @enderror" name="type" value="{{ old('type') }}" required autocomplete="type" autofocus>
 
-                          @error('type')
+                    <!-- User Name -->
+                  <div class="col-md-6 mb-4">
+                      <div class="form-outline">
+                          <label class="form-label" for="form3Example2">User Name</label>
+                          <input id="user_name" type="text" class="form-control @error('user_name') is-invalid @enderror" name="user_name" value="{{ old('user_name') }}" required autocomplete="user_name" autofocus>
+
+                          @error('user_name')
                               <span class="invalid-feedback" role="alert">
                                   <strong>{{ $message }}</strong>
                               </span>
@@ -57,17 +60,7 @@
                       </div>
                     </div>
                   </div>
-                  <div class="form-outline mb-4">
 
-                    <label class="form-label" for="form3Example3">Wallet</label>
-                  <input id="wallet" type="text" class="form-control @error('wallet') is-invalid @enderror" name="wallet" value="{{ old('wallet') }}" required autocomplete="wallet" autofocus>
-
-                  @error('wallet')
-                      <span class="invalid-feedback" role="alert">
-                          <strong>{{ $message }}</strong>
-                      </span>
-                  @enderror
-                  </div>
                   <!-- Email input -->
                   <div class="form-outline mb-4">
 
@@ -94,28 +87,48 @@
                     @enderror
                   </div>
 
-                <div class="form-outline mb-4">
 
-                    <label class="form-label" for="form3Example4">{{ __('Confirm Password') }}</label>
+                  <div class="form-outline mb-4">
 
+                      <label class="form-label" for="form3Example4">Password Confirmation</label>
+                      <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
 
-
-              <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
-
-                </div>
-
-                  <!-- Checkbox -->
-                  <div class="form-check d-flex justify-content-center mb-4">
-                    <input class="form-check-input me-2" type="checkbox" value="" id="form2Example33" checked />
-                    <label class="form-check-label" for="form2Example33">
-                      Subscribe to our newsletter
-                    </label>
                   </div>
+
+                  <!-- Age -->
+                  <div class="form-outline mb-4">
+
+                  <label class="form-label" for="form3Example3">Age</label>
+                  <input id="age" type="text" class="form-control @error('age') is-invalid @enderror" name="age" value="{{ old('age') }}" required autocomplete="age" autofocus>
+
+                  @error('age')
+                      <span class="invalid-feedback" role="alert">
+                          <strong>{{ $message }}</strong>
+                      </span>
+                  @enderror
+                  </div>
+
+                  <!-- Phone -->
+                  <div class="form-outline mb-4">
+
+                    <label class="form-label" for="form3Example3">Phone Number</label>
+                    <input id="phone" type="phone" class="form-control @error('phone') is-invalid @enderror" name="phone" value="{{ old('phone') }}" required autocomplete="phone">
+
+                    @error('phone')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
+                  </div>
+
+                  
 
 
                   <button type="submit" class="btn btn-primary btn-block mb-4">
                     {{ __('Register') }}
                   </button>
+              </form>
+                 
 
 
 

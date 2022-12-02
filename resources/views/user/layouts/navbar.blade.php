@@ -15,7 +15,7 @@
       <li class="nav-item d-none d-sm-inline-block">
 
         @if (auth()->user())
-          <a href="{{ route('user.logout') }}" class="nav-link"><i class="nav-icon fas fa-sign-out-alt"></i> {{ trans('user.logout') }}</a>
+          <a href="{{ route('logout') }}" class="nav-link"><i class="nav-icon fas fa-sign-out-alt"></i> {{ trans('user.logout') }}</a>
 
         @endif
 

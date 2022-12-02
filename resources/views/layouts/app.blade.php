@@ -40,8 +40,6 @@
     <script type="text/javascript" src="{{asset('storage/assets/js/flipdown/flipdown.js')}}"></script>
     <script type="text/javascript" src="{{asset('storage/assets/js/main.js')}}"></script>
 
-
-
 </head>
 <body>
 
@@ -70,7 +68,7 @@
                         @guest
                             @if (Route::has('login'))
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('user.getLogin') }}">{{ __('Login') }}</a>
+                                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
                                 </li>
                             @endif
 

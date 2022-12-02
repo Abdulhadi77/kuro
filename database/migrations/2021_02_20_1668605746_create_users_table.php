@@ -18,6 +18,7 @@ class CreateUsersTable extends Migration
             $table->string('name');
             $table->string('email');
             $table->string('user_name')->unique();
+            $table->string('phone');
             $table->integer('age');
             $table->foreignId("group_id")->default('2')->constrained("admin_groups")->references("id");
             $table->string('password');
