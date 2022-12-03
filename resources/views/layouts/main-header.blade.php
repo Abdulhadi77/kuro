@@ -37,12 +37,12 @@
                   </li>
                 @endif
                 <li class="nav-item d-none d-sm-inline-block">
-                  <a href="{{ route('web.logout') }}" class="nav-link"><i class="nav-icon fas fa-sign-out-alt"></i>  Logout </a>
+                  <a href="{{ route('web.logout') }}" class="getstarted scrollto"><i class="nav-icon fas fa-sign-out-alt"></i>  Logout </a>
 
                 </li>
               @else
               <li class="nav-item d-none d-sm-inline-block">
-                <a href="{{ route('login') }}" class="nav-link"><i class="nav-icon fas fa-sign-out-alt"></i>  Login </a>
+                <a href="{{ route('login') }}"  class="getstarted scrollto"><i class="nav-icon fas fa-sign-out-alt"></i>  Login </a>
 
               </li>
               @endif

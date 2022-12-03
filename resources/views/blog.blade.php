@@ -49,7 +49,7 @@
                         </div>
 
                         <h2 class="entry-title">
-                            <a href="blog-single.html">{{$blog->title}}</a>
+                            <a href="{{route('user.blog.details',$blog->id)}}">{{$blog->title}}</a>
                         </h2>
 
                         <div class="entry-meta">
@@ -119,17 +119,30 @@
                 </div><!-- End blog entries list -->
 
 
+                <div class="col-lg-4">
 
+            <h3 class="sidebar-title">Recent Posts</h3>
+            
+            <div class="sidebar-item recent-posts">
+             @foreach ($recentblog as $blog)
+              <div class="post-item clearfix">
+                <img src="storage/{{$blog->image}}" alt="">
+                <h4><a href="{{route('user.blog.details',$blog->id)}}">{{$blog->title}}</a></h4>
+                <time datetime="{{$blog->created_at}}">{{$blog->created_at}}</time>
+              </div>
+              @endforeach
+         
 
+            </div><!-- End sidebar recent posts-->
 
-            </div>
+        
+       
 
-        </div>
-    </section><!-- End Blog Section -->
+          </div><!-- End sidebar -->
 
-</main><!-- End #main -->
+        </div><!-- End blog sidebar -->
 
-
+      </div>
 
 @endsection
 <script src="https://code.iconify.design/iconify-icon/1.0.2/iconify-icon.min.js"></script>

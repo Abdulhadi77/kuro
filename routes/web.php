@@ -48,7 +48,7 @@ Route::group(['prefix' => 'user', 'middleware' => 'auth','middleware' => 'Lang']
 	}
 
 );
-Route::get('metmask-login', function () {
+Route::get('/login', function () {
 	/*if (Auth::check()) {
 		return redirect('login');
 	}*/
@@ -59,14 +59,13 @@ Route::resource('/bfotplans','User\UserBFOTPlans');
 Route::resource('/icos','User\ICOs', ['only' => ['index','show', 'store']]);
 
 Route::view('need/permission', 'user.no_permission');
-Route::get('/', function () {
-	return view('welcome');
-});
 
 
-Route::get('/home', [App\Http\Controllers\User\HomeController::class, 'index'])->name('home');
+Route::get('/', [App\Http\Controllers\User\HomeController::class, 'index'])->name('home');
 Route::get('/blog', [App\Http\Controllers\User\HomeController::class, 'blog'])->name('blog');
+Route::get('/singleblog/{blog}', [App\Http\Controllers\User\HomeController::class, 'singleblog'])->name('single_blog');
 Route::get('/ICO', [App\Http\Controllers\User\HomeController::class, 'ICO'])->name('ICO');
+Route::get('/singleICO/{ICO}', [App\Http\Controllers\User\HomeController::class, 'singleICO'])->name('SingleICO');
 Route::get('/vote', [App\Http\Controllers\User\HomeController::class, 'vote'])->name('vote');
 Route::get('/about', [App\Http\Controllers\User\HomeController::class, 'about'])->name('about');
 Route::get('/Beteam', [App\Http\Controllers\User\HomeController::class, 'Beteam'])->name('Beteam');
