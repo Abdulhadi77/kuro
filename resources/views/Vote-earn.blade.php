@@ -255,10 +255,11 @@
 
                                 </div>
                             </div>
-                            @if(\App\Models\User::where('vote_plan_id',$one->id)->first())
-                                <h1 href="{{route('user_join_vote_plan',$one->id)}}" class="btn btn-warning">Joined</h1>
-                            @else
-                                <a href="{{route('user_join_vote_plan',$one->id)}}" class="btn btn-primary">Join</a>
+                            {{--@if(\App\Models\User::where('vote_plan_id',$one->id)->first())--}}
+                            @if(auth()->user()->vote_plan_id == $one->id)
+                                <h1 href="{{route('user_join_vote_plan',$one->id)}}" class="btn btn-warning">Joined {{ $one->id }}</h1>
+                            @elseif(!auth()->user()->vote_plan_id)
+                                <a href="{{route('user_join_vote_plan',$one->id)}}" class="btn btn-primary">Join {{ $one->id }}</a>
                             @endif
                         </div>
                     </div>
