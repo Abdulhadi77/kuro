@@ -44,7 +44,7 @@
 <body>
 
 
-    <div id="app">
+    <div id="app ">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
 
@@ -63,7 +63,7 @@
                     </ul>
 
                     <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ms-auto">
+                    <ul class="navbar-nav ms-auto p-2">
                         <!-- Authentication Links -->
                         @guest
                             @if (Route::has('login'))
