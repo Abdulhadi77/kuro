@@ -48,23 +48,20 @@
         {{$ICO->description}}
       </p>
   
-
- 
-
-
-
+    
+    <main id="main" style="justify-content:center;">
+  @foreach ($ICOs as $ICO)
   <div class="example" id="example1" value="{{$ICO->open_date}}">
 
 
     <div id="flipdown" class="flipdown"></div>
    
   </div>
- 
-</div>
+      
+  @endforeach
   
-</div>
-   
-</div>
+    </main><!-- End #main -->
+  </div>
   </div></div>
 
 

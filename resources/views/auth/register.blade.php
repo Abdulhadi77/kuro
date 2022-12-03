@@ -49,10 +49,10 @@
                     <!-- User Name -->
                   <div class="col-md-6 mb-4">
                       <div class="form-outline">
-                          <label class="form-label" for="form3Example2">Age</label>
-                          <input id="Age" type="text" class="form-control @error('Age') is-invalid @enderror" name="Age" value="{{ old('Age') }}" required autocomplete="Age" autofocus>
-  
-                          @error('Age')
+                          <label class="form-label" for="form3Example2">User Name</label>
+                          <input id="user_name" type="text" class="form-control @error('user_name') is-invalid @enderror" name="user_name" value="{{ old('user_name') }}" required autocomplete="user_name" autofocus>
+
+                          @error('user_name')
                               <span class="invalid-feedback" role="alert">
                                   <strong>{{ $message }}</strong>
                               </span>
@@ -60,7 +60,7 @@
                       </div>
                     </div>
                   </div>
-              
+
                   <!-- Email input -->
                   <div class="form-outline mb-4">
 
@@ -87,22 +87,27 @@
                     @enderror
                   </div>
 
-                <div class="form-outline mb-4">
-                    
-                    <label class="form-label" for="form3Example4">{{ __('Confirm Password') }}</label>
-                 
-  
 
-                <input id="confirmPassword" type="text" class="form-control @error('confirmPassword') is-invalid @enderror" name="confirmPassword" value="{{ old('confirmPassword') }}" required autocomplete="confirmPassword" autofocus>
+                  <div class="form-outline mb-4">
 
-                  @error('confirmPassword')
+                      <label class="form-label" for="form3Example4">Password Confirmation</label>
+                      <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
+
+                  </div>
+
+                  <!-- Age -->
+                  <div class="form-outline mb-4">
+
+                  <label class="form-label" for="form3Example3">Age</label>
+                  <input id="age" type="text" class="form-control @error('age') is-invalid @enderror" name="age" value="{{ old('age') }}" required autocomplete="age" autofocus>
+
+                  @error('age')
                       <span class="invalid-feedback" role="alert">
                           <strong>{{ $message }}</strong>
                       </span>
                   @enderror
                   </div>
 
-                  
                   <!-- Phone -->
                   <div class="form-outline mb-4">
 
@@ -118,24 +123,15 @@
 
                   
 
-                  <div class="form-outline mb-4">
-                   
-                    <label class="form-label" for="form3Example3">Wallet</label>
-                  <input id="wallet" type="text" class="form-control @error('wallet') is-invalid @enderror" name="wallet" value="{{ old('wallet') }}" required autocomplete="wallet" autofocus>
-  
-                  @error('wallet')
-                      <span class="invalid-feedback" role="alert">
-                          <strong>{{ $message }}</strong>
-                      </span>
-                  @enderror
-                  </div>
-                  <div class="form-outline mb-4 d-flex" style="justify-content: center">
+
                   <button type="submit" class="btn btn-primary btn-block mb-4">
                     {{ __('Register') }}
                   </button>
-                  </div>
+              </form>
                  
-               
+
+
+
               </div>
             </div>
           </div>
