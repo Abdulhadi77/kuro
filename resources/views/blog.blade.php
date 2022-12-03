@@ -49,7 +49,7 @@
                         </div>
 
                         <h2 class="entry-title">
-                            <a href="blog-single.html">{{$blog->title}}</a>
+                            <a href="{{route('user.blog.details',$blog->id)}}">{{$blog->title}}</a>
                         </h2>
 
                         <div class="entry-meta">
@@ -127,8 +127,8 @@
              @foreach ($recentblog as $blog)
               <div class="post-item clearfix">
                 <img src="storage/{{$blog->image}}" alt="">
-                <h4><a href="blog-single.html">{{$blog->title}}</a></h4>
-                <time datetime="2020-01-01">{{$blog->created_at}}</time>
+                <h4><a href="{{route('user.blog.details',$blog->id)}}">{{$blog->title}}</a></h4>
+                <time datetime="{{$blog->created_at}}">{{$blog->created_at}}</time>
               </div>
               @endforeach
          
