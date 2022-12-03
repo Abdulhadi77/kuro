@@ -98,6 +98,7 @@
     <!-- jQuery -->
 {{-- <script src="{{url('assets/plugins/jquery/jquery.min.js')}}" type="text/javascript"></script> --}}
 <script src="{{url('assets/js/jquery.min.js')}}" type="text/javascript"></script>
+
 <link rel="stylesheet" type="text/css" href="{{url('assets/plugins/dropzone/min/dropzone.min.css')}}">
 <link rel="stylesheet" type="text/css" href="{{url('assets/plugins/dropzone/min/basic.css')}}">
   </head>

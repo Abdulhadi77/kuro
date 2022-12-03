@@ -12,6 +12,9 @@ use App\Models\Certificate;
 use App\Models\Comment;
 use App\Models\Course;
 use App\Models\Profile;
+use App\Models\Reaction;
+use App\Models\Setting;
+use App\Models\Social;
 use App\Models\Student;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
@@ -32,7 +35,7 @@ class BlogController extends Controller
     {
         try {
             $blog=Blog::find($id);
-            $userBlog=Reactions::where('blog_id',$blog->id)->where('user_id',auth()->user()->id)->first();
+            $userBlog=Reaction::where('blog_id',$blog->id)->where('user_id',auth()->user()->id)->first();
             if($userBlog)
             {
                 $userBlog->like = 1;
@@ -40,7 +43,7 @@ class BlogController extends Controller
                 $userBlog->save();
             }else
             {
-                $userBlog=new Reactions();
+                $userBlog=new Reaction();
                 $userBlog->user_id=auth()->user()->id;
                 $userBlog->blog_id=$blog->id;
                 $userBlog->like=1;
@@ -60,7 +63,7 @@ class BlogController extends Controller
     {
         try {
             $blog=Blog::find($id);
-            $userBlog=Reactions::where('blog_id',$blog->id)->where('user_id',auth()->user()->id)->first();
+            $userBlog=Reaction::where('blog_id',$blog->id)->where('user_id',auth()->user()->id)->first();
             if($userBlog)
             {
                 $userBlog->like = 0;
@@ -68,7 +71,7 @@ class BlogController extends Controller
                 $userBlog->save();
             }else
             {
-                $userBlog=new Reactions();
+                $userBlog=new Reaction();
                 $userBlog->user_id=auth()->user()->id;
                 $userBlog->blog_id=$blog->id;
                 $userBlog->like=0;
@@ -96,7 +99,7 @@ class BlogController extends Controller
                 $comment=new Comment();
                 $comment->user_id=auth()->user()->id;
                 $comment->blog_id=$blog->id;
-                $comment->contect=$request->desc;
+                $comment->content=$request->comment;
                 $comment->save();
             }
 
@@ -110,6 +113,16 @@ class BlogController extends Controller
 
     }
 
+    public function blogDetails($id)
+    {
+        $settings = Setting::find(1);
+        $socials= Social::all();
+        $blog = Blog::find($id);
+
+
+        $recentblog = Blog::paginate(10);
+        return view('blog-details', compact('settings','socials','blog','recentblog'));
+    }
 
 
 }

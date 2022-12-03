@@ -7,7 +7,7 @@ use Carbon\Carbon;
 use App\Models\BFOTPlan;
 
 use App\Models\User;
-
+use Illuminate\Http\Request;
 
 
 class UserBFOTPlans extends Controller
@@ -38,10 +38,11 @@ class UserBFOTPlans extends Controller
               ]);
             }
 
-    public function joinBfotPlan(VotePlanRequest $request)
+    public function joinBfotPlan(Request $request,$id)
     {
+
         $user=auth()->user();
-        $user->b_f_o_t_plan_id=$request->id;
+        $user->b_f_o_t_plan_id=$id;
         $user->save();
         return redirect()->back();
 
