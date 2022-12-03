@@ -119,7 +119,7 @@
                 </div><!-- End blog entries list -->
 
 
-
+                <div class="col-lg-4">
 
             <h3 class="sidebar-title">Recent Posts</h3>
             
