@@ -49,6 +49,13 @@
                       <li class="list-group-item">Referral link: {{ Auth::user()->referral_link }}</li>
                       <li class="list-group-item">Refferal count: {{ count(Auth::user()->referrals)  ?? '0' }}</li>
                       <li class="list-group-item">Referrer: {{ Auth::user()->referrer->name ?? 'Not Specified' }}</li>
+                      @if(auth()->user()->vote_plan_id)
+                        <li class="list-group-item">Vote Revenue: {{ Auth::user()->vote_revenue(App\Models\VotePlan::find(auth()->user()->vote_plan_id)->first()) }}</li>
+                      @endif
+                      @if(auth()->user()->b_f_o_t_plan_id)
+                        <li class="list-group-item">BeTeam Revenue: {{ Auth::user()->bfot_revenue(App\Models\BFOTPlan::find(auth()->user()->b_f_o_t_plan_id)->first()) }}</li>
+                      @endif
+
                   </ul>
               </div>
               </div>

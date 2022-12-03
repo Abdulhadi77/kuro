@@ -44,13 +44,13 @@
 <body>
 
 
-    <div id="app">
+    <div id="app ">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
 
           <a href="{{route('home')}}" class="logo d-flex align-items-center">
             {{-- <img src="storage/{{$settings->logo}}" alt=""> --}}
-                <span>FXS</span>
+               {{-- <span>$settings->sitename_en}}</span> --}}
               </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
@@ -63,7 +63,7 @@
                     </ul>
 
                     <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ms-auto">
+                    <ul class="navbar-nav ms-auto p-2">
                         <!-- Authentication Links -->
                         @guest
                             @if (Route::has('login'))

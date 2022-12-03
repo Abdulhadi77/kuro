@@ -49,7 +49,7 @@
                         </div>
 
                         <h2 class="entry-title">
-                            <a href="blog-single.html">{{$blog->title}}</a>
+                            <a href="{{route('user.blog.details',$blog->id)}}">{{$blog->title}}</a>
                         </h2>
 
                         <div class="entry-meta">
@@ -119,17 +119,17 @@
                 </div><!-- End blog entries list -->
 
 
+                <div class="col-lg-4">
 
 
+        
+       
 
-            </div>
+          </div><!-- End sidebar -->
 
-        </div>
-    </section><!-- End Blog Section -->
+        </div><!-- End blog sidebar -->
 
-</main><!-- End #main -->
-
-
+      </div>
 
 @endsection
 <script src="https://code.iconify.design/iconify-icon/1.0.2/iconify-icon.min.js"></script>

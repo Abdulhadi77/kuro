@@ -51,14 +51,22 @@ class HomeController extends Controller
         $recentblog = Blog::paginate(10);
         return view('blog', compact('settings','socials','blogs','recentblog'));
     }
-
     public function ICO()
     {
         $settings = Setting::find(1);
         $socials= Social::all();
         $ICOs = ICO::all();
-        return view('ICO', compact('settings','socials','ICOs'));
+        return view('ICOs', compact('settings','socials','ICOs'));
     }
+
+    public function singleICO(ICO $ICO)
+    {
+        $settings = Setting::find(1);
+        $socials= Social::all();
+       
+        return view('SingleICO', compact('settings','socials','ICO'));
+    }
+    
     public function Vote()
     {
         $settings = Setting::find(1);
