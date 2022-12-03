@@ -23,24 +23,49 @@
 
 
  
-    <div class="row d-flex">
-  <div class="col">
-    <br><br><br><br><br>
+    <div class="row d-flex pt-5">
+
+ 
   
-    
-    <main id="main" style="justify-content:center;">
+      <div class="col" style="justify-content:center;">
+  
   @foreach ($ICOs as $ICO)
+
+      <div class="col" >
+
+ <h2 class="entry-title" >
+     {{$ICO->status}}
+    </h2>
+
+    <div class="entry-img">
+      <img src="storage/{{$ICO->image}}" alt="" class="img-fluid">
+    </div>
+
+   
+
+
+    <div class="entry-content">
+      <p>
+        {{$ICO->description}}
+      </p>
+  
+
+ 
+
+
+
   <div class="example" id="example1" value="{{$ICO->open_date}}">
 
 
     <div id="flipdown" class="flipdown"></div>
    
   </div>
-      
+ 
+</div>
   @endforeach
-  
-    </main><!-- End #main -->
-  </div>
+</div>
+   
+ 
   </div></div>
 
 
