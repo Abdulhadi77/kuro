@@ -18,7 +18,7 @@ class UserReactionsDataTable extends DataTable
 				return "<a href=users/".User::find($reactions->user_id)->id. ">".User::find($reactions->user_id)->user_name."</a>";	
 			})
 			->addColumn('blog', function ($reactions) {
-				return "<a href=blogs/".$reactions->blog_id. ">".Blog::find($reactions->blog_id)->title."</a>";	
+				return "<a href=blog/details/".$reactions->blog_id. ">".Blog::find($reactions->blog_id)->title."</a>";	
 			})
 
    		->addColumn('created_at', '{{ date("Y-m-d H:i:s",strtotime($created_at)) }}')   		->addColumn('updated_at', '{{ date("Y-m-d H:i:s",strtotime($updated_at)) }}')            ->addColumn('checkbox', '<div  class="icheck-danger">

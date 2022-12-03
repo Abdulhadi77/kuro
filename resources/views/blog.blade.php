@@ -121,19 +121,6 @@
 
                 <div class="col-lg-4">
 
-            <h3 class="sidebar-title">Recent Posts</h3>
-            
-            <div class="sidebar-item recent-posts">
-             @foreach ($recentblog as $blog)
-              <div class="post-item clearfix">
-                <img src="storage/{{$blog->image}}" alt="">
-                <h4><a href="{{route('user.blog.details',$blog->id)}}">{{$blog->title}}</a></h4>
-                <time datetime="{{$blog->created_at}}">{{$blog->created_at}}</time>
-              </div>
-              @endforeach
-         
-
-            </div><!-- End sidebar recent posts-->
 
         
        
