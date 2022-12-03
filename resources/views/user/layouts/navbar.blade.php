@@ -15,9 +15,13 @@
       <li class="nav-item d-none d-sm-inline-block">
 
         @if (auth()->user())
-          <a href="{{ route('logout') }}" class="nav-link"><i class="nav-icon fas fa-sign-out-alt"></i> {{ trans('user.logout') }}</a>
+          <a href="{{ route('web.logout') }}" class="nav-link"><i class="nav-icon fas fa-sign-out-alt"></i> {{ trans('user.logout') }}</a>
 
         @endif
+
+      </li>
+      <li class="nav-item d-none d-sm-inline-block">
+        <a href="{{ route('home') }}" class="nav-link"><i class="nav-icon fas fa-sign-out-alt"></i> {{ trans('user.home') }}</a>
 
       </li>
 
