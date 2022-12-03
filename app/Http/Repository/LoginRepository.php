@@ -6,8 +6,10 @@ namespace App\Http\Repository;
 
 use App\Http\IRepositories\ILoginRepository;
 use App\Models\User;
+use App\Notifications\ReferrerBonus;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Lang;
+use Illuminate\Support\Facades\Notification;
 
 
 class LoginRepository extends BaseRepository implements ILoginRepository
