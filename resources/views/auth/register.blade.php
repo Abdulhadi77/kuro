@@ -6,7 +6,7 @@
 
 <section id='register' class='register'>
 
-    
+
 
     <!-- Jumbotron -->
     <div class="px-4 py-5 px-md-5 text-center text-lg-start" style="background-color: hsl(0, 0%, 96%)">
@@ -24,18 +24,19 @@
               veritatis? Dicta facilis sint aliquid ipsum atque?
             </p>
           </div>
-  
+
           <div class="col-lg-6 mb-5 mb-lg-0">
             <div class="card">
               <div class="card-body py-5 px-md-5">
-            
+                <form method="POST" action="{{ route('register') }}">
+                  @csrf
                   <!-- 2 column grid layout with text inputs for the first and last names -->
                   <div class="row">
                     <div class="col-md-6 mb-4">
                       <div class="form-outline">
-                          <label class="form-label" for="form3Example1">User Name</label>
+                          <label class="form-label" for="form3Example1">Name</label>
                           <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
-  
+
                           @error('name')
                               <span class="invalid-feedback" role="alert">
                                   <strong>{{ $message }}</strong>
@@ -44,20 +45,13 @@
                       </div>
 
                     </div>
-                    <div class="col-md-6 mb-4">
+
+                    <!-- User Name -->
+                  <div class="col-md-6 mb-4">
                       <div class="form-outline">
                           <label class="form-label" for="form3Example2">Type</label>
-                          
-                          {{-- <input list="browsers" id="type" type="list" > --}}
-                          
-                        <select name="cars" id="cars" class="form-control @error('type') is-invalid @enderror" name="type" value="{{ old('type') }}" required autocomplete="type" autofocus>
-                          @foreach ($types as $type)
-                          <option value="{{$type}}">{{$type}}</option>
-                              
-                          @endforeach
-                            
-                            </select>
-                          
+                          <input id="type" type="text" class="form-control @error('type') is-invalid @enderror" name="type" value="{{ old('type') }}" required autocomplete="type" autofocus>
+  
                           @error('type')
                               <span class="invalid-feedback" role="alert">
                                   <strong>{{ $message }}</strong>
@@ -66,7 +60,6 @@
                       </div>
                     </div>
                   </div>
-
                   <div class="form-outline mb-4">
                    
                     <label class="form-label" for="form3Example3">Wallet</label>
@@ -80,28 +73,28 @@
                   </div>
                   <!-- Email input -->
                   <div class="form-outline mb-4">
-                   
+
                     <label class="form-label" for="form3Example3">Email address</label>
                     <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
-  
+
                     @error('email')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
                         </span>
                     @enderror
                   </div>
-  
+
                   <!-- Password input -->
                   <div class="form-outline mb-4">
-                    
+
                     <label class="form-label" for="form3Example4">Password</label>
                     <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
-  
+
                     @error('password')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
                         </span>
-                    @enderror  
+                    @enderror
                   </div>
 
                 <div class="form-outline mb-4">
@@ -110,23 +103,36 @@
                  
   
 
-              <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
-        
-                </div>
-  
-                  <!-- Checkbox -->
-                  <div class="form-check d-flex justify-content-center mb-4">
-                    <input class="form-check-input me-2" type="checkbox" value="" id="form2Example33" checked />
-                    <label class="form-check-label" for="form2Example33">
-                      Subscribe to our newsletter
-                    </label>
+                  <label class="form-label" for="form3Example3">Age</label>
+                  <input id="age" type="text" class="form-control @error('age') is-invalid @enderror" name="age" value="{{ old('age') }}" required autocomplete="age" autofocus>
+
+                  @error('age')
+                      <span class="invalid-feedback" role="alert">
+                          <strong>{{ $message }}</strong>
+                      </span>
+                  @enderror
                   </div>
-  
-                  <div class="form-outline d-flex justify-content-center mb-4">
-                  <button type="submit" class="btn btn-primary btn-block ">
+
+                  <!-- Phone -->
+                  <div class="form-outline mb-4">
+
+                    <label class="form-label" for="form3Example3">Phone Number</label>
+                    <input id="phone" type="phone" class="form-control @error('phone') is-invalid @enderror" name="phone" value="{{ old('phone') }}" required autocomplete="phone">
+
+                    @error('phone')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
+                  </div>
+
+                  
+
+
+                  <button type="submit" class="btn btn-primary btn-block mb-4">
                     {{ __('Register') }}
                   </button>
-                </div>
+  
                  
                
               </div>
@@ -135,14 +141,14 @@
         </div>
       </div>
     </div>
-    <!-- Jumbotron -->  
-          
+    <!-- Jumbotron -->
+
   </section>
   <!-- Section: Design Block -->
-   
-  
-  
-  
+
+
+
+
 
 
 

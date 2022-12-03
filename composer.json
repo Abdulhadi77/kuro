@@ -69,12 +69,12 @@
         }
     },
     "config": {
+        "github-oauth": {
+            "github.com": "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"
+        },
         "optimize-autoloader": true,
         "preferred-install": "dist",
-        "sort-packages": true,
-        "platform": {
-            "php": "7.4.30"
-        }
+        "sort-packages": true
     },
     "minimum-stability": "dev",
     "prefer-stable": true

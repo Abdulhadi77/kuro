@@ -9,3 +9,4 @@
 
 <!-- Template Main JS File -->
 <script src="{{asset('storage/assets/js/main.js')}}"></script>
+<script src="{{asset('assets/blogs-list.js')}}"></script>

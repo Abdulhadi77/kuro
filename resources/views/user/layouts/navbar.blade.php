@@ -13,14 +13,14 @@
         <a class="nav-link" data-widget="pushmenu" href="#"><i class="fas fa-bars"></i></a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
-       
+
         @if (auth()->user())
-          <a href="{{ url('user/logout') }}" class="nav-link"><i class="nav-icon fas fa-sign-out-alt"></i> {{ trans('user.logout') }}</a>
+          <a href="{{ route('logout') }}" class="nav-link"><i class="nav-icon fas fa-sign-out-alt"></i> {{ trans('user.logout') }}</a>
 
         @endif
-        
+
       </li>
-     
+
       {{-- <li class="nav-item d-none d-sm-inline-block">
         <a href="#" class="nav-link">Contact</a>
       </li> --}}
@@ -39,7 +39,7 @@
     </form> --}}
 
 
-    
+
   </nav>
   <!-- /.navbar -->
 <!-- /.navbar -->
@@ -55,7 +55,7 @@
   <!-- Sidebar -->
   <div class="sidebar">
     <!-- Sidebar user panel (optional) -->
-    
+
 
     <!-- Sidebar Menu -->
     <nav class="mt-2">

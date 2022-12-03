@@ -15,27 +15,35 @@ class UsersDataTable extends DataTable
     {
         return datatables($query)
             ->addColumn('actions', 'admin.users.buttons.actions')
-			->addColumn('vote_plan_id', function ($user) {
-				return "<a href=voteplans/".$user->vote_plan_id. ">".VotePlan::find($user->vote_plan_id)->type."</a>";	
+			->addColumn('vote_plan_type', function ($user) {
+				if (!is_null($user->vote_plan_id))
+					return "<a href=voteplans/".$user->vote_plan_id. ">".VotePlan::find($user->vote_plan_id)->type."</a>";
+				
 			})
 
-			->addColumn('b_f_o_t_plan_id', function ($user) {
-				return "<a href=bfotplans/".$user->b_f_o_t_plan_id. ">".BFOTPlan::find($user->b_f_o_t_plan_id)->type."</a>";	
+			->addColumn('b_f_o_t_plan_type', function ($user) {
+				if (!is_null($user->b_f_o_t_plan_id))
+					return "<a href=bfotplans/".$user->b_f_o_t_plan_id. ">".BFOTPlan::find($user->b_f_o_t_plan_id)->type."</a>";	
+				
 			})
 
 			->addColumn('vote_revenue', function ($user) {
-				return $user->vote_revenue(VotePlan::query()->select("vote_plans.*")->where('id', $user->vote_plan_id)->firstOrFail());	
-			})
+				if (!is_null($user->vote_plan_id))
+					return $user->vote_revenue(VotePlan::query()->select("vote_plans.*")->where('id', $user->vote_plan_id)->firstOrFail());	
+		
+				})
 
 			->addColumn('bfot_revenue', function ($user) {
-				return $user->bfot_revenue(BFOTPlan::query()->select("b_f_o_t_plans.*")->where('id', $user->b_f_o_t_plan_id)->firstOrFail());	
+				if (!is_null($user->b_f_o_t_plan_id))
+					return $user->bfot_revenue(BFOTPlan::query()->select("b_f_o_t_plans.*")->where('id', $user->b_f_o_t_plan_id)->firstOrFail());	
+
 			})
 
    		->addColumn('created_at', '{{ date("Y-m-d H:i:s",strtotime($created_at)) }}')   		->addColumn('updated_at', '{{ date("Y-m-d H:i:s",strtotime($updated_at)) }}')            ->addColumn('checkbox', '<div  class="icheck-danger">
                   <input type="checkbox" class="selected_data" name="selected_data[]" id="selectdata{{ $id }}" value="{{ $id }}" >
                   <label for="selectdata{{ $id }}"></label>
                 </div>')
-            ->rawColumns(['checkbox','actions','vote_plan_id', 'b_f_o_t_plan_id']);
+            ->rawColumns(['checkbox','actions','vote_plan_type', 'b_f_o_t_plan_type']);
     }
   
 
@@ -83,19 +91,13 @@ class UsersDataTable extends DataTable
 					],	[
 						'text' => '<i class="fa fa-trash"></i> '.trans('admin.delete'),
 						'className'    => 'btn btn-outline deleteBtn',
-                    ], 	[
-                        'text' => '<i class="fa fa-plus"></i> '.trans('admin.add'),
-                        'className'    => 'btn btn-primary',
-                        'action'    => 'function(){
-                        	window.location.href =  "'.URL::current().'/create";
-                        }',
                     ],
                 ],
                 'initComplete' => "function () {
 
 
             
-            ". filterElement('1,2,3,4,5,6,9,10,11', 'input') . "
+            ". filterElement('1,2,3,4,5,6,7,8,9,10,11,12,13,14', 'input') . "
 
             
 
@@ -181,9 +183,9 @@ class UsersDataTable extends DataTable
 		    ],
 				
 				[
-                 'name'=>'vote_plan_id',
-                 'data'=>'vote_plan_id',
-                 'title'=>trans('admin.vote_plan_id'),
+                 'name'=>'vote_plan_type',
+                 'data'=>'vote_plan_type',
+                 'title'=>trans('admin.vote_plan_type'),
 		    ],
 				[
                  'name'=>'vote_revenue',
@@ -191,9 +193,9 @@ class UsersDataTable extends DataTable
                  'title'=>trans('admin.vote_revenue'),
 		    ],
 			[
-				'name'=>'b_f_o_t_plan_id',
-				'data'=>'b_f_o_t_plan_id',
-				'title'=>trans('admin.b_f_o_t_plan_id'),
+				'name'=>'b_f_o_t_plan_type',
+				'data'=>'b_f_o_t_plan_type',
+				'title'=>trans('admin.b_f_o_t_plan_type'),
 			],
 			[
 				'name'=>'bfot_revenue',

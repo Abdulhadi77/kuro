@@ -2,11 +2,12 @@
 namespace App\Http\Controllers\User;
 use App\Http\Controllers\Controller;
 use App\DataTables\UserBFOTPlansDataTable;
+use App\Http\Requests\VotePlanRequest;
 use Carbon\Carbon;
 use App\Models\BFOTPlan;
 
 use App\Models\User;
-
+use Illuminate\Http\Request;
 
 
 class UserBFOTPlans extends Controller
@@ -16,16 +17,16 @@ class UserBFOTPlans extends Controller
 
 	}
 
-	
 
-            
+
+
             public function index(UserBFOTPlansDataTable $bfotplans)
             {
                return $bfotplans->render('user.bfotplans.index',['title'=>trans('user.bfotplans')]);
             }
-         
-           
-            
+
+
+
             public function show($id)
             {
               $bfotplans =  BFOTPlan::find($id);
@@ -37,8 +38,16 @@ class UserBFOTPlans extends Controller
               ]);
             }
 
+    public function joinBfotPlan(Request $request,$id)
+    {
 
-         
-            
+        $user=auth()->user();
+        $user->b_f_o_t_plan_id=$id;
+        $user->save();
+        return redirect()->back();
+
+    }
+
+
 
 }

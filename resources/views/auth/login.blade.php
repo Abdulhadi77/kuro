@@ -4,12 +4,12 @@
 
 
 
-  
-       
+
+
 <!-- Section: Design Block -->
 <section class="login">
     <!-- Jumbotron -->
-    <form method="POST" action="{{ route('login') }}">
+    <form method="POST" action="{{ url('login') }}">
         @csrf
     <div class="px-4 py-5 px-md-5 text-center text-lg-start" style="background-color: hsl(0, 0%, 96%)">
       <div class="container">
@@ -26,17 +26,17 @@
               veritatis? Dicta facilis sint aliquid ipsum atque?
             </p>
           </div>
-  
+
           <div class="col-lg-6 mb-5 mb-lg-0">
             <div class="card">
               <div class="card-body py-5 px-md-5">
                 <form>
                   <!-- 2 column grid layout with text inputs for the first and last names -->
                   <div class="row">
-                  
-  
+
+
                   <!-- Email input -->
-                  
+
                   <div class="form-outline mb-4">
                           <label class="form-label" for="form3Example3">Email address</label>
                       <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
@@ -46,15 +46,15 @@
                             <strong>{{ $message }}</strong>
                         </span>
                     @enderror
-              
+
                   </div>
-  
+
                   <!-- Password input -->
                   <div class="form-outline mb-4">
-                    
+
                     <label class="form-label" for="form3Example4">Password</label>
-                   
-                  
+
+
                         <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
 
                         @error('password')
@@ -63,7 +63,7 @@
                             </span>
                         @enderror
                   </div>
-  
+
                   <!-- Checkbox -->
                   <div class="form-check d-flex justify-content-center mb-4">
                     <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
@@ -72,7 +72,7 @@
                       remember me
                     </label>
                   </div>
-  
+
                   <!-- Submit button -->
 
                   <button type="submit" class="btn btn-primary btn-block mb-4">
@@ -86,9 +86,9 @@
                   </a>
                   @endif
                   </div>
-                
-           
-                
+
+
+
               </div>
             </div>
           </div>
@@ -99,9 +99,9 @@
     <!-- Jumbotron -->
   </section>
   <!-- Section: Design Block -->
-       
 
-  
+
+
 
 
 

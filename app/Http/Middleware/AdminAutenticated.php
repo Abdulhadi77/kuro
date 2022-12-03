@@ -22,10 +22,10 @@ class AdminAutenticated {
 			}
 			return redirect(aurl('login'));
 		}
-		
+
 		if ($guard == 'web'){
 			if (Auth::guard($guard)->check()) {
-				
+
 				return $next($request);
 			}
 			return redirect(url('login'));
