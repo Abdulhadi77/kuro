@@ -88,7 +88,7 @@ class CommentsDataTable extends DataTable
 
 
             
-            ". filterElement('1,2,3,4,5', 'input') . "
+            ". filterElement('1,2,3,4,5,6', 'input') . "
 
             
 

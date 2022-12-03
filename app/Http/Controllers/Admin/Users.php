@@ -43,7 +43,7 @@ class Users extends Controller
                 //dd($blog_comments);
               }*/
               //$user->vote();
-                //dd(VotePlan::query()->select("vote_plans.*")->where('id', 1)->firstOrFail());
+                //dd(VotePlan::query()->findOrFail(1));
 				//check if conditions are true
 				//$user = User::find(auth()->user()->id);
 				//$vote_plan = VotePlan::find(1);
