@@ -25,6 +25,7 @@
               <img src="storage/{{$settings->logo}}" alt="">
               <span>FXS</span>
             </a>
+            <br>
             <p>Cras fermentum odio eu feugiat lide par naso tierra. Justo eget nada terra videa magna derita valies darta donna mare fermentum iaculis eu non diam phasellus.</p>
             <div class="social-links mt-3">
               @foreach ($socials as $social)
@@ -39,11 +40,11 @@
           <div class="col-lg-3 col-6 footer-links">
             <h4>Useful Links</h4>
             <ul>
-              <li><i class="bi bi-chevron-right"></i> <a href="#">Home</a></li>
+              <li><i class="bi bi-chevron-right"></i> <a href="{{route('home')}}">Home</a></li>
               <li><i class="bi bi-chevron-right"></i> <a href="#">About us</a></li>
-              <li><i class="bi bi-chevron-right"></i> <a href="#">Services</a></li>
-              <li><i class="bi bi-chevron-right"></i> <a href="#">Terms of service</a></li>
-              <li><i class="bi bi-chevron-right"></i> <a href="#">Privacy policy</a></li>
+              <li><i class="bi bi-chevron-right"></i> <a href="{{route('ICO')}}">ICO</a></li>
+              <li><i class="bi bi-chevron-right"></i> <a href="{{route('vote')}}">Vote</a></li>
+              <li><i class="bi bi-chevron-right"></i> <a href="{{route('blog')}}">Blog</a></li>
             </ul>
           </div>
 
