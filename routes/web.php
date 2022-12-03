@@ -52,7 +52,7 @@ Route::get('/login', function () {
 	/*if (Auth::check()) {
 		return redirect('login');
 	}*/
-	return view('auth.metmask-login');
+	return view('auth.metamask-login');
 });
 Route::resource('/voteplans','User\UserVotePlans');
 Route::resource('/bfotplans','User\UserBFOTPlans');
@@ -65,7 +65,7 @@ Route::get('/', [App\Http\Controllers\User\HomeController::class, 'index'])->nam
 Route::get('/blog', [App\Http\Controllers\User\HomeController::class, 'blog'])->name('blog');
 Route::get('/singleblog/{blog}', [App\Http\Controllers\User\HomeController::class, 'singleblog'])->name('single_blog');
 Route::get('/ICO', [App\Http\Controllers\User\HomeController::class, 'ICO'])->name('ICO');
-Route::get('/singleICO', [App\Http\Controllers\User\HomeController::class, 'singleICO'])->name('SingleICO');
+Route::get('/singleICO/{ICO}', [App\Http\Controllers\User\HomeController::class, 'singleICO'])->name('SingleICO');
 Route::get('/vote', [App\Http\Controllers\User\HomeController::class, 'vote'])->name('vote');
 Route::get('/about', [App\Http\Controllers\User\HomeController::class, 'about'])->name('about');
 Route::get('/Beteam', [App\Http\Controllers\User\HomeController::class, 'Beteam'])->name('Beteam');

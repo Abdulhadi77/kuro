@@ -28,8 +28,7 @@
  
   
       <div class="col" style="justify-content:center;">
-  
-  @foreach ($ICOs as $ICO)
+
 
       <div class="col" >
 
@@ -62,7 +61,7 @@
   </div>
  
 </div>
-  @endforeach
+  
 </div>
    
  

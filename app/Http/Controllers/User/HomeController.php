@@ -59,12 +59,12 @@ class HomeController extends Controller
         return view('ICOs', compact('settings','socials','ICOs'));
     }
 
-    public function singleICO()
+    public function singleICO(ICO $ICO)
     {
         $settings = Setting::find(1);
         $socials= Social::all();
-        $ICOs = ICO::all();
-        return view('SingleICO', compact('settings','socials','ICOs'));
+       
+        return view('SingleICO', compact('settings','socials','ICO'));
     }
     
     public function Vote()
