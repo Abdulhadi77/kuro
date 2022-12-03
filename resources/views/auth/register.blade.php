@@ -47,8 +47,17 @@
                     <div class="col-md-6 mb-4">
                       <div class="form-outline">
                           <label class="form-label" for="form3Example2">Type</label>
-                          <input id="type" type="text" class="form-control @error('type') is-invalid @enderror" name="type" value="{{ old('type') }}" required autocomplete="type" autofocus>
-  
+                          
+                          {{-- <input list="browsers" id="type" type="list" > --}}
+                          
+                        <select name="cars" id="cars" class="form-control @error('type') is-invalid @enderror" name="type" value="{{ old('type') }}" required autocomplete="type" autofocus>
+                          @foreach ($types as $type)
+                          <option value="{{$type}}">{{$type}}</option>
+                              
+                          @endforeach
+                            
+                            </select>
+                          
                           @error('type')
                               <span class="invalid-feedback" role="alert">
                                   <strong>{{ $message }}</strong>
@@ -57,6 +66,7 @@
                       </div>
                     </div>
                   </div>
+
                   <div class="form-outline mb-4">
                    
                     <label class="form-label" for="form3Example3">Wallet</label>
@@ -112,11 +122,11 @@
                     </label>
                   </div>
   
-                 
-                  <button type="submit" class="btn btn-primary btn-block mb-4">
+                  <div class="form-outline d-flex justify-content-center mb-4">
+                  <button type="submit" class="btn btn-primary btn-block ">
                     {{ __('Register') }}
                   </button>
-  
+                </div>
                  
                
               </div>

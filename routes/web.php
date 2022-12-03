@@ -39,7 +39,7 @@ Route::group(['prefix' => 'user', 'middleware' => 'auth','middleware' => 'Lang']
 	}
 	
 );
-Route::get('/login', function () {
+Route::get('/metamask-login', function () {
 	/*if (Auth::check()) {
 		return redirect('login');
 	}*/
