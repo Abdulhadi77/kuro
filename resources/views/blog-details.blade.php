@@ -128,7 +128,7 @@
                                 <h5><a href="">{{$one->user->name}}</a> </h5>
                                 <time datetime="2020-01-01">{{$one->created_at}}</time>
                                 <p>
-                                    {{$one->desc}}
+                                    {{$one->content}}
                                 </p>
                             </div>
                         </div>

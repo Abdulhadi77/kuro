@@ -99,7 +99,7 @@ class BlogController extends Controller
                 $comment=new Comment();
                 $comment->user_id=auth()->user()->id;
                 $comment->blog_id=$blog->id;
-                $comment->desc=$request->comment;
+                $comment->content=$request->comment;
                 $comment->save();
             }
 
