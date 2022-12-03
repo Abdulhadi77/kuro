@@ -28,7 +28,7 @@ class AdminAutenticated {
 
 				return $next($request);
 			}
-			return redirect(url('user/login'));
+			return redirect(url('login'));
 		}
 	}
 }

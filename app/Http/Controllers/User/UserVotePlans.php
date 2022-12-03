@@ -75,10 +75,10 @@ class UserVotePlans extends Controller
               ]);
             }
 
-    public function joinVotePlan(VotePlanRequest $request)
+    public function joinVotePlan(Request $requestm,$id)
     {
         $user=auth()->user();
-        $user->vote_plan_id=$request->id;
+        $user->vote_plan_id=$id;
         $user->save();
         return redirect()->back();
 

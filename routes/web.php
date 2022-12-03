@@ -28,17 +28,18 @@ Route::group(['prefix' => 'user', 'middleware' => 'auth','middleware' => 'Lang']
 		Route::get('/dashboard', 'User\Dashboard@home');
 
 		    ///reaction in blogs
-            Route::post('/addLike/{id}', [App\Http\Controllers\User\BlogController::class, 'createLike'])->name('user.add.like');
-            Route::post('/addDislike/{id}', [App\Http\Controllers\User\BlogController::class, 'createDisLike'])->name('user.add.dislike');
+            Route::get('/addLike/{id}', [App\Http\Controllers\User\BlogController::class, 'createLike'])->name('user.add.like');
+            Route::get('/addDislike/{id}', [App\Http\Controllers\User\BlogController::class, 'createDisLike'])->name('user.add.dislike');
              ///add comment in blog
             Route::post('/addComment/{id}', [App\Http\Controllers\User\BlogController::class, 'createComment'])->name('user.add.comment');
+            Route::get('/blog/details/{id}', [App\Http\Controllers\User\BlogController::class, 'blogDetails'])->name('user.blog.details');
 
             ///send email
             Route::post('/sendMessage', [\App\Http\Controllers\MailController::class, 'user_send_message'])->name('user_send_message');
             ///join Vote  Plan
-            Route::post('/joinVotePlan', [\App\Http\Controllers\User\UserVotePlans::class, 'joinVotePlan'])->name('user_join_vote_plan');
+            Route::post('/joinVotePlan/{id}', [\App\Http\Controllers\User\UserVotePlans::class, 'joinVotePlan'])->name('user_join_vote_plan');
             ///join b_f_o_t_plan
-            Route::post('/joinBfotPlan', [\App\Http\Controllers\User\UserBFOTPlans::class, 'joinBfotPlan'])->name('user_join_b_f_o_t_plan');
+            Route::get('/joinBfotPlan/{id}', [\App\Http\Controllers\User\UserBFOTPlans::class, 'joinBfotPlan'])->name('user_join_b_f_o_t_plan');
 
             ///join ICO
             Route::post('/joinICO', [\App\Http\Controllers\User\UserICOsUsers::class, 'joinICO'])->name('user_join_ico');
@@ -69,6 +70,10 @@ Route::get('/ICO', [App\Http\Controllers\User\HomeController::class, 'ICO'])->na
 Route::get('/vote', [App\Http\Controllers\User\HomeController::class, 'vote'])->name('vote');
 Route::get('/about', [App\Http\Controllers\User\HomeController::class, 'about'])->name('about');
 Route::get('/Beteam', [App\Http\Controllers\User\HomeController::class, 'Beteam'])->name('Beteam');
+
+//blog details
+Route::get('/blog/{id}', [App\Http\Controllers\User\HomeController::class, 'blogDetails'])->name('blog-details');
+
 
 //login
 Route::group(['middleware' => ['guest:web']], function () {

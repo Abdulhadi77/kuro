@@ -51,6 +51,7 @@ class HomeController extends Controller
         $recentblog = Blog::paginate(10);
         return view('blog', compact('settings','socials','blogs','recentblog'));
     }
+
     public function ICO()
     {
         $settings = Setting::find(1);
@@ -62,7 +63,7 @@ class HomeController extends Controller
     {
         $settings = Setting::find(1);
         $socials= Social::all();
-        $vote = true;
+        $vote = VotePlan::all();
         return view('Vote-earn' , compact('settings','socials','vote'));
     }
 

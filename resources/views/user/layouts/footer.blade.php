@@ -25,6 +25,10 @@
 </div>
 <!-- ./wrapper -->
 
+
+
+
+
 <!-- jQuery UI 1.11.4 -->
 <script src="{{ url('assets') }}/plugins/jquery-ui/jquery-ui.min.js"></script>
 <script src="{{ url('assets') }}/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -176,6 +180,11 @@ $.fn.dataTable.ext.errMode = 'none';
       //replace the "Choose a file" label
       $(this).next('.custom-file-label').html(fileName);
   });
+
+
+
+
+
 
 
 });
