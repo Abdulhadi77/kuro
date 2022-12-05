@@ -5,6 +5,7 @@
 
 
   <!-- Favicons -->
+  
   <link href="storage/{{$settings->icon}}" rel="icon">
   <link href="{{asset('storage/assets/img/apple-touch-icon.png')}}" rel="apple-touch-icon">
 
