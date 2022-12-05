@@ -28,10 +28,10 @@ Route::group(['prefix' => 'user', 'middleware' => 'auth','middleware' => 'Lang']
 		Route::get('/dashboard', 'User\Dashboard@home')->name('user.dashboard');
 
 		    ///reaction in blogs
-            Route::get('/addLike/{id}', [App\Http\Controllers\User\BlogController::class, 'createLike'])->name('user.add.like');
-            Route::get('/addDislike/{id}', [App\Http\Controllers\User\BlogController::class, 'createDisLike'])->name('user.add.dislike');
+            Route::post('/addLike', [App\Http\Controllers\User\BlogController::class, 'createLike'])->name('user.add.like');
+            Route::post('/addDislike', [App\Http\Controllers\User\BlogController::class, 'createDisLike'])->name('user.add.dislike');
              ///add comment in blog
-            Route::post('/addComment/{id}', [App\Http\Controllers\User\BlogController::class, 'createComment'])->name('user.add.comment');
+            Route::post('/addComment', [App\Http\Controllers\User\BlogController::class, 'createComment'])->name('user.add.comment');
             Route::get('/blog/details/{id}', [App\Http\Controllers\User\BlogController::class, 'blogDetails'])->name('user.blog.details');
 
             ///send email

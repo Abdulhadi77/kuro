@@ -19,8 +19,7 @@
 
 @section('content')
 
-    <br>
-    <br>
+    <br><br><br><br>
 
 {{--    <section id="portfolio-details" class="portfolio-details">--}}
 
@@ -65,7 +64,7 @@
                     <h2 data-aos="fade-up" data-aos-delay="400">We are team of talented designers making websites with Bootstrap</h2>
                     <div data-aos="fade-up" data-aos-delay="600">
                         <div class="text-center text-lg-start">
-                            <a href="#about" class="btn-get-started scrollto d-inline-flex align-items-center justify-content-center align-self-center">
+                            <a target="_blank" href="https://kurocoin.digital/" class="btn-get-started scrollto d-inline-flex align-items-center justify-content-center align-self-center">
                                 <span>Get Started</span>
                                 <i class="bi bi-arrow-right"></i>
                             </a>
@@ -96,37 +95,17 @@
 
               <div class="testimonials-slider swiper" data-aos="fade-up" data-aos-delay="200">
                   <div class="swiper-wrapper">
-
+                      @foreach ($slides as $slide)
                       <div class="swiper-slide">
                           <div class="testimonial-item">
                               <div class="profile mt-auto">
-                              <img src="storage/assets/img/blog/blog-1.jpg" class="testimonial-img" alt="">
-                                  <a href="#" > <h3>page 1</h3>
+                              <img src="{{url('storage/'.$slide->image)}}" class="testimonial-img" alt="">
+                                  <a href="#" > <h3>@isset($slide->page->page_name){{$slide->page->page_name}}@endisset</h3>
                                   </a>
                               </div>
                           </div>
                       </div><!-- End testimonial item -->
-
-                      <div class="swiper-slide">
-                          <div class="testimonial-item">
-                              <div class="profile mt-auto">
-                                  <img src="storage/assets/img/blog/blog-1.jpg" class="testimonial-img" alt="">
-                                  <a href="#" > <h3>page 2</h3>
-                                  </a>
-                              </div>
-                          </div>
-                      </div><!-- End testimonial item -->
-
-                      <div class="swiper-slide">
-                          <div class="testimonial-item">
-                              <div class="profile mt-auto">
-                                  <img  src="storage/assets/img/blog/blog-1.jpg" class="testimonial-img" alt="">
-                                  <a href="#" > <h3>page 3</h3>
-                                  </a>
-                              </div>
-                          </div>
-                      </div><!-- End testimonial item -->
-
+                      @endforeach
 
                   </div>
                   <div class="swiper-pagination"></div>
@@ -148,33 +127,18 @@
               </header>
 
               <div class="row">
-
+                  @foreach ($banners as $banner)
                   <div class="col-lg-4">
                       <div class="post-box">
-                          <div class="post-img"><img src="storage/assets/img/blog/blog-1.jpg" class="img-fluid" alt=""></div>
-                          <span class="post-date">Tue, September 15</span>
-                          <h3 class="post-title">Eum ad dolor et. Autem aut fugiat debitis voluptatem consequuntur sit</h3>
+                          <div class="post-img"><img src="storage/{{$banner->image}}" class="img-fluid" alt=""></div>
+                          <span class="post-date">{{$banner->created_at}}</span>
+                          <h3 class="post-title">{{$banner->description}}</h3>
                           {{--                        <a href="blog-single.html" class="readmore stretched-link mt-auto"><span>Read More</span><i class="bi bi-arrow-right"></i></a>--}}
                       </div>
                   </div>
 
-                  <div class="col-lg-4">
-                      <div class="post-box">
-                          <div class="post-img"><img src="storage/assets/img/blog/blog-2.jpg" class="img-fluid" alt=""></div>
-                          <span class="post-date">Fri, August 28</span>
-                          <h3 class="post-title">Et repellendus molestiae qui est sed omnis voluptates magnam</h3>
-                          {{--                        <a href="blog-single.html" class="readmore stretched-link mt-auto"><span>Read More</span><i class="bi bi-arrow-right"></i></a>--}}
-                      </div>
-                  </div>
+                  @endforeach
 
-                  <div class="col-lg-4">
-                      <div class="post-box">
-                          <div class="post-img"><img src="storage/assets/img/blog/blog-3.jpg" class="img-fluid" alt=""></div>
-                          <span class="post-date">Mon, July 11</span>
-                          <h3 class="post-title">Quia assumenda est et veritatis aut quae</h3>
-                          {{--                        <a href="blog-single.html" class="readmore stretched-link mt-auto"><span>Read More</span><i class="bi bi-arrow-right"></i></a>--}}
-                      </div>
-                  </div>
 
               </div>
 
@@ -192,19 +156,14 @@
 
               <header class="section-header">
 {{--                  <h2>Our Clients</h2>--}}
-                  <p>You Can Find Us</p>
+                  <p>Our Clients</p>
               </header>
 
               <div class="clients-slider swiper">
                   <div class="swiper-wrapper align-items-center">
-                      <div class="swiper-slide"><img src="storage/assets/img/clients/1.png" class="img-fluid" alt=""></div>
-                      <div class="swiper-slide"><img src="storage/assets/img/clients/2.png" class="img-fluid" alt=""></div>
-                      <div class="swiper-slide"><img src="storage/assets/img/clients/3.png" class="img-fluid" alt=""></div>
-                      <div class="swiper-slide"><img src="storage/assets/img/clients/4.png" class="img-fluid" alt=""></div>
-                      <div class="swiper-slide"><img src="storage/assets/img/clients/5.png" class="img-fluid" alt=""></div>
-                      <div class="swiper-slide"><img src="storage/assets/img/clients/6.png" class="img-fluid" alt=""></div>
-                      <div class="swiper-slide"><img src="storage/assets/img/clients/7.png" class="img-fluid" alt=""></div>
-                      <div class="swiper-slide"><img src="storage/assets/img/clients/8.png" class="img-fluid" alt=""></div>
+                      @foreach ($infos as $info)
+                          <div class="swiper-slide"><a href="{{$info->url}}"><img src="storage/{{$info->logo}}" class="img-fluid" alt=""></a></div>
+                      @endforeach
                   </div>
                   <div class="swiper-pagination"></div>
               </div>
@@ -225,38 +184,38 @@
 
         <div class="row gy-4">
 
-          <div class="col-lg-6">
+          <div class="col-lg-3">
 
-            <div class="row gy-4">
-              <div class="col-md-6">
-                <div class="info-box">
-                  <i class="bi bi-geo-alt"></i>
-                  <h3>Address</h3>
-                  <p>A108 Adam Street,<br>New York, NY 535022</p>
-                </div>
-              </div>
-              <div class="col-md-6">
-                <div class="info-box">
-                  <i class="bi bi-telephone"></i>
-                  <h3>Call Us</h3>
-                  <p>+1 5589 55488 55<br>+1 6678 254445 41</p>
-                </div>
-              </div>
-              <div class="col-md-6">
-                <div class="info-box">
-                  <i class="bi bi-envelope"></i>
-                  <h3>Email Us</h3>
-                  <p>info@example.com<br>contact@example.com</p>
-                </div>
-              </div>
-              <div class="col-md-6">
-                <div class="info-box">
-                  <i class="bi bi-clock"></i>
-                  <h3>Open Hours</h3>
-                  <p>Monday - Friday<br>9:00AM - 05:00PM</p>
-                </div>
-              </div>
-            </div>
+{{--            <div class="row gy-4">--}}
+{{--              <div class="col-md-6">--}}
+{{--                <div class="info-box">--}}
+{{--                  <i class="bi bi-geo-alt"></i>--}}
+{{--                  <h3>Address</h3>--}}
+{{--                  <p>A108 Adam Street,<br>New York, NY 535022</p>--}}
+{{--                </div>--}}
+{{--              </div>--}}
+{{--              <div class="col-md-6">--}}
+{{--                <div class="info-box">--}}
+{{--                  <i class="bi bi-telephone"></i>--}}
+{{--                  <h3>Call Us</h3>--}}
+{{--                  <p>+1 5589 55488 55<br>+1 6678 254445 41</p>--}}
+{{--                </div>--}}
+{{--              </div>--}}
+{{--              <div class="col-md-6">--}}
+{{--                <div class="info-box">--}}
+{{--                  <i class="bi bi-envelope"></i>--}}
+{{--                  <h3>Email Us</h3>--}}
+{{--                  <p>{{$settings->email}}</p>--}}
+{{--                </div>--}}
+{{--              </div>--}}
+{{--              <div class="col-md-6">--}}
+{{--                <div class="info-box">--}}
+{{--                  <i class="bi bi-clock"></i>--}}
+{{--                  <h3>Open Hours</h3>--}}
+{{--                  <p>Monday - Friday<br>9:00AM - 05:00PM</p>--}}
+{{--                </div>--}}
+{{--              </div>--}}
+{{--            </div>--}}
 
           </div>
 
