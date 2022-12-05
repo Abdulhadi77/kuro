@@ -71,13 +71,13 @@
                         @guest
                             @if (Route::has('login'))
                                 <li class="nav-item">
-                                    <a class="getstarted scrollto" href="{{ route('login') }}">{{ __('Login') }}</a>
+                                    <a class="getstarted scrollto" href="{{ route('login') }}">{{ trans('auth.login') }}</a>
                                 </li>
                             @endif
 
                             @if (Route::has('register'))
                                 <li class="nav-item">
-                                    <a class="getstarted scrollto" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                    <a class="getstarted scrollto" href="{{ route('register') }}">{{ trans('auth.register') }}</a>
                                 </li>
                             @endif
                         @else

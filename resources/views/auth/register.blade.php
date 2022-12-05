@@ -125,7 +125,7 @@
 
 
                   <button type="submit" class="btn btn-primary btn-block mb-4">
-                    {{ __('Register') }}
+                    {{ trans('auth.register') }}
                   </button>
               </form>
                  
