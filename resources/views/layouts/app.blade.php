@@ -42,16 +42,19 @@
 
 </head>
 <body>
-
-
-    <div id="app ">
+<header id="header" class="header fixed-top">
+                    <script src="{{ asset('js/app.js') }}" defer></script>
+                      <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
+                <a href="{{route('home')}}" class="logo d-flex align-items-center">
+                    <img src="storage/{{$settings->logo}}" alt="">
+                        <span>FXS</span>
+                      </a>
+                      </div>
+                      </header>
+   
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
-
-          <a href="{{route('home')}}" class="logo d-flex align-items-center">
-            {{-- <img src="storage/{{$settings->logo}}" alt=""> --}}
-               {{-- <span>$settings->sitename_en}}</span> --}}
-              </a>
+                
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -63,18 +66,18 @@
                     </ul>
 
                     <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ms-auto p-2">
+                    <ul class="navbar-nav ms-auto p-3">
                         <!-- Authentication Links -->
                         @guest
                             @if (Route::has('login'))
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                                    <a class="getstarted scrollto" href="{{ route('login') }}">{{ __('Login') }}</a>
                                 </li>
                             @endif
 
                             @if (Route::has('register'))
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                    <a class="getstarted scrollto" href="{{ route('register') }}">{{ __('Register') }}</a>
                                 </li>
                             @endif
                         @else
@@ -100,13 +103,97 @@
                 </div>
             </div>
         </nav>
-
+        <div id="app ">
         <main class="py-4">
             @yield('content')
 
         </main>
     </div>
 
+
+
+<!-- ======= Footer ======= -->
+<footer id="footer" class="footer">
+    {{-- 
+        <div class="footer-newsletter">
+          <div class="container">
+            <div class="row justify-content-center">
+              <div class="col-lg-12 text-center">
+                <h4>Our Newsletter</h4>
+                <p>Tamen quem nulla quae legam multos aute sint culpa legam noster magna</p>
+              </div>
+              <div class="col-lg-6">
+                <form action="" method="post">
+                  <input type="email" name="email"><input type="submit" value="Subscribe">
+                </form>
+              </div>
+            </div>
+          </div>
+        </div> --}}
+    
+        <div class="footer-top">
+          <div class="container">
+            <div class="row gy-4">
+              <div class="col-lg-5 col-md-12 footer-info">
+                <a href="{{route('home')}}" class="logo d-flex align-items-center">
+                  <img src="storage/{{$settings->logo}}" alt="">
+                  <span>FXS</span>
+                </a>
+                <br>
+                <p>Cras fermentum odio eu feugiat lide par naso tierra. Justo eget nada terra videa magna derita valies darta donna mare fermentum iaculis eu non diam phasellus.</p>
+                <div class="social-links mt-3">
+                  @foreach ($socials as $social)
+                                   
+                  <a href="{{$social->link}}" class="{{$social->name}}"><i class="bi bi-{{$social->name}}"></i></a>
+    
+                   @endforeach
+                   {{-- <a href="{{$social->link}}" class="{{$social->name}}"><i class="bi bi-newspaper"></i></a> --}}
+                </div>
+              </div>
+    
+              <div class="col-lg-3 col-6 footer-links">
+                <h4>Useful Links</h4>
+                <ul>
+                  <li><i class="bi bi-chevron-right"></i> <a href="{{route('home')}}">Home</a></li>
+                  <li><i class="bi bi-chevron-right"></i> <a href="#">About us</a></li>
+                  <li><i class="bi bi-chevron-right"></i> <a href="{{route('ICO')}}">ICO</a></li>
+                  <li><i class="bi bi-chevron-right"></i> <a href="{{route('vote')}}">Vote</a></li>
+                  <li><i class="bi bi-chevron-right"></i> <a href="{{route('blog')}}">Blog</a></li>
+                </ul>
+              </div>
+    
+    
+              <div class="col-lg-3 col-md-12 footer-contact text-center text-md-start">
+                <h4>Contact Us</h4>
+                <p>
+                
+                 <strong>Email </strong> <a href="mailto:{{$settings->email}}" style = "color:black"> 
+                 {{$settings->email}} </a> <br>
+                </p>
+    
+              </div>
+    
+            </div>
+          </div>
+        </div>
+    
+        <div class="container">
+          <div class="copyright">
+          All Rights Reserved
+            Designed by <strong><span>{{$settings->sitename_en}}</span></strong> Team.<br>
+              &copy;Copyright {{$settings->sitename_en}}. 
+          </div>
+          <div class="credits">
+            <!-- All the links in the footer should remain intact. -->
+            <!-- You can delete the links only if you purchased the pro version. -->
+            <!-- Licensing information: https://bootstrapmade.com/license/ -->
+            <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/flexstart-bootstrap-startup-template/ -->
+          
+          </div>
+        </div>
+      </footer><!-- End Footer -->
+    
+      <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
 </body>
 

@@ -27,7 +27,8 @@ class RegisterController extends Controller
 
     public function register()
     {
-        return view('auth.register');
+        dd("hi");
+        return view('auth.register',);
     }
 
     public function create(RegisterRequest $request)
@@ -39,7 +40,7 @@ class RegisterController extends Controller
                 'name' => $request->name,
                 'user_name' => $request->user_name,
                 'age' => $request->age,
-                //'phone' => $request->phone,
+                'phone' => $request->phone,
                 'email' => $request->email,
                 'password' => Hash::make($request->password),
             ]);

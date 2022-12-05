@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Models\Social;
 use App\Http\Controllers\Controller;
+use App\Models\Setting;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -73,7 +75,7 @@ class RegisterController extends Controller
     {
         //dd($data);
         $referrer = User::whereUser_name(session()->pull('referrer'))->first();
-
+       // dd($data['phone']);
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
@@ -96,8 +98,9 @@ class RegisterController extends Controller
         if ($request->has('ref')) {
             session(['referrer' => $request->query('ref')]);
         }
-
-        return view('auth.register');
+        $settings = Setting::find(1);
+        $socials = Social::all();
+        return view('auth.register',compact('settings','socials'));
     }
 
     /**
