@@ -79,6 +79,27 @@ with font-awesome or any other icon font library -->
 
   </ul>
 </li>
+
+<!--contacts_start_route-->
+<li class="nav-item {{active_link('contacts','menu-open')}} ">
+  <a href="#" class="nav-link {{active_link('contacts','active')}}">
+    <i class="nav-icon fa fa-icons"></i>
+    <p>
+      {{trans('user.requests')}} 
+      <i class="right fas fa-angle-left"></i>
+    </p>
+  </a>
+  <ul class="nav nav-treeview">
+    <li class="nav-item">
+      <a href="{{url('user/contacts')}}" class="nav-link  {{active_link('contacts','active')}}">
+        <i class="fa fa-icons nav-icon"></i>
+        <p>{{trans('user.requests')}} </p>
+      </a>
+    </li>
+  </ul>
+</li>
+<!--contacts_end_route-->
+
 @endif
 @endif
 <!--icousers_end_route-->

@@ -24,6 +24,7 @@ Route::group(['prefix' => 'user', 'middleware' => 'auth','middleware' => 'Lang']
 		Route::resource('/icousers','User\UserICOsUsers');
 		Route::resource('/reactions','User\UserReactions');
 		Route::resource('/comments','User\UserComments');
+		Route::resource('/contacts','User\UserContacts');
 
 		Route::get('/dashboard', 'User\Dashboard@home')->name('user.dashboard');
 

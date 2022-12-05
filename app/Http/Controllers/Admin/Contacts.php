@@ -30,7 +30,7 @@ class Contacts extends Controller
 
             public function index(ContactsDataTable $contacts)
             {
-               return $contacts->render('admin.contacts.index',['title'=>trans('admin.contacts')]);
+               return $contacts->render('admin.contacts.index',['title'=>trans('admin.requests')]);
             }
 
 

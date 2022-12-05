@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->string('eth_address')->index()->nullable();
+            $table->string('eth_address')->index()->nullable()->unique();
         });
     }
 

@@ -432,7 +432,7 @@ with font-awesome or any other icon font library -->
   <a href="#" class="nav-link {{active_link('contacts','active')}}">
     <i class="nav-icon fa fa-icons"></i>
     <p>
-      {{trans('admin.contacts')}} 
+      {{trans('admin.requests')}} 
       <i class="right fas fa-angle-left"></i>
     </p>
   </a>
@@ -440,7 +440,7 @@ with font-awesome or any other icon font library -->
     <li class="nav-item">
       <a href="{{aurl('contacts')}}" class="nav-link  {{active_link('contacts','active')}}">
         <i class="fa fa-icons nav-icon"></i>
-        <p>{{trans('admin.contacts')}} </p>
+        <p>{{trans('admin.requests')}} </p>
       </a>
     </li>
   </ul>
