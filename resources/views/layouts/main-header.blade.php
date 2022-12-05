@@ -8,7 +8,7 @@
       <script src="{{ asset('js/app.js') }}" defer></script>
         <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
 
-          <a href="index.html" class="logo d-flex align-items-center">
+          <a href="{{route('home')}}" class="logo d-flex align-items-center">
         <img src="storage/{{$settings->logo}}" alt="">
             <span>FXS</span>
           </a>

@@ -225,7 +225,7 @@
 
         <div class="row gy-4">
 
-          <div class="col-lg-6">
+          {{-- <div class="col-lg-6">
 
             <div class="row gy-4">
               <div class="col-md-6">
@@ -258,7 +258,7 @@
               </div>
             </div>
 
-          </div>
+          </div> --}}
 
           <div class="col-lg-6">
             <form action="forms/contact.php" method="post" action="{{route('user_send_message')}}" class="php-email-form">
