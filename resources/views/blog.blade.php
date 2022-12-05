@@ -108,13 +108,14 @@
                     </article><!-- End blog entry -->
 
                     @endforeach
-                    <div class="blog-pagination">
-                        <ul class="justify-content-center">
-                            <li><a href="#">1</a></li>
-                            <li class="active"><a href="#">2</a></li>
-                            <li><a href="#">3</a></li>
-                        </ul>
-                    </div>
+{{--                    <div class="blog-pagination">--}}
+{{--                        <ul class="justify-content-center">--}}
+{{--                            <li><a href="#">1</a></li>--}}
+{{--                            <li class="active"><a href="#">2</a></li>--}}
+{{--                            <li><a href="#">3</a></li>--}}
+{{--                        </ul>--}}
+{{--                    </div>--}}
+                        {!! $blogs->links() !!}
 
                 </div><!-- End blog entries list -->
 
