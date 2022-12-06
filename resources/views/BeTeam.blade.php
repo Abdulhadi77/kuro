@@ -71,15 +71,3 @@
 
 @endsection
 
-<script>
-    $('#info-sub').on('show.bs.modal', function (e) {
-
-        let name = $(e.relatedTarget).data('title');
-        let desc = $(e.relatedTarget).data('desc');
-
-        $('#blog_title')[0].innerHTML =  name;
-        $('#blog_desc')[0].innerHTML = desc;
-
-
-    });
-</script>
