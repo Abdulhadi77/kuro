@@ -20,6 +20,7 @@ class Kernel extends HttpKernel {
 		\App\Http\Middleware\TrimStrings::class,
 		\Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull::class,
 		\App\Http\Middleware\Cors::class,
+        \App\Http\Middleware\CookieConsentMiddleware::class,
 	];
 
 	/**
@@ -52,7 +53,7 @@ class Kernel extends HttpKernel {
 	 * @var array
 	 */
 	protected $routeMiddleware = [
-		
+
 		'jwt.auth' => 'Tymon\JWTAuth\Middleware\GetUserFromToken',
 		'jwt.refresh' => 'Tymon\JWTAuth\Middleware\RefreshToken',
 		'cors' => \App\Http\Middleware\Cors::class,

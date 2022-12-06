@@ -3,10 +3,12 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Mail\SendMail;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Notification;
@@ -109,8 +111,18 @@ class RegisterController extends Controller
      */
     protected function registered(Request $request, $user)
     {
-        if ($user->referrer !== null) {
-            Notification::send($user->referrer, new ReferrerBonus($user));
+        if ($user->referrer_id !== null) {
+
+            $main_user=User::where('id',$user->referrer_id)->first();
+
+            $details = [
+                'title' => 'Registered in your location by '.$user->email,
+                'body' => 'There Is one User His Name '.$user->name.' '. 'Registered By Your Location'
+            ];
+
+            Mail::to($main_user->email)->send(new SendMail($details));
+
+            //Notification::send($user->referrer, new ReferrerBonus($user));
         }
 
         return redirect($this->redirectPath());
