@@ -10,13 +10,13 @@
 
           <a href="{{route('home')}}" class="logo d-flex align-items-center">
         <img src="storage/{{$settings->logo}}" alt="">
-            <span>FXS</span>
+            <span>KURO</span>
           </a>
 
           <nav id="navbar" class="navbar">
             <ul>
               <li><a class="nav-link scrollto active" href="{{route('home')}}">Home</a></li>
-              <li><a class="nav-link scrollto" href="{{route('about')}}">About</a></li>
+
               <li><a class="nav-link scrollto" href="{{route('vote')}}">Vote To Earn</a></li>
               <li><a class="nav-link scrollto" href="{{route('Beteam')}}">Be from our team </a></li>
               <li><a class="nav-link scrollto" href="{{route('ICO')}}">ICO</a></li>
@@ -46,7 +46,7 @@
 
               </li>
               @endif
-              
+
 
             </ul>
             <i class="bi bi-list mobile-nav-toggle"></i>

@@ -45,53 +45,53 @@
                     <article class="entry">
 
                         <div class="entry-img">
-                            <img src="assets/img/blog/blog-1.jpg" alt="" class="img-fluid">
+                            <img src="storage/{{$blog->image}}" alt="" class="img-fluid">
                         </div>
 
                         <h2 class="entry-title">
                             <a href="{{route('user.blog.details',$blog->id)}}">{{$blog->title}}</a>
                         </h2>
-
+{{--                        href="{{route('user.blog.details',$blog->id)}}"--}}
                         <div class="entry-meta">
                             <ul>
                                 <li class="d-flex align-items-center"><i class="bi bi-clock"></i> <a href="#"><time datetime="{{$blog->created_at}}">{{$blog->created_at}}</time></a></li>
-                                <li class="d-flex align-items-center"><i class="bi bi-chat-dots"></i> <a href="{{route('user.blog.details',$blog->id)}}">{{$blog->comments->count()}}</a></li>
+                                <li class="d-flex align-items-center"><i class="bi bi-chat-dots"></i> <a href="{{route('user.blog.details',$blog->id)}}  >{{$blog->comments->count()}}</a></li>
                                 @if(auth()->user())
                                     @if(\App\Models\Reaction::where('user_id',auth()->user()->id)->where('blog_id',$blog->id)->first())
                                         @if(\App\Models\Reaction::where('user_id',auth()->user()->id)->where('blog_id',$blog->id)->first()->like)
-                                            <li class="d-flex align-items-center"><a style="color: red" href="{{route('user.add.like',$blog->id)}}"><iconify-icon icon="uiw:like-o"></iconify-icon></a>
-                                                {{$blog->likes->count()}}</li>
+                                            <li  class="d-flex align-items-center"><a class="changeColor" id="addlike" data-action="{{$blog->id}}"  style="color: #005DAA" href="{{route('user.add.like')}}"><iconify-icon icon="uiw:like-o"></iconify-icon></a>
+                                    <span id="likes">{{$blog->likes->count()}}</span> </li>
 
                                         @else
-                                            <li class="d-flex align-items-center"><a  href="{{route('user.add.like',$blog->id)}}"><iconify-icon icon="uiw:like-o"></iconify-icon></a>
-                                                {{$blog->likes->count()}}</li>
+                                            <li  class="d-flex align-items-center"><a class="changeColor" id="addlike" data-action="{{$blog->id}}"  href="{{route('user.add.like',$blog->id)}}"><iconify-icon icon="uiw:like-o"></iconify-icon></a>
+                                                <span id="likes">{{$blog->likes->count()}}</span> </li>
                                         @endif
                                     @else
-                                        <li class="d-flex align-items-center"><a  href="{{route('user.add.like',$blog->id)}}"><iconify-icon icon="uiw:like-o"></iconify-icon></a>
-                                            {{$blog->likes->count()}}</li>
+                                        <li  class="d-flex align-items-center"><a class="changeColor" id="addlike" data-action="{{$blog->id}}"  href="{{route('user.add.like',$blog->id)}}"><iconify-icon icon="uiw:like-o"></iconify-icon></a>
+                                            <span id="likes">{{$blog->likes->count()}}</span> </li>
                                     @endif
                                 @else
-                                    <li class="d-flex align-items-center"><a  href="{{route('user.add.like',$blog->id)}}"><iconify-icon icon="uiw:like-o"></iconify-icon></a>
-                                        {{$blog->likes->count()}}</li>
+                                    <li  class="d-flex align-items-center"><a class="changeColor" id="addlike" data-action="{{$blog->id}}" href="{{route('user.add.like',$blog->id)}}"><iconify-icon icon="uiw:like-o"></iconify-icon></a>
+                                       <span id="likes">{{$blog->likes->count()}}</span> </li>
                                 @endif
 
                                 @if(auth()->user())
                                     @if(\App\Models\Reaction::where('user_id',auth()->user()->id)->where('blog_id',$blog->id)->first())
                                         @if(\App\Models\Reaction::where('user_id',auth()->user()->id)->where('blog_id',$blog->id)->first()->dislike)
-                                            <li class="d-flex align-items-center"><a style="color: red" href="{{route('user.add.dislike',$blog->id)}}"><iconify-icon icon="uiw:dislike-o"></iconify-icon></a>
-                                                {{$blog->dislikes->count()}}</li>
+                                            <li   class="d-flex align-items-center"><a class="changeColorDisLike" id="adddislike" data-action="{{$blog->id}}" style="color: #005DAA" href="{{route('user.add.dislike',$blog->id)}}"><iconify-icon icon="uiw:dislike-o"></iconify-icon></a>
+                                                <span id="dislikes" >{{$blog->dislikes->count()}}</span></li>
 
                                         @else
-                                            <li class="d-flex align-items-center"><a href="{{route('user.add.dislike',$blog->id)}}"><iconify-icon icon="uiw:dislike-o"></iconify-icon></a>
-                                                {{$blog->dislikes->count()}}</li>
+                                            <li  class="d-flex align-items-center"><a class="changeColorDisLike" id="adddislike" data-action="{{$blog->id}}" href="{{route('user.add.dislike',$blog->id)}}"><iconify-icon icon="uiw:dislike-o"></iconify-icon></a>
+                                                <span id="dislikes" >{{$blog->dislikes->count()}}</span></li>
                                         @endif
                                     @else
-                                        <li class="d-flex align-items-center"><a href="{{route('user.add.dislike',$blog->id)}}"><iconify-icon icon="uiw:dislike-o"></iconify-icon></a>
-                                            {{$blog->dislikes->count()}}</li>
+                                        <li  class="d-flex align-items-center"><a class="changeColorDisLike" id="adddislike" data-action="{{$blog->id}}" href="{{route('user.add.dislike',$blog->id)}}"><iconify-icon icon="uiw:dislike-o"></iconify-icon></a>
+                                            <span id="dislikes" >{{$blog->dislikes->count()}}</span></li>
                                     @endif
                                 @else
-                                    <li class="d-flex align-items-center"><a href="{{route('user.add.dislike',$blog->id)}}"><iconify-icon icon="uiw:dislike-o"></iconify-icon></a>
-                                        {{$blog->dislikes->count()}}</li>
+                                    <li  class="d-flex align-items-center"><a class="changeColorDisLike" id="adddislike" data-action="{{$blog->id}}" href="{{route('user.add.dislike',$blog->id)}}"><iconify-icon icon="uiw:dislike-o"></iconify-icon></a>
+                                        <span id="dislikes" >{{$blog->dislikes->count()}}</span></li>
                                 @endif
                             </ul>
                         </div>
@@ -108,54 +108,33 @@
                     </article><!-- End blog entry -->
 
                     @endforeach
-                    <div class="blog-pagination">
-                        <ul class="justify-content-center">
-                            <li><a href="#">1</a></li>
-                            <li class="active"><a href="#">2</a></li>
-                            <li><a href="#">3</a></li>
-                        </ul>
-                    </div>
+{{--                    <div class="blog-pagination">--}}
+{{--                        <ul class="justify-content-center">--}}
+{{--                            <li><a href="#">1</a></li>--}}
+{{--                            <li class="active"><a href="#">2</a></li>--}}
+{{--                            <li><a href="#">3</a></li>--}}
+{{--                        </ul>--}}
+{{--                    </div>--}}
+                        {!! $blogs->links() !!}
 
                 </div><!-- End blog entries list -->
 
                 <div class="col-lg-4">
 
-                    <div class="sidebar">
+
         
-                      <h3 class="sidebar-title">Search</h3>
-                      <div class="sidebar-item search-form">
-                        <form action="">
-                          <input type="text">
-                          <button type="submit"><i class="bi bi-search"></i></button>
-                        </form>
-                      </div><!-- End sidebar search formn-->
-        
-                    
-        
-                      <h3 class="sidebar-title">Recent Posts</h3>
-                      <div class="sidebar-item recent-posts">
-                        @foreach ($recentblog as $blog)
-                        <div class="post-item clearfix">
-                          <img src="storage/assets/{{$blog->image}}" alt="">
-                          <h4><a href="{{route('user.blog.details',$blog->id)}}">{{$blog->title}}</a></h4>
-                          <time datetime="{{$blog->created_at}}">{{$blog->created_at}}</time>
-                        </div>
-                        @endforeach
-                     
-        
-                      
-        
-                      </div><!-- End sidebar recent posts-->
-        
-                   
-        
-                    </div><!-- End sidebar -->
-        
-                  </div><!-- End blog sidebar -->
+       
+
+          </div><!-- End sidebar -->
 
         </div><!-- End blog sidebar -->
 
       </div>
 
 @endsection
-<script src="https://code.iconify.design/iconify-icon/1.0.2/iconify-icon.min.js"></script>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+
+        <script src="https://code.iconify.design/iconify-icon/1.0.2/iconify-icon.min.js"></script>
+        <script src="{{asset('assets/js/list.js')}}"></script>
+
+

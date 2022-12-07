@@ -238,7 +238,6 @@
 
             <header class="section-header">
                 <p>Vote To Earn</p>
-                <h2>Check our Pricing</h2>
 
             </header>
 
@@ -251,15 +250,22 @@
                             <div class="card">
                                 <div class="card-body">
 
-                                    <p class=" card-text">{!! $one->description  !!}</p>
+                                    <p class=" card-text">
+                                        <a href="javascript:;" class="dropdown-item"  data-bs-toggle="modal"
+                                           data-bs-target="#info-sub" data-desc="{{ $one->description }}" data-id="{{ $one->id }}" data-title="{{ $one->type }}">
+                                            {!! \Illuminate\Support\Str::limit(strip_tags($one->description), 20) !!}
+                                        </a>
+                                    </p>
 
                                 </div>
                             </div>
+                            <br>
+                            <br>
                             {{--@if(\App\Models\User::where('vote_plan_id',$one->id)->first())--}}
                             @if(auth()->user()->vote_plan_id == $one->id)
-                                <h1 href="{{route('user_join_vote_plan',$one->id)}}" class="btn btn-warning">Joined {{ $one->id }}</h1>
+                                <h1 href="{{route('user_join_vote_plan',$one->id)}}" class="btn btn-warning">Joined </h1>
                             @elseif(!auth()->user()->vote_plan_id)
-                                <a href="{{route('user_join_vote_plan',$one->id)}}" class="btn btn-primary">Join {{ $one->id }}</a>
+                                <a href="{{route('user_join_vote_plan',$one->id)}}" class="btn btn-primary">Join</a>
                             @endif
                         </div>
                     </div>
@@ -283,7 +289,7 @@
                     <div class="modal-content">
                         <div class="modal-header">
 
-                            <h4 class="modal-title" id="myModalLabel22">{{trans('bundles/bundles.desc_for')}}<span id="blog_title"></span></h4>
+                            <h4 class="modal-title" id="myModalLabel22">Description For:<span id="blog_title"></span></h4>
                             <button type="button" class="btn-close" data-bs-dismiss="modal"
                                     aria-label="Close"></button>
                         </div>
@@ -295,7 +301,7 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-outline-secondary"
-                                    data-bs-dismiss="modal">{{trans('general.Cancel')}}</button>
+                                    data-bs-dismiss="modal">Cancel</button>
                         </div>
                     </div>
                 </div>
@@ -310,16 +316,33 @@
 
 
 @endsection
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
 
 <script>
-    $('#info-sub').on('show.bs.modal', function (e) {
+    $(function () {
+        'use strict';
+        $.ajaxSetup({
 
-        let name = $(e.relatedTarget).data('title');
-        let desc = $(e.relatedTarget).data('desc');
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        $('#info-sub').on('show.bs.modal', function (e) {
 
-        $('#blog_title')[0].innerHTML =  name;
-        $('#blog_desc')[0].innerHTML = desc;
+            let name = $(e.relatedTarget).data('title');
+            let desc = $(e.relatedTarget).data('desc');
+
+            $('#blog_title')[0].innerHTML =  name;
+            $('#blog_desc')[0].innerHTML = desc;
+
+
+        });
 
 
     });
+
+
+
+
+
 </script>
