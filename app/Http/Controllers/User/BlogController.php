@@ -18,6 +18,7 @@ use App\Models\Social;
 use App\Models\Student;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
+use http\Env\Response;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Auth;
@@ -31,10 +32,11 @@ class BlogController extends Controller
 {
 
 
-    public function createLike(Request $request,$id)
+    public function createLike(Request $request)
     {
         try {
-            $blog=Blog::find($id);
+
+            $blog=Blog::find($request->blog_id);
             $userBlog=Reaction::where('blog_id',$blog->id)->where('user_id',auth()->user()->id)->first();
             if($userBlog)
             {
@@ -50,7 +52,13 @@ class BlogController extends Controller
                 $userBlog->dislike=0;
                 $userBlog->save();
             }
-            return redirect()->back();
+            $data=[
+                'status'=>200,
+                'likes'=>$blog->likes->count(),
+                'dislikes'=>$blog->dislikes->count(),
+            ];
+            return response()->json($data);
+          //  return redirect()->back();
         }
         catch(\Exception $ex){
             return redirect()->back()->with(['error',$ex->getMessage()]);
@@ -59,10 +67,10 @@ class BlogController extends Controller
 
     }
 
-    public function createDisLike(Request $request,$id)
+    public function createDisLike(Request $request)
     {
         try {
-            $blog=Blog::find($id);
+            $blog=Blog::find($request->blog_id);
             $userBlog=Reaction::where('blog_id',$blog->id)->where('user_id',auth()->user()->id)->first();
             if($userBlog)
             {
@@ -78,7 +86,12 @@ class BlogController extends Controller
                 $userBlog->dislike=1;
                 $userBlog->save();
             }
-            return redirect()->back();
+            $data=[
+                'status'=>200,
+                'dislikes'=>$blog->dislikes->count(),
+                'likes'=>$blog->likes->count(),
+            ];
+            return response()->json($data);
         }
         catch(\Exception $ex){
             return redirect()->back()->with(['error',$ex->getMessage()]);
@@ -87,13 +100,21 @@ class BlogController extends Controller
 
     }
 
-    public function createComment(Request $request,$id)
+    public function createComment(Request $request)
     {
         try {
-            $blog=Blog::find($id);
+            $blog=Blog::find($request->blog_id);
+
+
+
             if(Comment::where('blog_id',$blog->id)->where('user_id',auth()->user()->id)->first())
             {
-                return redirect()->back()->with(['error','you have a comment before']);
+                return response()->json([
+                    'status' => false,
+                    'content' => 'you have a comment before'
+                ]);
+
+           //     return redirect()->back()->with(['error','you have a comment before']);
             }
             else{
                 $comment=new Comment();
@@ -104,10 +125,19 @@ class BlogController extends Controller
             }
 
 
-            return redirect()->back();
+            $view = view('_showlist')->with(['comments' => $blog->comments])
+                ->renderSections();
+
+
+            return response()->json([
+                'status' => true,
+                'content' => $view['main'],
+                'commentCount'=>$blog->comments->count()
+            ]);
+
         }
         catch(\Exception $ex){
-            return redirect()->back()->with(['error',$ex->getMessage()]);
+            dd($ex);
 
         }
 

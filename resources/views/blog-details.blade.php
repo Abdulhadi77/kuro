@@ -49,7 +49,7 @@
             <article class="entry entry-single">
 
               <div class="entry-img">
-                <img src="assets/img/blog/blog-1.jpg" alt="" class="img-fluid">
+                <img src="storage/{{$blog->image}}" alt="" class="img-fluid">
               </div>
 
               <h2 class="entry-title">
@@ -63,39 +63,39 @@
                     @if(auth()->user())
                         @if(\App\Models\Reaction::where('user_id',auth()->user()->id)->where('blog_id',$blog->id)->first())
                             @if(\App\Models\Reaction::where('user_id',auth()->user()->id)->where('blog_id',$blog->id)->first()->like)
-                                    <li class="d-flex align-items-center"><a style="color: red" href="{{route('user.add.like',$blog->id)}}"><iconify-icon icon="uiw:like-o"></iconify-icon></a>
-                                        {{$blog->likes->count()}}</li>
+                                <li  class="d-flex align-items-center"><a class="changeColor" id="addlike" data-action="{{$blog->id}}"  style="color: #005DAA" href="{{route('user.add.like')}}"><iconify-icon icon="uiw:like-o"></iconify-icon></a>
+                                    <span id="likes">{{$blog->likes->count()}}</span> </li>
 
                             @else
-                                    <li class="d-flex align-items-center"><a  href="{{route('user.add.like',$blog->id)}}"><iconify-icon icon="uiw:like-o"></iconify-icon></a>
-                                    {{$blog->likes->count()}}</li>
+                                <li  class="d-flex align-items-center"><a class="changeColor" id="addlike" data-action="{{$blog->id}}"  href="{{route('user.add.like',$blog->id)}}"><iconify-icon icon="uiw:like-o"></iconify-icon></a>
+                                    <span id="likes">{{$blog->likes->count()}}</span> </li>
                             @endif
                         @else
-                                    <li class="d-flex align-items-center"><a  href="{{route('user.add.like',$blog->id)}}"><iconify-icon icon="uiw:like-o"></iconify-icon></a>
-                                                {{$blog->likes->count()}}</li>
+                            <li  class="d-flex align-items-center"><a class="changeColor" id="addlike" data-action="{{$blog->id}}"  href="{{route('user.add.like',$blog->id)}}"><iconify-icon icon="uiw:like-o"></iconify-icon></a>
+                                <span id="likes">{{$blog->likes->count()}}</span> </li>
                         @endif
                     @else
-                                    <li class="d-flex align-items-center"><a  href="{{route('user.add.like',$blog->id)}}"><iconify-icon icon="uiw:like-o"></iconify-icon></a>
-                                        {{$blog->likes->count()}}</li>
+                        <li  class="d-flex align-items-center"><a class="changeColor" id="addlike" data-action="{{$blog->id}}" href="{{route('user.add.like',$blog->id)}}"><iconify-icon icon="uiw:like-o"></iconify-icon></a>
+                            <span id="likes">{{$blog->likes->count()}}</span> </li>
                     @endif
 
                     @if(auth()->user())
                         @if(\App\Models\Reaction::where('user_id',auth()->user()->id)->where('blog_id',$blog->id)->first())
                             @if(\App\Models\Reaction::where('user_id',auth()->user()->id)->where('blog_id',$blog->id)->first()->dislike)
-                                <li class="d-flex align-items-center"><a style="color: red" href="{{route('user.add.dislike',$blog->id)}}"><iconify-icon icon="uiw:dislike-o"></iconify-icon></a>
-                                    {{$blog->dislikes->count()}}</li>
+                                <li   class="d-flex align-items-center"><a class="changeColorDisLike" id="adddislike" data-action="{{$blog->id}}" style="color: #005DAA" href="{{route('user.add.dislike',$blog->id)}}"><iconify-icon icon="uiw:dislike-o"></iconify-icon></a>
+                                    <span id="dislikes" >{{$blog->dislikes->count()}}</span></li>
 
                             @else
-                                <li class="d-flex align-items-center"><a href="{{route('user.add.dislike',$blog->id)}}"><iconify-icon icon="uiw:dislike-o"></iconify-icon></a>
-                                    {{$blog->dislikes->count()}}</li>
+                                <li  class="d-flex align-items-center"><a class="changeColorDisLike" id="adddislike" data-action="{{$blog->id}}" href="{{route('user.add.dislike',$blog->id)}}"><iconify-icon icon="uiw:dislike-o"></iconify-icon></a>
+                                    <span id="dislikes" >{{$blog->dislikes->count()}}</span></li>
                             @endif
                         @else
-                            <li class="d-flex align-items-center"><a href="{{route('user.add.dislike',$blog->id)}}"><iconify-icon icon="uiw:dislike-o"></iconify-icon></a>
-                                {{$blog->dislikes->count()}}</li>
+                            <li  class="d-flex align-items-center"><a class="changeColorDisLike" id="adddislike" data-action="{{$blog->id}}" href="{{route('user.add.dislike',$blog->id)}}"><iconify-icon icon="uiw:dislike-o"></iconify-icon></a>
+                                <span id="dislikes" >{{$blog->dislikes->count()}}</span></li>
                         @endif
                     @else
-                        <li class="d-flex align-items-center"><a href="{{route('user.add.dislike',$blog->id)}}"><iconify-icon icon="uiw:dislike-o"></iconify-icon></a>
-                            {{$blog->dislikes->count()}}</li>
+                        <li  class="d-flex align-items-center"><a class="changeColorDisLike" id="adddislike" data-action="{{$blog->id}}" href="{{route('user.add.dislike',$blog->id)}}"><iconify-icon icon="uiw:dislike-o"></iconify-icon></a>
+                            <span id="dislikes" >{{$blog->dislikes->count()}}</span></li>
                     @endif
 
 
@@ -117,37 +117,41 @@
 
             <div class="blog-comments">
 
-              <h4 class="comments-count">{{$blog->comments->count()}} Comments</h4>
-               @foreach($blog->comments as $one)
+              <h4  class="comments-count"><span id="CommentCount">{{$blog->comments->count()}} </span> Comments</h4>
+                <div id="display">
+                    @foreach($blog->comments as $one)
 
 
-                    <div id="comment-{{$one->id}}" class="comment">
-                        <div class="d-flex">
-                            <div class="comment-img"><img src="assets/img/blog/comments-6.jpg" alt=""></div>
-                            <div>
-                                <h5><a href="">{{$one->user->name}}</a> </h5>
-                                <time datetime="2020-01-01">{{$one->created_at}}</time>
-                                <p>
-                                    {{$one->content}}
-                                </p>
+                        <div id="comment-{{$one->id}}" class="comment">
+                            <div class="d-flex">
+                                <div class="comment-img"><img src="assets/img/blog/comments-6.jpg" alt=""></div>
+                                <div>
+                                    <h5><a href="">{{$one->user->name}}</a> </h5>
+                                    <time datetime="2020-01-01">{{$one->created_at}}</time>
+                                    <p>
+                                        {{$one->content}}
+                                    </p>
+                                </div>
                             </div>
-                        </div>
 
-                    </div><!-- End comment #4 -->
-                @endforeach
+                        </div><!-- End comment #4 -->
+                    @endforeach
+                </div>
+
 
                 <div class="reply-form">
                     <h4>Leave a Comment</h4>
                     <p>You Must Login Before leave Comment * </p>
-                    <form action="{{route('user.add.comment',$blog->id)}}" method="POST">
+                    <form action="" method="POST">
                         @csrf
 
                         <div class="row">
                             <div class="col form-group">
-                                <textarea name="comment" class="form-control" placeholder="Your Comment*"></textarea>
+                                <textarea id="comment" name="comment" class="form-control" placeholder="Your Comment*"></textarea>
                             </div>
                         </div>
-                        <button type="submit" class="btn btn-primary">Post Comment</button>
+                        <input hidden id="blog_id" value="{{$blog->id}}" />
+                        <button id="addComment" type="submit" class="btn btn-primary">Post Comment</button>
 
                     </form>
 
@@ -168,4 +172,38 @@
 
 
 @endsection
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+
 <script src="https://code.iconify.design/iconify-icon/1.0.2/iconify-icon.min.js"></script>
+<script src="{{asset('assets/js/list.js')}}"></script>
+<script>
+    $(document).on('click', '#addComment', function (e) {
+        e.preventDefault();
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        var formData = new FormData()
+        var blog_id = $('#blog_id').val();
+        var comment = $('#comment').val();
+        formData.append('blog_id', blog_id);
+        formData.append('comment', comment);
+        $.ajax({
+            url: "{{route('user.add.comment')}}",
+            cache: false,
+            processData: false,
+            contentType: false,
+            type: 'POST',
+            data: formData,
+            success: function (data) {
+                if (data.status == true) {
+                    $('#display').empty().html(data.content);
+                    $('#CommentCount').empty().html(data.commentCount);
+                } else {
+                }
+            }, error: function (reject) {
+            }
+        });
+    });
+</script>

@@ -63,10 +63,10 @@ class HomeController extends Controller
     {
         $settings = Setting::find(1);
         $socials= Social::all();
-       
+
         return view('SingleICO', compact('settings','socials','ICO'));
     }
-    
+
     public function Vote()
     {
         $settings = Setting::find(1);
