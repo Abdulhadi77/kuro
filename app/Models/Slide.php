@@ -34,7 +34,7 @@ protected $fillable = [
     * @return object data
     */
    public function page(){
-      return $this->hasOne(\App\Models\Page::class, 'page_id');
+      return $this->hasOne(\App\Models\Page::class,'id', 'page_id');
    }
 
  	
