@@ -1,6 +1,7 @@
 <?php
 namespace App\DataTables;
 use App\Models\Contact;
+use App\Models\User;
 use Yajra\DataTables\DataTables;
 use Yajra\DataTables\Services\DataTable;
 
@@ -12,13 +13,18 @@ class ContactsDataTable extends DataTable
     {
         return datatables($query)
             ->addColumn('actions', 'admin.contacts.buttons.actions')
-
+			->addColumn('user_id', function ($contact) {
+				if (!is_null($contact->user_id))
+					return "<a target=_blank href=users/".$contact->user_id. ">".User::find($contact->user_id)->user_name."</a>";
+				
+				
+			})
    		->addColumn('created_at', '{{ date("Y-m-d H:i:s",strtotime($created_at)) }}')
 		   		           ->addColumn('checkbox', '<div  class="icheck-danger">
                   <input type="checkbox" class="selected_data" name="selected_data[]" id="selectdata{{ $id }}" value="{{ $id }}" >
                   <label for="selectdata{{ $id }}"></label>
                 </div>')
-            ->rawColumns(['checkbox','actions',]);
+            ->rawColumns(['checkbox','actions','user_id',]);
     }
   
 
@@ -135,6 +141,11 @@ class ContactsDataTable extends DataTable
                 'width'          => '10px',
                 'aaSorting'      => 'none'
             ],
+			[
+				'name'=>'user_id',
+				'data'=>'user_id',
+				'title'=>trans('admin.user_id'),
+		   ],
 				[
                  'name'=>'name',
                  'data'=>'name',

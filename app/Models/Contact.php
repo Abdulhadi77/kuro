@@ -12,7 +12,7 @@ class Contact extends Model {
 protected $table    = 'contacts';
 protected $fillable = [
 		'id',
-		'admin_id',
+		'user_id',
         'name',
         'email',
         'subject',
@@ -21,6 +21,10 @@ protected $fillable = [
 		'updated_at',
 		'deleted_at',
 	];
+
+   public function user(){
+      return $this->hasOne(\App\Models\User::class);
+   }
 
    protected static function boot() {
       parent::boot();

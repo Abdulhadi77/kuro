@@ -62,35 +62,48 @@
 			</div>
 			<div class="clearfix"></div>
 			<hr />
-			<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+
+			<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
 				<b>{{trans('admin.name')}} :</b>
 				{!! $users->name !!}
 			</div>
-			<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+
+			<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
 				<b>{{trans('admin.email')}} :</b>
 				{!! $users->email !!}
 			</div>
-			<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+
+			<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
 				<b>{{trans('admin.user_name')}} :</b>
 				{!! $users->user_name !!}
 			</div>
-			<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+
+			<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
 				<b>{{trans('admin.age')}} :</b>
 				{!! $users->age !!}
 			</div>
-			<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+
+			<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
 				<b>{{trans('admin.email_verified_at')}} :</b>
 				{!! $users->email_verified_at !!}
 			</div>
-			<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+
+			<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
 				<b>{{trans('admin.vote_revenue')}} :</b>
 				{!! $users->vote_revenue !!}
 			</div>
-			<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+
+			<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
 				<b>{{trans('admin.kuro_balance_wallet')}} :</b>
 				{!! $users->kuro_balance_wallet !!}
 			</div>
-			<!-- /.row -->
+
+			<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+				<b>{{trans('admin.bfot_revenue')}} :</b>
+				{!! $users->bfot_revenue !!}
+			</div>
+
+			<!-- /.row -->
 		</div>
 	</div>
 	<!-- /.card-body -->

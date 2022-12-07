@@ -18,6 +18,7 @@ class CreateContactsTable extends Migration
             $table->string('email');
             $table->string('subject');
             $table->string('message');
+            $table->foreignId("user_id")->constrained("users")->references("id");
 			$table->softDeletes();
 
 			$table->timestamps();

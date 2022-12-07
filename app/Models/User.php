@@ -124,6 +124,10 @@ protected $fillable = [
 		return $this->referral_link = route('register', ['ref' => $this->user_name]);
 	}
 
+	public function contacts(){
+		return $this->hasMany(\App\Models\Contact::class);
+	}
+
 	/**
     * likes relation method
     * @param void

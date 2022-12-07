@@ -26,6 +26,7 @@ class UserContacts extends Controller
 
     public function store(UserContactsRequest $request){
       $data = $request->except("_token", "_method");
+      $data['user_id'] = auth()->user()->id; 
       $data['name'] = auth()->user()->name;
       $data['email'] = auth()->user()->email;
       $contacts = Contact::create($data); 

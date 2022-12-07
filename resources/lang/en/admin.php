@@ -19,6 +19,7 @@
 		"email_verified_at"	=>		"Email Verified At",
 		"vote_id"	=>		"Vote Plan",
 		"vote_revenue"	=>		"Vote Revenue",
+		"bfot_revenue"	=>		"BFOT Revenue",
 		"kuro_balance_wallet"	=>		"Kuro balance Wallet",
 		"reactions"	=>		"Reactions",
 		"like"	=>		"Like",
