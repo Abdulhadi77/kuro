@@ -29,7 +29,21 @@
   </div>
 <!--admins_end-->
 
-
+<!--users_start-->
+<div class="col-lg-3 col-6">
+    <!-- small box -->
+    <div class="small-box bg-primary">
+      <div class="inner">
+        <h3>{{ mK(App\Models\User::count()) }}</h3>
+        <p>{{ trans("admin.users") }}</p>
+      </div>
+      <div class="icon">
+        <i class="fa fa-icons"></i>
+      </div>
+      <a href="{{ aurl("users") }}" class="small-box-footer">{{ trans("admin.users") }} <i class="fas fa-arrow-circle-right"></i></a>
+    </div>
+</div>
+<!--users_end-->
 
 <!--pages_start-->
 <div class="col-lg-3 col-6">

@@ -26,7 +26,7 @@
                 <div class="card-header text-center">
                     <a href="{{ aurl('login') }}" class="h1">
                         @if(!empty(setting()->logo))
-                        <img src="{{it()->url(setting()->logo)}}" alt="{{ setting()->{l('sitename')} }}" style="width:48px;height: 48px" />
+                        <img src="{{url('/storage/'.setting()->logo))}}" alt="{{ setting()->{l('sitename')} }}" style="width:48px;height: 48px" />
                         @else
                         {{ setting()->{l('sitename')} }}
                         @endif
