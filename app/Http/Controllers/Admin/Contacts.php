@@ -34,19 +34,6 @@ class Contacts extends Controller
             }
 
 
-            public function create()
-            {
-            	
-               return view('admin.contacts.create',['title'=>trans('admin.create')]);
-            }
-
-            public function store(ContactsRequest $request)
-            {
-                $data = $request->except("_token", "_method");
-            			  		$contacts = Contact::create($data); 
-                $redirect = isset($request["add_back"])?"/create":"";
-                return redirectWithSuccess(aurl('contacts'.$redirect), trans('admin.added')); }
-
             public function show($id)
             {
         		$contacts =  Contact::find($id);

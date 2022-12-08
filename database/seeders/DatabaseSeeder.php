@@ -57,8 +57,8 @@ class DatabaseSeeder extends Seeder {
 					'admin_groups_id' => 1,
 					'show' => 'yes',
 					'add' => 'no',
-					'edit' => 'no',
-					'delete' => 'no',
+					'edit' => 'yes',
+					'delete' => 'yes',
 				]);
 				\App\Models\AdminGroupRole::UpdateOrCreate([
 					'name' => 'contacts',
