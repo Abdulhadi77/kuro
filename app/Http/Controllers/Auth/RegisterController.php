@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Models\Setting;
 use App\Models\Social;
 use App\Http\Controllers\Controller;
 use App\Mail\SendMail;
