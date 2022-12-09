@@ -135,18 +135,18 @@
 
         <script src="https://code.iconify.design/iconify-icon/1.0.2/iconify-icon.min.js"></script>
         <script src="{{asset('assets/js/list.js')}}"></script>
-        <script>
-            window.onload = async function () {
-                if (window.ethereum) {
-                    var accounts = await ethereum.request({ method: 'eth_requestAccounts' });
-                    var currentAddress = accounts[0];
-                    web3 = new Web3(window.ethereum);
-                    web3.eth.getBalance("0x445A0688f6F1Ce4fDcF4E09F31D841c1Bab50497")
-                        .then(console.log);
-                } else {
-                    console.log("Please connect with metamask");
-                }
-            }
+{{--        <script>--}}
+{{--            window.onload = async function () {--}}
+{{--                if (window.ethereum) {--}}
+{{--                    var accounts = await ethereum.request({ method: 'eth_requestAccounts' });--}}
+{{--                    var currentAddress = accounts[0];--}}
+{{--                    web3 = new Web3(window.ethereum);--}}
+{{--                    var kuro_balance = await web3.eth.getBalance('0xA6fB39D69b09ECdc1a8b5f829DF11a40B7742603');--}}
+{{--                   console.log(kuro_balance)--}}
+{{--                } else {--}}
+{{--                    console.log("Please connect with metamask");--}}
+{{--                }--}}
+{{--            }--}}
 
-        </script>
+{{--        </script>--}}
 
