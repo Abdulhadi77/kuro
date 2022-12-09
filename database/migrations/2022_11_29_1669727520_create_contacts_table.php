@@ -19,6 +19,7 @@ class CreateContactsTable extends Migration
             $table->string('subject');
             $table->string('message');
             $table->foreignId("user_id")->constrained("users")->references("id");
+            $table->enum('status',['pending','done'])->nullable();
 			$table->softDeletes();
 
 			$table->timestamps();

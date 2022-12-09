@@ -19,6 +19,7 @@ class ContactsRequest extends FormRequest {
              'email'=>'required|email',
              'subject'=>'required',
              'message'=>'required',
+			 'status'=>'required',
 		];
 	}
 
@@ -28,6 +29,7 @@ class ContactsRequest extends FormRequest {
              'email'=>'required|email',
              'subject'=>'required',
              'message'=>'required',
+			 'status'=>'required',
 		];
 	}
 
@@ -43,6 +45,7 @@ class ContactsRequest extends FormRequest {
              'email'=>trans('admin.email'),
              'subject'=>trans('admin.subject'),
              'message'=>trans('admin.message'),
+			 'status'=>trans('admin.status'),
 		];
 	}
 

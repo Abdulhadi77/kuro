@@ -29,6 +29,7 @@ class UserContacts extends Controller
       $data['user_id'] = auth()->user()->id; 
       $data['name'] = auth()->user()->name;
       $data['email'] = auth()->user()->email;
+      $data['status'] = 'pending'; 
       $contacts = Contact::create($data); 
       $redirect = isset($request["add_back"])?"/create":"";
       return redirectWithSuccess(url('user/contacts'.$redirect), trans('user.added'));
