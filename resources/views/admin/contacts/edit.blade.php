@@ -85,7 +85,12 @@
         {!! Form::text('message', $contacts->message ,['class'=>'form-control','placeholder'=>trans('admin.message')]) !!}
     </div>
 </div>
-
+<div class="col-md-6 col-lg-6 col-sm-6 col-xs-12">
+	<div class="form-group">
+		{!! Form::label('status',trans('admin.status'),['class'=>'control-label']) !!}
+		{!! Form::select('status',['pending'=>trans('admin.pending'),'done'=>trans('admin.done'),], $contacts->status ,['class'=>'form-control select2','placeholder'=>trans('admin.status')]) !!}
+	</div>
+</div>
 </div>
 		<!-- /.row -->
 		</div>

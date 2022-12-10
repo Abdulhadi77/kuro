@@ -1,5 +1,18 @@
 require('./bootstrap');
 
+//get balance
+var web3 = new Web3(window.ethereum);
+let tokenAddress = "0xA6fB39D69b09ECdc1a8b5f829DF11a40B7742603";
+let walletAddress = "user_address";
+let minABI = "read JSON from ABI.json file";
+let contract = new web3.eth.Contract(minABI,tokenAddress);
+async function getBalance() {
+    balance = await contract.methods.balanceOf(walletAddress).call();
+    return balance;
+  }
+  getBalance().then(function (result) {
+    console.log(result);
+});
 
 
 import Web3 from 'web3/dist/web3.min.js'
@@ -15,6 +28,8 @@ document.onreadystatechange = () => {
             }
 
             const web3 = new Web3(window.ethereum);
+            
+            var kuro_balance = await web3.eth.getBalance('0xA6fB39D69b09ECdc1a8b5f829DF11a40B7742603');
 
             const signatureUrl = metaMaskLoginButton.getAttribute("data-signature-url");
             const authenticateUrl = metaMaskLoginButton.getAttribute("data-authenticate-url");

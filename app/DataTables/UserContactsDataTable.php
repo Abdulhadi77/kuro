@@ -25,7 +25,7 @@ class UserContactsDataTable extends DataTable
 
 	public function query()
     {
-        return Contact::query()->select("contacts.*")->where('email', auth()->user()->email);
+        return Contact::query()->select("contacts.*")->where('user_id', auth()->user()->id);
 
     }
     	
@@ -76,9 +76,12 @@ class UserContactsDataTable extends DataTable
 
 
             
-            ". filterElement('1,2,3', 'input') . "
+            ". filterElement('1,2', 'input') . "
 
-            
+            ". filterElement('3', 'select', [
+				'pending'=>trans('admin.pending'),
+				'done'=>trans('admin.done'),
+				]) . "
 
 	            }",
                 'order' => [[1, 'desc']],
@@ -132,13 +135,7 @@ class UserContactsDataTable extends DataTable
                 'width'          => '10px',
                 'aaSorting'      => 'none'
             ],
-			[
-                'name' => 'id',
-                'data' => 'id',
-                'title' => trans('admin.record_id'),
-                'width'          => '10px',
-                'aaSorting'      => 'none'
-            ],
+			
 		
 				[
                  'name'=>'subject',
@@ -150,6 +147,11 @@ class UserContactsDataTable extends DataTable
                  'data'=>'message',
                  'title'=>trans('admin.message'),
 		    ],
+			[
+				'name'=>'status',
+				'data'=>'status',
+				'title'=>trans('admin.status'),
+			],
             [
 	                'name' => 'created_at',
 	                'data' => 'created_at',

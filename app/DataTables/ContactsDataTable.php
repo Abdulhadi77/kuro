@@ -82,6 +82,11 @@ class ContactsDataTable extends DataTable
 
             
 
+            ". filterElement('7', 'select', [
+            'pending'=>trans('admin.pending'),
+            'done'=>trans('admin.done'),
+            ]) . "
+
 	            }",
                 'order' => [[1, 'desc']],
 
@@ -166,6 +171,11 @@ class ContactsDataTable extends DataTable
                  'data'=>'message',
                  'title'=>trans('admin.message'),
 		    ],
+			[
+				'name'=>'status',
+				'data'=>'status',
+				'title'=>trans('admin.status'),
+			],
             [
 	                'name' => 'created_at',
 	                'data' => 'created_at',

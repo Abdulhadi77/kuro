@@ -6,6 +6,7 @@
     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
 }
 });
+
     var formData = new FormData()
         var blog_id = $("#addlike").data('action');
     formData.append('blog_id', blog_id);
@@ -33,6 +34,7 @@
 
     $(document).on('click', '#adddislike', function (e) {
         e.preventDefault();
+
         $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')

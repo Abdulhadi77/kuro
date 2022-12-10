@@ -39,7 +39,6 @@
         <div class="container" data-aos="fade-up">
 
             <div class="row">
-
                 <div class="col-lg-8 entries">
                     @foreach ($blogs as $blog)
                     <article class="entry">
@@ -122,8 +121,8 @@
                 <div class="col-lg-4">
 
 
-        
-       
+
+
 
           </div><!-- End sidebar -->
 
@@ -136,5 +135,18 @@
 
         <script src="https://code.iconify.design/iconify-icon/1.0.2/iconify-icon.min.js"></script>
         <script src="{{asset('assets/js/list.js')}}"></script>
+{{--        <script>--}}
+{{--            window.onload = async function () {--}}
+{{--                if (window.ethereum) {--}}
+{{--                    var accounts = await ethereum.request({ method: 'eth_requestAccounts' });--}}
+{{--                    var currentAddress = accounts[0];--}}
+{{--                    web3 = new Web3(window.ethereum);--}}
+{{--                    var kuro_balance = await web3.eth.getBalance('0xA6fB39D69b09ECdc1a8b5f829DF11a40B7742603');--}}
+{{--                   console.log(kuro_balance)--}}
+{{--                } else {--}}
+{{--                    console.log("Please connect with metamask");--}}
+{{--                }--}}
+{{--            }--}}
 
+{{--        </script>--}}
 
