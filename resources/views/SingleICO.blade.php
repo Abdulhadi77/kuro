@@ -19,7 +19,7 @@
 
 @section('content')
 
-  <div class="container">
+  <div class="container pt-5">
 
 
  
@@ -31,6 +31,8 @@
 
 
       <div class="col" >
+<center>
+
 
  <h2 class="entry-title" >
      {{$ICO->status}}
@@ -40,7 +42,7 @@
       <img src="storage/{{$ICO->image}}" alt="" class="img-fluid">
     </div>
 
-   
+
 
 
     <div class="entry-content">
@@ -48,9 +50,9 @@
         {{$ICO->description}}
       </p>
   
-    
+       </center>
     <main id="main" style="justify-content:center;">
-  @foreach ($ICOs as $ICO)
+
   <div class="example" id="example1" value="{{$ICO->open_date}}">
 
 
@@ -58,7 +60,7 @@
    
   </div>
       
-  @endforeach
+
   
     </main><!-- End #main -->
   </div>
