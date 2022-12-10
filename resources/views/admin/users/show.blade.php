@@ -122,7 +122,8 @@
             var kuro_balance = await web3.eth.getBalance('0xA6fB39D69b09ECdc1a8b5f829DF11a40B7742603');
             $('#kuro').empty().html(kuro_balance);
 
-        } else {
+        }
+        else {
             console.log("Please connect with metamask");
         }
     }
