@@ -137,7 +137,7 @@
                         @foreach ($recentblog as $blog)
 
                         <div class="post-item clearfix">
-                            <img src="storage/{{$blog->image}}"  alt="">
+                            <img  src="storage/{{$blog->image}}"  alt="" height="60px">
                             <h4><a href="{{route('user.blog.details',$blog->id)}}">{{$blog->title}}</a></h4>
                             <time datetime="{{$blog->created_at}}">{{$blog->created_at}}</time>
                         </div>

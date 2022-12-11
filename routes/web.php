@@ -37,7 +37,7 @@ Route::group(['prefix' => 'user', 'middleware' => 'auth','middleware' => 'Lang']
             ///send email
             Route::post('/sendMessage', [\App\Http\Controllers\MailController::class, 'user_send_message'])->name('user_send_message');
             ///join Vote  Plan
-            Route::post('/joinVotePlan/{id}', [\App\Http\Controllers\User\UserVotePlans::class, 'joinVotePlan'])->name('user_join_vote_plan');
+            Route::get('/joinVotePlan/{id}', [\App\Http\Controllers\User\UserVotePlans::class, 'joinVotePlan'])->name('user_join_vote_plan');
             ///join b_f_o_t_plan
             Route::get('/joinBfotPlan/{id}', [\App\Http\Controllers\User\UserBFOTPlans::class, 'joinBfotPlan'])->name('user_join_b_f_o_t_plan');
 
