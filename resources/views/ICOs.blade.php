@@ -37,7 +37,7 @@
           </div>
 
           <h2 class="entry-title">
-            <a href="blog-single.html">{{$ICO->status}}</a>
+            <a href="{{route('SingleICO',$ICO)}}">{{$ICO->status}}</a>
           </h2>
 
         

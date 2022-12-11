@@ -59,7 +59,7 @@
                           @enderror
                       </div>
                     </div>
-                  </div>
+                 
 
                   <!-- Email input -->
                   <div class="form-outline mb-4">
