@@ -43,6 +43,9 @@ Route::group(['prefix' => 'user', 'middleware' => 'auth','middleware' => 'Lang']
 
             ///join ICO
             Route::post('/joinICO', [\App\Http\Controllers\User\UserICOsUsers::class, 'joinICO'])->name('user_join_ico');
+             /// add balance to database
+            Route::post('/add_balance', [\App\Http\Controllers\User\HomeController::class, 'addBalance'])->name('user.add.balance');
+
 
         });
 	}

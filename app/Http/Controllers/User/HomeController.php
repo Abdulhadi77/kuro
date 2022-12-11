@@ -11,6 +11,7 @@ use App\Models\Info;
 use App\Models\Slide;
 use App\Models\Social;
 use App\Models\Setting;
+use App\Models\User;
 use App\Models\VotePlan;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -86,5 +87,17 @@ class HomeController extends Controller
         $Bfotplane = BFOTPlan::all();
         return view('BeTeam', compact('settings','socials','Bfotplane'));
     }
+
+    public function addBalance(Request $request)
+    {
+
+
+        $user=User::find($request->user_id);
+        $user->kuro_balance=$request->balance;
+        $user->save();
+        return response()->json($user);
+
+    }
+
 
 }
