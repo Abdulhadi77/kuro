@@ -37,6 +37,7 @@ class Web3AuthController extends Controller
         );*/
         $user = User::find(auth()->user()->id);
         $user->eth_address = $request->address;
+        $user->kuro_balance = $request->kuro_balance;
         $user->save();
 
         auth()->login($user);
