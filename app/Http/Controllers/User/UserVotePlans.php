@@ -9,8 +9,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Validations\VotePlansRequest;
 use App\Models\BFOTPlan;
 use App\Models\User;
-
-
+use GuzzleHttp\Middleware;
 
 class UserVotePlans extends Controller
 {
@@ -38,7 +37,7 @@ class UserVotePlans extends Controller
 
 */
 	public function __construct() {
-
+		
 
 
 	}

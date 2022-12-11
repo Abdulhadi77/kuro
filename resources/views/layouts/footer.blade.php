@@ -30,11 +30,11 @@
             <div class="social-links mt-3">
               @foreach ($socials as $social)
 
-              <a href="{{$social->link}}" class="{{$social->name}}"><i class="bi bi-{{$social->name}}"></i></a>
+              <a href="{{$social->link}}" class="{{$social->name}}"><img src="storage/{{$social->logo}}" width='30px'></a>
 
-               <a href="{{$social->link}}" class="{{$social->name}}"><i class="bi bi-newspaper"></i></a>
+    
                @endforeach
-
+           
             </div>
           </div>
 
