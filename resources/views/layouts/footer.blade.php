@@ -32,7 +32,7 @@
 
               <a href="{{$social->link}}" class="{{$social->name}}"><i class="bi bi-{{$social->name}}"></i></a>
 
-               <a href="{{$social->link}}" class="{{$social->name}}"><i class="bi bi-newspaper"></i></a>
+{{--               <a href="{{$social->link}}" class="{{$social->name}}"><i class="bi bi-newspaper"></i></a>--}}
                @endforeach
 
             </div>

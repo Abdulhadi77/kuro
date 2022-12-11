@@ -27,9 +27,9 @@ class Infos extends Controller
 		]);
 	}
 
-	
 
-            
+
+
 
             public function index(InfosDataTable $infos)
             {
@@ -37,30 +37,39 @@ class Infos extends Controller
             }
 
 
-            
+
 
             public function create()
             {
-            	
+
                return view('admin.infos.create',['title'=>trans('admin.create')]);
             }
 
-            
+
 
             public function store(InfosRequest $request)
             {
                 $data = $request->except("_token", "_method");
             	$data['logo'] = "";
-$data['admin_id'] = admin()->id(); 
-		  		$infos = Info::create($data); 
+$data['admin_id'] = admin()->id();
+		  		$infos = Info::create($data);
                if(request()->hasFile('logo')){
-              $infos->logo = it()->upload('logo','infos/'.$infos->id);
+                   $infos->logo =  self::uploadImage($request->logo,'logoInfos');
+
+                   //$infos->logo = it()->upload('logo','infos/'.$infos->id);
               $infos->save();
               }
                 $redirect = isset($request["add_back"])?"/create":"";
                 return redirectWithSuccess(aurl('infos'.$redirect), trans('admin.added')); }
 
-            
+    function uploadImage($image , $fileName)
+    {
+        $imageName =  time().'.'. $image->extension();
+        $imageToSave = $fileName . DIRECTORY_SEPARATOR . time().'.'. $image->extension();
+
+        $image->move(public_path('storage'. DIRECTORY_SEPARATOR .$fileName), $imageName);
+        return $imageToSave;
+    }
 
             public function show($id)
             {
@@ -74,7 +83,7 @@ $data['admin_id'] = admin()->id();
             }
 
 
-            
+
 
             public function edit($id)
             {
@@ -88,7 +97,7 @@ $data['admin_id'] = admin()->id();
             }
 
 
-            
+
 
             public function updateFillableColumns() {
 				$fillableCols = [];
@@ -107,18 +116,18 @@ $data['admin_id'] = admin()->id();
               if(is_null($infos) || empty($infos)){
               	return backWithError(trans("admin.undefinedRecord"),aurl("infos"));
               }
-              $data = $this->updateFillableColumns(); 
-              $data['admin_id'] = admin()->id(); 
+              $data = $this->updateFillableColumns();
+              $data['admin_id'] = admin()->id();
                if(request()->hasFile('logo')){
               it()->delete($infos->logo);
               $data['logo'] = it()->upload('logo','infos');
-               } 
+               }
               Info::where('id',$id)->update($data);
               $redirect = isset($request["save_back"])?"/".$id."/edit":"";
               return redirectWithSuccess(aurl('infos'.$redirect), trans('admin.updated'));
             }
 
-            
+
 
 	public function destroy($id){
 		$infos = Info::find($id);
@@ -154,7 +163,7 @@ $data['admin_id'] = admin()->id();
 			if(is_null($infos) || empty($infos)){
 				return backWithError(trans('admin.undefinedRecord'),aurl("infos"));
 			}
-                    
+
 			if(!empty($infos->logo)){
 			 it()->delete($infos->logo);
 			}			it()->delete('info',$data);
@@ -162,6 +171,6 @@ $data['admin_id'] = admin()->id();
 			return redirectWithSuccess(aurl("infos"),trans('admin.deleted'));
 		}
 	}
-            
+
 
 }

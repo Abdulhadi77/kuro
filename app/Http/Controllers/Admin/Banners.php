@@ -27,9 +27,9 @@ class Banners extends Controller
 		]);
 	}
 
-	
 
-            
+
+
 
             public function index(BannersDataTable $banners)
             {
@@ -37,30 +37,41 @@ class Banners extends Controller
             }
 
 
-            
+
 
             public function create()
             {
-            	
+
                return view('admin.banners.create',['title'=>trans('admin.create')]);
             }
 
-            
+
 
             public function store(BannersRequest $request)
             {
                 $data = $request->except("_token", "_method");
             	$data['image'] = "";
-$data['admin_id'] = admin()->id(); 
-		  		$banners = Banner::create($data); 
+$data['admin_id'] = admin()->id();
+		  		$banners = Banner::create($data);
                if(request()->hasFile('image')){
-              $banners->image = it()->upload('image','banners/'.$banners->id);
+                   $banners->image =  self::uploadImage($request->image,'banners');
+
+                   //$banners->image = it()->upload('image','banners/'.$banners->id);
               $banners->save();
               }
                 $redirect = isset($request["add_back"])?"/create":"";
                 return redirectWithSuccess(aurl('banners'.$redirect), trans('admin.added')); }
 
-            
+
+
+    function uploadImage($image , $fileName)
+    {
+        $imageName =  time().'.'. $image->extension();
+        $imageToSave = $fileName . DIRECTORY_SEPARATOR . time().'.'. $image->extension();
+
+        $image->move(public_path('storage'. DIRECTORY_SEPARATOR .$fileName), $imageName);
+        return $imageToSave;
+    }
 
             public function show($id)
             {
@@ -74,7 +85,7 @@ $data['admin_id'] = admin()->id();
             }
 
 
-            
+
 
             public function edit($id)
             {
@@ -88,7 +99,7 @@ $data['admin_id'] = admin()->id();
             }
 
 
-            
+
 
             public function updateFillableColumns() {
 				$fillableCols = [];
@@ -107,18 +118,18 @@ $data['admin_id'] = admin()->id();
               if(is_null($banners) || empty($banners)){
               	return backWithError(trans("admin.undefinedRecord"),aurl("banners"));
               }
-              $data = $this->updateFillableColumns(); 
-              $data['admin_id'] = admin()->id(); 
+              $data = $this->updateFillableColumns();
+              $data['admin_id'] = admin()->id();
                if(request()->hasFile('image')){
               it()->delete($banners->image);
               $data['image'] = it()->upload('image','banners');
-               } 
+               }
               Banner::where('id',$id)->update($data);
               $redirect = isset($request["save_back"])?"/".$id."/edit":"";
               return redirectWithSuccess(aurl('banners'.$redirect), trans('admin.updated'));
             }
 
-            
+
 
 	public function destroy($id){
 		$banners = Banner::find($id);
@@ -154,7 +165,7 @@ $data['admin_id'] = admin()->id();
 			if(is_null($banners) || empty($banners)){
 				return backWithError(trans('admin.undefinedRecord'),aurl("banners"));
 			}
-                    
+
 			if(!empty($banners->image)){
 			 it()->delete($banners->image);
 			}			it()->delete('banner',$data);
@@ -162,6 +173,6 @@ $data['admin_id'] = admin()->id();
 			return redirectWithSuccess(aurl("banners"),trans('admin.deleted'));
 		}
 	}
-            
+
 
 }

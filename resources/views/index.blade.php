@@ -61,7 +61,7 @@
             <div class="row">
                 <div class="col-lg-6 d-flex flex-column justify-content-center">
                     <h1 data-aos="fade-up">Our Site</h1>
-                    <h2 data-aos="fade-up" data-aos-delay="400">We are team of talented designers making websites with Bootstrap</h2>
+                    <h2 data-aos="fade-up" data-aos-delay="400">KURO is a cryptocurrency that supports youth projects around the world and provides humanitarian and educational assistance to bring the world to a higher level of cooperation. KURO also aims to improve token utility by lunching ecosystem projects that help those in need to get life basics</h2>
                     <div data-aos="fade-up" data-aos-delay="600">
                         <div class="text-center text-lg-start">
                             <a target="_blank" href="https://kurocoin.digital/" class="btn-get-started scrollto d-inline-flex align-items-center justify-content-center align-self-center">
@@ -83,14 +83,15 @@
 
   <main id="main">
 
-         <!--  Home  -->
+
+
       <section id="testimonials" class="testimonials">
 
           <div class="container" data-aos="fade-up">
 
               <header class="section-header">
-
-                  <p>Home</p>
+                  <h2>Home</h2>
+                  <p> Check Our Info Pages  </p>
               </header>
 
               <div class="testimonials-slider swiper" data-aos="fade-up" data-aos-delay="200">
@@ -98,10 +99,17 @@
                       @foreach ($slides as $slide)
                       <div class="swiper-slide">
                           <div class="testimonial-item">
+{{--                              <div class="stars">--}}
+{{--                                  <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>--}}
+{{--                              </div>--}}
+                              <p>
+                                  <a href="#"> <img style="margin-left: -23px" src="{{ asset('storage/'.$slide->image)  }}" class="testimonial-img" alt=""></a>
+
+                              </p>
                               <div class="profile mt-auto">
-                              <img src="{{url('storage/'.$slide->image)}}" class="testimonial-img" alt="">
-                                  <a href="#" > <h3>@isset($slide->page->page_name){{$slide->page->page_name}}@endisset</h3>
-                                  </a>
+                                  <img src="assets/img/testimonials/testimonials-1.jpg" class="testimonial-img" alt="">
+                                  <a href="#"><h3>@isset($slide->page->page_name){{$slide->page->page_name}}@endisset</h3></a>
+{{--                                  <h4>Ceo &amp; Founder</h4>--}}
                               </div>
                           </div>
                       </div><!-- End testimonial item -->
@@ -116,53 +124,70 @@
       </section><!-- End Testimonials Section -->
 
 
-      <!--  Banners  -->
-      <section id="recent-blog-posts" class="recent-blog-posts">
+
+
+
+
+
+
+
+      <section id="portfolio" class="portfolio">
 
           <div class="container" data-aos="fade-up">
 
               <header class="section-header">
-                  {{--                <h2>Blog</h2>--}}
-                  <p>Banners</p>
+                  <h2>Banners</h2>
+                  <p>Check our latest Banners</p>
               </header>
 
-              <div class="row">
+              <div class="row" data-aos="fade-up" data-aos-delay="100">
+                  <div class="col-lg-12 d-flex justify-content-center">
+
+                  </div>
+              </div>
+
+              <div class="row gy-4 portfolio-container" data-aos="fade-up" data-aos-delay="200">
                   @foreach ($banners as $banner)
-                  <div class="col-lg-4">
-                      <div class="post-box">
-                          <div class="post-img"><img src="storage/{{$banner->image}}" class="img-fluid" alt=""></div>
-                          <span class="post-date">{{$banner->created_at}}</span>
-                          <h3 class="post-title">{{$banner->description}}</h3>
-                          {{--                        <a href="blog-single.html" class="readmore stretched-link mt-auto"><span>Read More</span><i class="bi bi-arrow-right"></i></a>--}}
+                  <div class="col-lg-3 col-md-6 portfolio-item filter-app justify-content-center">
+                      <div class="portfolio-wrap">
+                          <img src="{{ asset('storage/'.$banner->image)  }}" class="img-fluid" alt="">
+                          <div class="portfolio-info">
+                              <h4>{{$banner->created_at}}</h4>
+{{--                              <p>{{$banner->description}}</p>--}}
+                              <div class="portfolio-links">
+                                  <a href="{{ asset('storage/'.$banner->image)  }}" data-gallery="portfolioGallery" class="portfokio-lightbox" title="{{$banner->description}}"><i class="bi bi-plus"></i></a>
+{{--                                  <a href="portfolio-details.html" title="More Details"><i class="bi bi-link"></i></a>--}}
+                              </div>
+                          </div>
                       </div>
                   </div>
 
                   @endforeach
 
-
               </div>
 
           </div>
 
-      </section><!-- End Recent Blog Posts Section -->
-
+      </section><!-- End Portfolio Section -->
 
 
   <!--  You Can Find Us  -->
+
 
       <section id="clients" class="clients">
 
           <div class="container" data-aos="fade-up">
 
               <header class="section-header">
-{{--                  <h2>Our Clients</h2>--}}
-                  <p>Our Clients</p>
+                  <h2>Our Clients</h2>
+                  <p>Check Our Clients</p>
               </header>
 
               <div class="clients-slider swiper">
                   <div class="swiper-wrapper align-items-center">
+
                       @foreach ($infos as $info)
-                          <div class="swiper-slide"><a href="{{$info->url}}"><img src="storage/{{$info->logo}}" class="img-fluid" alt=""></a></div>
+                          <div class="swiper-slide"><a href="{{$info->url}}"><img src="{{ asset('storage/'.$info->logo)  }}" class="img-fluid" alt=""></a></div>
                       @endforeach
                   </div>
                   <div class="swiper-pagination"></div>
@@ -170,7 +195,6 @@
           </div>
 
       </section><!-- End Clients Section -->
-
 
     <!-- ======= Contact Section ======= -->
     <section id="contact" class="contact">
@@ -217,7 +241,7 @@
 {{--              </div>--}}
 {{--            </div>--}}
 
-          </div> 
+          </div>
 
           <div class="col-lg-6">
             <form action="forms/contact.php" method="post" action="{{route('user_send_message')}}" class="php-email-form">

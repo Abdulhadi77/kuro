@@ -37,39 +37,47 @@ class Blogs extends Controller
     return [];
  }
 
-            
+
 
             public function index(BlogsDataTable $blogs)
             {
-              
+
               return $blogs->render('admin.blogs.index',['title'=>trans('admin.blogs')]);
             }
 
 
-            
+
 
             public function create()
             {
-            	
+
                return view('admin.blogs.create',['title'=>trans('admin.create')]);
             }
 
-            
+
 
             public function store(BlogsRequest $request)
             {
                 $data = $request->except("_token", "_method");
             	  $data['image'] = "";
-                $data['admin_id'] = admin()->id(); 
-		  		      $blogs = Blog::create($data); 
+                $data['admin_id'] = admin()->id();
+		  		      $blogs = Blog::create($data);
                 if(request()->hasFile('image')){
-                  $blogs->image = it()->upload('image','blogs/'.$blogs->id);
+                    $blogs->image=  self::uploadImage($request->image,'blogs');
+                 // $blogs->image = it()->upload('image','blogs/'.$blogs->id);
                   $blogs->save();
                 }
                 $redirect = isset($request["add_back"])?"/create":"";
                 return redirectWithSuccess(aurl('blogs'.$redirect), trans('admin.added')); }
 
-            
+    function uploadImage($image , $fileName)
+    {
+        $imageName =  time().'.'. $image->extension();
+        $imageToSave = $fileName . DIRECTORY_SEPARATOR . time().'.'. $image->extension();
+
+        $image->move(public_path('storage'. DIRECTORY_SEPARATOR .$fileName), $imageName);
+        return $imageToSave;
+    }
 
             public function show($id)
             {
@@ -83,7 +91,7 @@ class Blogs extends Controller
             }
 
 
-            
+
 
             public function edit($id)
             {
@@ -97,7 +105,7 @@ class Blogs extends Controller
             }
 
 
-            
+
 
             public function updateFillableColumns() {
               $fillableCols = [];
@@ -116,18 +124,18 @@ class Blogs extends Controller
               if(is_null($blogs) || empty($blogs)){
               	return backWithError(trans("admin.undefinedRecord"),aurl("blogs"));
               }
-              $data = $this->updateFillableColumns(); 
-              $data['admin_id'] = admin()->id(); 
+              $data = $this->updateFillableColumns();
+              $data['admin_id'] = admin()->id();
                if(request()->hasFile('image')){
               it()->delete($blogs->image);
               $data['image'] = it()->upload('image','blogs');
-               } 
+               }
               Blog::where('id',$id)->update($data);
               $redirect = isset($request["save_back"])?"/".$id."/edit":"";
               return redirectWithSuccess(aurl('blogs'.$redirect), trans('admin.updated'));
             }
 
-            
+
 
 	public function destroy($id){
 		$blogs = Blog::find($id);
@@ -163,7 +171,7 @@ class Blogs extends Controller
 			if(is_null($blogs) || empty($blogs)){
 				return backWithError(trans('admin.undefinedRecord'),aurl("blogs"));
 			}
-                    
+
 			if(!empty($blogs->image)){
 			 it()->delete($blogs->image);
 			}			it()->delete('blog',$data);
@@ -171,6 +179,6 @@ class Blogs extends Controller
 			return redirectWithSuccess(aurl("blogs"),trans('admin.deleted'));
 		}
 	}
-            
+
 
 }
