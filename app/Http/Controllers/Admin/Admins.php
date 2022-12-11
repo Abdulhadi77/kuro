@@ -42,7 +42,8 @@ class Admins extends Controller {
 	public function store(AdminsRequest $request) {
 		$data = $request->except("_token", "_method");
 		if (request()->hasFile('photo_profile')) {
-			$data['photo_profile'] = it()->upload('photo_profile', 'admins');
+			//$data['photo_profile'] = it()->upload('photo_profile', 'admins');
+            $data['photo_profile'] =  self::uploadImage($request->photo_profile,'photo_profile');
 		} else {
 			$data['photo_profile'] = "";
 		}
@@ -53,6 +54,14 @@ class Admins extends Controller {
 		return redirectWithSuccess(aurl('admins'), trans('admin.added'));
 	}
 
+    function uploadImage($image , $fileName)
+    {
+        $imageName =  time().'.'. $image->extension();
+        $imageToSave = $fileName . DIRECTORY_SEPARATOR . time().'.'. $image->extension();
+
+        $image->move(public_path('storage'. DIRECTORY_SEPARATOR .$fileName), $imageName);
+        return $imageToSave;
+    }
 
 
 	public function show($id) {

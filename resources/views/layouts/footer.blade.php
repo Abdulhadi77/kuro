@@ -32,7 +32,7 @@
 
               <a href="{{$social->link}}" class="{{$social->name}}"><i class="bi bi-{{$social->name}}"></i></a>
 
-               <a href="{{$social->link}}" class="{{$social->name}}"><i class="bi bi-newspaper"></i></a>
+{{--               <a href="{{$social->link}}" class="{{$social->name}}"><i class="bi bi-newspaper"></i></a>--}}
                @endforeach
 
             </div>
@@ -41,7 +41,7 @@
           <div class="col-lg-3 col-6 footer-links">
             <h4>Useful Links</h4>
             <ul>
-              <li><i class="bi bi-chevron-right"></i> <a href="#">Home</a></li>
+              <li><i class="bi bi-chevron-right"></i> <a href="/">Home</a></li>
               <li><i class="bi bi-chevron-right"></i> <a href="#">WhitePaper</a></li>
 {{--              <li><i class="bi bi-chevron-right"></i> <a href="#">Services</a></li>--}}
 {{--              <li><i class="bi bi-chevron-right"></i> <a href="#">Terms of service</a></li>--}}
@@ -68,7 +68,7 @@
       <div class="copyright">
         &copy; Copyright <strong><span>KURO</span></strong>. All Rights Reserved
       </div>
-      
+
     </div>
   </footer><!-- End Footer -->
 

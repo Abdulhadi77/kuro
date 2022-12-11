@@ -11,34 +11,32 @@
 
     <title> </title>
 
-    <!-- Fonts -->
-    <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
+  <!-- Favicons -->
+  
+  <link href="storage/{{$settings->icon}}" rel="icon">
+  <link href="{{asset('storage/assets/img/apple-touch-icon.png')}}" rel="apple-touch-icon">
 
-    <!-- Scripts -->
-    {{-- @vite(['resources/sass/app.scss', 'resources/js/app.js']) --}}
-    <link href="{{asset('storage/assets/img/apple-touch-icon.png')}}" rel="apple-touch-icon">
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
 
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+  <!-- Vendor CSS Files -->
+  <link href="{{asset('storage/assets/vendor/aos/aos.css')}}" rel="stylesheet">
+  <link href="{{asset('storage/assets/vendor/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
+  <link href="{{asset('storage/assets/vendor/bootstrap-icons/bootstrap-icons.css')}}" rel="stylesheet">
+  <link href="{{asset('storage/assets/vendor/glightbox/css/glightbox.min.css')}}" rel="stylesheet">
+  <link href="{{asset('storage/assets/vendor/remixicon/remixicon.cs')}}'" rel="stylesheet">
+  <link href="{{asset('storage/assets/vendor/swiper/swiper-bundle.min.css')}}" rel="stylesheet">
 
-    <!-- Vendor CSS Files -->
-    <link href="{{asset('storage/assets/vendor/aos/aos.css')}}" rel="stylesheet">
-    <link href="{{asset('storage/assets/vendor/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
-    <link href="{{asset('storage/assets/vendor/bootstrap-icons/bootstrap-icons.css')}}" rel="stylesheet">
-    <link href="{{asset('storage/assets/vendor/glightbox/css/glightbox.min.css')}}" rel="stylesheet">
-    <link href="{{asset('storage/assets/vendor/remixicon/remixicon.cs')}}'" rel="stylesheet">
-    <link href="{{asset('storage/assets/vendor/swiper/swiper-bundle.min.css')}}" rel="stylesheet">
+  <!-- Template Main CSS File -->
+  <link href="{{asset('storage/assets/css/style.css')}}" rel="stylesheet">
+  <link href="{{asset('storage/assets/test.css')}}" rel="stylesheet">
 
-    <!-- Template Main CSS File -->
-    <link href="{{asset('storage/assets/css/style.css')}}" rel="stylesheet">
-
-    <link href="https://fonts.googleapis.com/css?family=Roboto:100,400,700,900" rel="stylesheet">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="{{asset('storage/assets/css/flipdown/flipdown.css')}}">
-    <link rel="stylesheet" type="text/css" href="{{asset('storage/assets/css/style.css')}}">
-    <script type="text/javascript" src="{{asset('storage/assets/js/flipdown/flipdown.js')}}"></script>
-    <script type="text/javascript" src="{{asset('storage/assets/js/main.js')}}"></script>
+  <link href="https://fonts.googleapis.com/css?family=Roboto:100,400,700,900" rel="stylesheet">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+  <link rel="stylesheet" type="text/css" href="{{asset('storage/assets/css/flipdown/flipdown.css')}}">
+  <link rel="stylesheet" type="text/css" href="{{asset('storage/assets/css/style.css')}}">
+  <script type="text/javascript" src="{{asset('storage/assets/js/flipdown/flipdown.js')}}"></script>
+  <script type="text/javascript" src="{{asset('storage/assets/js/main.js')}}"></script>
 
 </head>
 <body>
@@ -49,34 +47,28 @@
                     <img src="storage/{{$settings->logo}}" alt="">
                         <span>FXS</span>
                       </a>
-                      </div>
-                      </header>
+                      
    
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
-            <div class="container">
+                      <nav id="navbar" class="navbar">
+          
                 
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
+             
 
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav me-auto">
-
-                    </ul>
+              
+                  
 
                     <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ms-auto p-3">
+                    <ul >
                         <!-- Authentication Links -->
                         @guest
                             @if (Route::has('login'))
-                                <li class="nav-item">
+                                <li >
                                     <a class="getstarted scrollto" href="{{ route('login') }}">{{ trans('auth.login') }}</a>
                                 </li>
                             @endif
 
                             @if (Route::has('register'))
-                                <li class="nav-item">
+                                <li >
                                     <a class="getstarted scrollto" href="{{ route('register') }}">{{ trans('auth.register') }}</a>
                                 </li>
                             @endif
@@ -100,9 +92,11 @@
                             </li>
                         @endguest
                     </ul>
-                </div>
-            </div>
+                    <i class="bi bi-list mobile-nav-toggle"></i>
+            
         </nav>
+      </div>
+    </header>
         <div id="app ">
         <main class="py-4">
             @yield('content')
@@ -194,7 +188,18 @@
       </footer><!-- End Footer -->
     
       <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+<!-- Vendor JS Files -->
+<script src="{{asset('storage/assets/vendor/purecounter/purecounter_vanilla.js')}}"></script>
+<script src="{{asset('storage/assets/vendor/aos/aos.js')}}"></script>
+<script src="{{asset('storage/assets/vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+<script src="{{asset('storage/assets/vendor/glightbox/js/glightbox.min.js')}}"></script>
+<script src="{{asset('storage/assets/vendor/isotope-layout/isotope.pkgd.min.js')}}"></script>
+<script src="{{asset('storage/assets/vendor/swiper/swiper-bundle.min.js')}}"></script>
+<script src="{{asset('storage/assets/vendor/php-email-form/validate.js')}}"></script>
 
+<!-- Template Main JS File -->
+<script src="{{asset('storage/assets/js/main.js')}}"></script>
+<script src="{{asset('assets/blogs-list.js')}}"></script>
 </body>
 
 

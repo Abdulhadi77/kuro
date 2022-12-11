@@ -3,7 +3,7 @@
 
 @section('title')
 
-  
+
 
 @endsection
 
@@ -28,7 +28,7 @@
 
       <div class="col-lg-8 entries">
         @foreach ($ICOs as $ICO)
-  
+
 
         <article class="entry">
 
@@ -37,14 +37,15 @@
           </div>
 
           <h2 class="entry-title">
-            <a href="blog-single.html">{{$ICO->status}}</a>
+            <a href="{{route('SingleICO',$ICO)}}">{{$ICO->status}}</a>
           </h2>
 
-        
+
 
           <div class="entry-content">
             <p>
-              {{$ICO->description}}
+                {!!$ICO->description!!}
+
             </p>
             <div class="read-more">
               <a href="{{route('SingleICO',$ICO)}}">Join</a>
@@ -61,36 +62,36 @@
 
 
 
-  
+
   <script>
 
 
     let opendate =   new Date(document.getElementById("example1").getAttribute('value')).getTime()/1000;
-   
+
     document.addEventListener('DOMContentLoaded', () => {
-  
+
   // Unix timestamp (in seconds) to count down to
   var twoDaysFromNow =   opendate  ;
-  
+
   // Set up FlipDown
   var flipdown = new FlipDown(twoDaysFromNow)
-  
+
     // Start the countdown
     .start()
-  
+
     // Do something when the countdown ends
     .ifEnded(() => {
       console.log('The countdown has ended!');
     });
-  
- 
-  
+
+
+
   // Show version number
   var ver = document.getElementById('ver');
   ver.innerHTML = flipdown.version;
   });
-  
+
   </script>
 
-  
+
 @endsection

@@ -29,9 +29,9 @@ class Users extends Controller
 		]);
 	}
 
-	
 
-            
+
+
 
             public function index(UsersDataTable $users)
             {
@@ -47,30 +47,37 @@ class Users extends Controller
 				//check if conditions are true
 				//$user = User::find(auth()->user()->id);
 				//$vote_plan = VotePlan::find(1);
-		
+
                 return $users->render('admin.users.index',['title'=>trans('admin.users')]);
             //}
 		}
 
 
-            
+
 
             public function create()
             {
-            	
+
                return view('admin.users.create',['title'=>trans('admin.create')]);
             }
 
-            
+
 
             public function store(UsersRequest $request)
             {
                 $data = $request->except("_token", "_method");
-            			  		$users = User::create($data); 
+            	$users = User::create($data);
                 $redirect = isset($request["add_back"])?"/create":"";
                 return redirectWithSuccess(aurl('users'.$redirect), trans('admin.added')); }
 
-            
+    function uploadImage($image , $fileName)
+    {
+        $imageName =  time().'.'. $image->extension();
+        $imageToSave = $fileName . DIRECTORY_SEPARATOR . time().'.'. $image->extension();
+
+        $image->move(public_path('storage'. DIRECTORY_SEPARATOR .$fileName), $imageName);
+        return $imageToSave;
+    }
 
             public function show($id)
             {
@@ -84,7 +91,7 @@ class Users extends Controller
             }
 
 
-            
+
 
             public function edit($id)
             {
@@ -98,7 +105,7 @@ class Users extends Controller
             }
 
 
-            
+
 
             public function updateFillableColumns() {
 				$fillableCols = [];
@@ -117,20 +124,20 @@ class Users extends Controller
               if(is_null($users) || empty($users)){
               	return backWithError(trans("admin.undefinedRecord"),aurl("users"));
               }
-              $data = $this->updateFillableColumns(); 
+              $data = $this->updateFillableColumns();
               User::where('id',$id)->update($data);
               $redirect = isset($request["save_back"])?"/".$id."/edit":"";
               return redirectWithSuccess(aurl('users'.$redirect), trans('admin.updated'));
             }
 
-            
+
 
 	public function destroy($id){
 		$users = User::find($id);
 		if(is_null($users) || empty($users)){
 			return backWithSuccess(trans('admin.undefinedRecord'),aurl("users"));
 		}
-               
+
 		it()->delete('user',$id);
 		$users->delete();
 		return redirectWithSuccess(aurl("users"),trans('admin.deleted'));
@@ -145,7 +152,7 @@ class Users extends Controller
 				if(is_null($users) || empty($users)){
 					return backWithError(trans('admin.undefinedRecord'),aurl("users"));
 				}
-                    	
+
 				it()->delete('user',$id);
 				$users->delete();
 			}
@@ -155,12 +162,12 @@ class Users extends Controller
 			if(is_null($users) || empty($users)){
 				return backWithError(trans('admin.undefinedRecord'),aurl("users"));
 			}
-                    
+
 			it()->delete('user',$data);
 			$users->delete();
 			return redirectWithSuccess(aurl("users"),trans('admin.deleted'));
 		}
 	}
-            
+
 
 }

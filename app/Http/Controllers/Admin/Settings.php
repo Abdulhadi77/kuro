@@ -43,6 +43,7 @@ class Settings extends Controller {
 			'system_message' => '',
 		];
 
+
 		$data = $this->validate(request(), $rules, [], [
 			'sitename_ar' => trans('admin.sitename_ar'),
 			'sitename_en' => trans('admin.sitename_en'),
@@ -54,15 +55,26 @@ class Settings extends Controller {
 			'system_message' => trans('admin.system_message'),
 		]);
 		if (request()->hasFile('logo')) {
-			$data['logo'] = it()->upload('logo', 'setting');
+            $data['logo'] =  self::uploadImage($request->logo,'logo');
+			//$data['logo'] = it()->upload('logo', 'setting');
 		}
 		if (request()->hasFile('icon')) {
-			$data['icon'] = it()->upload('icon', 'setting');
+            $data['icon'] =  self::uploadImage($request->icon,'icon');
+			//$data['icon'] = it()->upload('icon', 'setting');
 		}
 		Setting::orderBy('id', 'desc')->update($data);
 		session()->flash('success', trans('admin.updated'));
 		return redirect(aurl('settings'));
 
 	}
+
+    function uploadImage($image , $fileName)
+    {
+        $imageName =  time().'.'. $image->extension();
+        $imageToSave = $fileName . DIRECTORY_SEPARATOR . time().'.'. $image->extension();
+
+        $image->move(public_path('storage'. DIRECTORY_SEPARATOR .$fileName), $imageName);
+        return $imageToSave;
+    }
 
 }

@@ -62,7 +62,7 @@ class DatabaseSeeder extends Seeder {
 				]);
 				\App\Models\AdminGroupRole::UpdateOrCreate([
 					'name' => 'contacts',
-					'admin_groups_id' => 2,
+					'admin_groups_id' => 1,
 					'show' => 'yes',
 					'add' => 'yes',
 					'edit' => 'no',
@@ -200,7 +200,7 @@ class DatabaseSeeder extends Seeder {
 
 				\App\Models\AdminGroupRole::UpdateOrCreate([
 					'name' => 'icousers',
-					'admin_groups_id' => 2,
+					'admin_groups_id' => 1,
 					'show' => 'yes',
 					'add' => 'no',
 					'edit' => 'no',
@@ -208,7 +208,7 @@ class DatabaseSeeder extends Seeder {
 				]);
 				\App\Models\AdminGroupRole::UpdateOrCreate([
 					'name' => 'icos',
-					'admin_groups_id' => 2,
+					'admin_groups_id' => 1,
 					'show' => 'yes',
 					'add' => 'no',
 					'edit' => 'no',
@@ -216,7 +216,7 @@ class DatabaseSeeder extends Seeder {
 				]);
 				\App\Models\AdminGroupRole::UpdateOrCreate([
 					'name' => 'voteplans',
-					'admin_groups_id' => 2,
+					'admin_groups_id' => 1,
 					'show' => 'yes',
 					'add' => 'no',
 					'edit' => 'no',
@@ -224,7 +224,7 @@ class DatabaseSeeder extends Seeder {
 				]);
 				\App\Models\AdminGroupRole::UpdateOrCreate([
 					'name' => 'bfotplans',
-					'admin_groups_id' => 2,
+					'admin_groups_id' => 1,
 					'show' => 'yes',
 					'add' => 'no',
 					'edit' => 'no',
@@ -232,7 +232,7 @@ class DatabaseSeeder extends Seeder {
 				]);
 				\App\Models\AdminGroupRole::UpdateOrCreate([
 					'name' => 'reactions',
-					'admin_groups_id' => 2,
+					'admin_groups_id' => 1,
 					'show' => 'yes',
 					'add' => 'no',
 					'edit' => 'no',
@@ -240,7 +240,7 @@ class DatabaseSeeder extends Seeder {
 				]);
 				\App\Models\AdminGroupRole::UpdateOrCreate([
 					'name' => 'comments',
-					'admin_groups_id' => 2,
+					'admin_groups_id' => 1,
 					'show' => 'yes',
 					'add' => 'no',
 					'edit' => 'no',
@@ -248,7 +248,7 @@ class DatabaseSeeder extends Seeder {
 				]);
 				\App\Models\AdminGroupRole::UpdateOrCreate([
 					'name' => 'blogs',
-					'admin_groups_id' => 2,
+					'admin_groups_id' => 1,
 					'show' => 'yes',
 					'add' => 'no',
 					'edit' => 'no',
