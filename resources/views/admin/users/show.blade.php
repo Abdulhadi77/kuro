@@ -84,24 +84,40 @@
 			</div>
 
 			<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-				<b>{{trans('admin.email_verified_at')}} :</b>
-				{!! $users->email_verified_at !!}
+				<b>{{trans('admin.phone')}} :</b>
+				{!! $users->phone !!}
 			</div>
 
 			<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-				<b>{{trans('admin.vote_revenue')}} :</b>
-				{!! $users->vote_revenue !!}
+				<b>{{trans('admin.email_verified_at')}} :</b>
+				{!! $users->email_verified_at !!}
 			</div>
-
+			@if($users->vote_plan_id)
+			<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+				<b>{{trans('admin.vote_revenue')}} :</b>
+				{!! $vote_revenue !!}
+			</div>
+			@else
+				<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+					<b>{{trans('admin.vote_revenue')}} :</b>
+					Not Joined
+				</div>
+			@endif
 			<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
 				<b>{{trans('admin.kuro_balance_wallet')}} :</b>
 				<span id="kuro" > {!! $users->kuro_balance !!} </span>
 			</div>
-
-			<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-				<b>{{trans('admin.bfot_revenue')}} :</b>
-				{!! $users->bfot_revenue !!}
-			</div>
+			@if($users->b_f_o_t_plan_id)
+				<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+					<b>{{trans('admin.bfot_revenue')}} :</b>
+					{!! $bfot_revenue !!}
+				</div>
+			@else
+				<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+					<b>{{trans('admin.bfot_revenue')}} :</b>
+					Not Joined
+				</div>
+			@endif
 
 			<!-- /.row -->
 		</div>

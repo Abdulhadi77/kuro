@@ -74,10 +74,10 @@
     </div>
 </div>
 <div class="col-md-6 col-lg-6 col-sm-6 col-xs-12">
-    <div class="form-group">
-        {!! Form::label('subject',trans('admin.subject'),['class'=>'control-label']) !!}
-        {!! Form::text('subject', $contacts->subject ,['class'=>'form-control','placeholder'=>trans('admin.subject')]) !!}
-    </div>
+	<div class="form-group">
+		{!! Form::label('subject',trans('admin.subject'),['class'=>'control-label']) !!}
+		{!! Form::select('subject',['vote_revenue'=>trans('admin.vote_revenue'),'bfot_revenue'=>trans('admin.bfot_revenue'),], $contacts->subject ,['class'=>'form-control select2','placeholder'=>trans('admin.subject')]) !!}
+	</div>
 </div>
 <div class="col-md-6 col-lg-6 col-sm-6 col-xs-12">
     <div class="form-group">

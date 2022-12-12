@@ -49,6 +49,12 @@
     </div>
 </div>
 <div class="col-md-6 col-lg-6 col-sm-6 col-xs-12">
+	<div class="form-group">
+		{!! Form::label('subject',trans('admin.subject')) !!}
+		{!! Form::select('subject',['vote_revenue'=>trans('admin.vote_revenue'),'bfot_revenue'=>trans('admin.bfot_revenue'),],old('subject'),['class'=>'form-control select2','placeholder'=>trans('admin.choose')]) !!}
+	</div>
+</div>
+<div class="col-md-6 col-lg-6 col-sm-6 col-xs-12">
     <div class="form-group">
         {!! Form::label('message',trans('admin.message'),['class'=>' control-label']) !!}
             {!! Form::text('message',old('message'),['class'=>'form-control','placeholder'=>trans('admin.message')]) !!}

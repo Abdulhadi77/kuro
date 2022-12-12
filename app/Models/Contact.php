@@ -24,7 +24,7 @@ protected $fillable = [
 	];
 
    public function user(){
-      return $this->hasOne(\App\Models\User::class);
+      return $this->hasOne(\App\Models\User::class,'id','user_id');
    }
 
    protected static function boot() {

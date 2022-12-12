@@ -76,13 +76,16 @@ class UserContactsDataTable extends DataTable
 
 
             
-            ". filterElement('1,2', 'input') . "
+            ". filterElement('2', 'input') . "
 
             ". filterElement('3', 'select', [
 				'pending'=>trans('admin.pending'),
 				'done'=>trans('admin.done'),
 				]) . "
-
+			". filterElement('1', 'select', [
+					'vote_revenue'=>trans('admin.vote_revenue'),
+					'bfot_revenue'=>trans('admin.bfot_revenue'),
+					]) . "
 	            }",
                 'order' => [[1, 'desc']],
 
