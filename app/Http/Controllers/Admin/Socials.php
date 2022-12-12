@@ -27,9 +27,9 @@ class Socials extends Controller
 		]);
 	}
 
-	
 
-            
+
+
 
             public function index(SocialsDataTable $socials)
             {
@@ -37,35 +37,44 @@ class Socials extends Controller
             }
 
 
-            
+
 
             public function create()
             {
-            	
+
                return view('admin.socials.create',['title'=>trans('admin.create')]);
             }
 
-            
+
 
             public function store(SocialsRequest $request)
             {
                 $data = $request->except("_token", "_method");
             	$data['logo'] = "";
 $data['file'] = "";
-$data['admin_id'] = admin()->id(); 
-		  		$socials = Social::create($data); 
+$data['admin_id'] = admin()->id();
+		  		$socials = Social::create($data);
                if(request()->hasFile('logo')){
-              $socials->logo = it()->upload('logo','socials/'.$socials->id);
+                   $socials->logo =  self::uploadImage($request->logo,'socials');
+              //$socials->logo = it()->upload('logo','socials/'.$socials->id);
               $socials->save();
               }
                if(request()->hasFile('file')){
-              $socials->file = it()->upload('file','socials/'.$socials->id);
+                   $socials->file =  self::uploadImage($request->file,'socials');
+            //  $socials->file = it()->upload('file','socials/'.$socials->id);
               $socials->save();
               }
                 $redirect = isset($request["add_back"])?"/create":"";
                 return redirectWithSuccess(aurl('socials'.$redirect), trans('admin.added')); }
 
-            
+    function uploadImage($image , $fileName)
+    {
+        $imageName =  time().'.'. $image->extension();
+        $imageToSave = $fileName . DIRECTORY_SEPARATOR . time().'.'. $image->extension();
+
+        $image->move(public_path('storage'. DIRECTORY_SEPARATOR .$fileName), $imageName);
+        return $imageToSave;
+    }
 
             public function show($id)
             {
@@ -79,7 +88,7 @@ $data['admin_id'] = admin()->id();
             }
 
 
-            
+
 
             public function edit($id)
             {
@@ -93,7 +102,7 @@ $data['admin_id'] = admin()->id();
             }
 
 
-            
+
 
             public function updateFillableColumns() {
 				$fillableCols = [];
@@ -112,22 +121,22 @@ $data['admin_id'] = admin()->id();
               if(is_null($socials) || empty($socials)){
               	return backWithError(trans("admin.undefinedRecord"),aurl("socials"));
               }
-              $data = $this->updateFillableColumns(); 
-              $data['admin_id'] = admin()->id(); 
+              $data = $this->updateFillableColumns();
+              $data['admin_id'] = admin()->id();
                if(request()->hasFile('logo')){
               it()->delete($socials->logo);
               $data['logo'] = it()->upload('logo','socials');
-               } 
+               }
                if(request()->hasFile('file')){
               it()->delete($socials->file);
               $data['file'] = it()->upload('file','socials');
-               } 
+               }
               Social::where('id',$id)->update($data);
               $redirect = isset($request["save_back"])?"/".$id."/edit":"";
               return redirectWithSuccess(aurl('socials'.$redirect), trans('admin.updated'));
             }
 
-            
+
 
 	public function destroy($id){
 		$socials = Social::find($id);
@@ -167,7 +176,7 @@ $data['admin_id'] = admin()->id();
 			if(is_null($socials) || empty($socials)){
 				return backWithError(trans('admin.undefinedRecord'),aurl("socials"));
 			}
-                    
+
 			if(!empty($socials->logo)){
 			 it()->delete($socials->logo);
 			}			if(!empty($socials->file)){
@@ -177,6 +186,6 @@ $data['admin_id'] = admin()->id();
 			return redirectWithSuccess(aurl("socials"),trans('admin.deleted'));
 		}
 	}
-            
+
 
 }

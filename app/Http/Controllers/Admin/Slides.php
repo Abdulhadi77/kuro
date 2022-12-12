@@ -27,7 +27,7 @@ class Slides extends Controller
 		]);
 	}
 
-	
+
 
             public function index(SlidesDataTable $slides)
             {
@@ -35,10 +35,10 @@ class Slides extends Controller
             }
 
 
-      
+
             public function create()
             {
-            	
+
                return view('admin.slides.create',['title'=>trans('admin.create')]);
             }
 
@@ -46,20 +46,35 @@ class Slides extends Controller
             {
                 $data = $request->except("_token", "_method");
             	  $data['image'] = "";
-                $data['admin_id'] = admin()->id(); 
-		  		      $slides = Slide::create($data); 
+                $data['admin_id'] = admin()->id();
+		  		      $slides = Slide::create($data);
                 if(request()->hasFile('image')){
-                  $slides->image = it()->upload('image','slides/'.$slides->id);
+                    $slides->image =  self::uploadImage($request->image,'slides');
+
+                //  $slides->image = it()->upload('image','slides/'.$slides->id);
                   $slides->save();
                 }
                 $redirect = isset($request["add_back"])?"/create":"";
                 return redirectWithSuccess(aurl('slides'.$redirect), trans('admin.added')); }
 
-            
+
+
+    function uploadImage($image , $fileName)
+    {
+        $imageName =  time().'.'. $image->extension();
+        $imageToSave = $fileName . DIRECTORY_SEPARATOR . time().'.'. $image->extension();
+
+        $image->move(public_path('storage'. DIRECTORY_SEPARATOR .$fileName), $imageName);
+        return $imageToSave;
+    }
+
+
 
             public function show($id)
             {
+
         		$slides =  Slide::find($id);
+
         		return is_null($slides) || empty($slides)?
         		backWithError(trans("admin.undefinedRecord"),aurl("slides")) :
         		view('admin.slides.show',[
@@ -69,7 +84,7 @@ class Slides extends Controller
             }
 
 
-            
+
 
             public function edit($id)
             {
@@ -83,7 +98,7 @@ class Slides extends Controller
             }
 
 
-            
+
 
             public function updateFillableColumns() {
 				$fillableCols = [];
@@ -102,18 +117,18 @@ class Slides extends Controller
               if(is_null($slides) || empty($slides)){
               	return backWithError(trans("admin.undefinedRecord"),aurl("slides"));
               }
-              $data = $this->updateFillableColumns(); 
-              $data['admin_id'] = admin()->id(); 
+              $data = $this->updateFillableColumns();
+              $data['admin_id'] = admin()->id();
                if(request()->hasFile('image')){
                   it()->delete($slides->image);
                   $data['image'] = it()->upload('image','slides');
-               } 
+               }
               Slide::where('id',$id)->update($data);
               $redirect = isset($request["save_back"])?"/".$id."/edit":"";
               return redirectWithSuccess(aurl('slides'.$redirect), trans('admin.updated'));
             }
 
-            
+
 
 	public function destroy($id){
 		$slides = Slide::find($id);
@@ -149,7 +164,7 @@ class Slides extends Controller
 			if(is_null($slides) || empty($slides)){
 				return backWithError(trans('admin.undefinedRecord'),aurl("slides"));
 			}
-                    
+
 			if(!empty($slides->image)){
 			 it()->delete($slides->image);
 			}			it()->delete('slide',$data);
@@ -157,6 +172,6 @@ class Slides extends Controller
 			return redirectWithSuccess(aurl("slides"),trans('admin.deleted'));
 		}
 	}
-            
+
 
 }

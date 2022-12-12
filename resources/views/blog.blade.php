@@ -44,7 +44,7 @@
                     <article class="entry">
 
                         <div class="entry-img">
-                            <img src="storage/{{$blog->image}}" alt="" class="img-fluid">
+                            <img src="{{ asset('storage/'.$blog->image)  }}" alt="" class="img-fluid">
                         </div>
 
                         <h2 class="entry-title">
@@ -120,7 +120,7 @@
                 <div class="col-lg-4">
 
                     <div class="sidebar">
-        
+
                       <h3 class="sidebar-title">Search</h3>
                       <div class="sidebar-item search-form">
                         <form action="">
@@ -128,28 +128,28 @@
                           <button type="submit"><i class="bi bi-search"></i></button>
                         </form>
                       </div><!-- End sidebar search formn-->
-        
-              
-        
+
+
+
                       <h3 class="sidebar-title">Recent Posts</h3>
 
                       <div class="sidebar-item recent-posts">
                         @foreach ($recentblog as $blog)
-                            
+
                         <div class="post-item clearfix">
                             <img  src="storage/{{$blog->image}}"  alt="" height="60px">
                             <h4><a href="{{route('user.blog.details',$blog->id)}}">{{$blog->title}}</a></h4>
                             <time datetime="{{$blog->created_at}}">{{$blog->created_at}}</time>
                         </div>
-                        
+
                         @endforeach
-                     
+
                       </div><!-- End sidebar recent posts-->
-        
-                    
-        
+
+
+
                     </div><!-- End sidebar -->
-        
+
                   </div><!-- End blog sidebar -->
 
       </div>

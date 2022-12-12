@@ -27,42 +27,50 @@ class ICOs extends Controller
 		]);
 	}
 
-	
 
-            
+
+
 
             public function index(ICOsDataTable $icos)
             {
                return $icos->render('admin.icos.index',['title'=>trans('admin.icos')]);
             }
 
-            
 
-            
+
+
 
             public function create()
             {
-            	
+
                return view('admin.icos.create',['title'=>trans('admin.create')]);
             }
 
-            
+
 
             public function store(ICOsRequest $request)
             {
                 $data = $request->except("_token", "_method");
             	$data['image'] = "";
               	$data['open_date'] = date('Y-m-d h:i', strtotime(request('open_date')));
-				$data['admin_id'] = admin()->id(); 
-		  		$icos = ICO::create($data); 
+				$data['admin_id'] = admin()->id();
+		  		$icos = ICO::create($data);
                if(request()->hasFile('image')){
-              $icos->image = it()->upload('image','icos/'.$icos->id);
+                   $icos->image=  self::uploadImage($request->image,'icos');
+             // $icos->image = it()->upload('image','icos/'.$icos->id);
               $icos->save();
               }
                 $redirect = isset($request["add_back"])?"/create":"";
                 return redirectWithSuccess(aurl('icos'.$redirect), trans('admin.added')); }
 
-            
+    function uploadImage($image , $fileName)
+    {
+        $imageName =  time().'.'. $image->extension();
+        $imageToSave = $fileName . DIRECTORY_SEPARATOR . time().'.'. $image->extension();
+
+        $image->move(public_path('storage'. DIRECTORY_SEPARATOR .$fileName), $imageName);
+        return $imageToSave;
+    }
 
             public function show($id)
             {
@@ -76,7 +84,7 @@ class ICOs extends Controller
             }
 
 
-            
+
 
             public function edit($id)
             {
@@ -90,7 +98,7 @@ class ICOs extends Controller
             }
 
 
-            
+
 
             public function updateFillableColumns() {
 				$fillableCols = [];
@@ -109,19 +117,19 @@ class ICOs extends Controller
               if(is_null($icos) || empty($icos)){
               	return backWithError(trans("admin.undefinedRecord"),aurl("icos"));
               }
-              $data = $this->updateFillableColumns(); 
-              $data['admin_id'] = admin()->id(); 
+              $data = $this->updateFillableColumns();
+              $data['admin_id'] = admin()->id();
                if(request()->hasFile('image')){
               it()->delete($icos->image);
               $data['image'] = it()->upload('image','icos');
-               } 
+               }
               $data['open_date'] = date('Y-m-d H:i', strtotime(request('open_date')));
               ICO::where('id',$id)->update($data);
               $redirect = isset($request["save_back"])?"/".$id."/edit":"";
               return redirectWithSuccess(aurl('icos'.$redirect), trans('admin.updated'));
             }
 
-            
+
 
 	public function destroy($id){
 		$icos = ICO::find($id);
@@ -157,7 +165,7 @@ class ICOs extends Controller
 			if(is_null($icos) || empty($icos)){
 				return backWithError(trans('admin.undefinedRecord'),aurl("icos"));
 			}
-                    
+
 			if(!empty($icos->image)){
 			 it()->delete($icos->image);
 			}			it()->delete('ico',$data);
@@ -165,6 +173,6 @@ class ICOs extends Controller
 			return redirectWithSuccess(aurl("icos"),trans('admin.deleted'));
 		}
 	}
-            
+
 
 }

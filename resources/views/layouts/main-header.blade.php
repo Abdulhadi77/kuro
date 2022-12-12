@@ -9,7 +9,7 @@
         <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
 
           <a href="{{route('home')}}" class="logo d-flex align-items-center">
-        <img src="storage/{{$settings->logo}}" alt="">
+        <img src="{{ asset('storage/'.$settings->logo)  }}" alt="">
             <span>KURO</span>
           </a>
 

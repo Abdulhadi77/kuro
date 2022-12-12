@@ -33,7 +33,6 @@ Route::group(['prefix' => 'user', 'middleware' => 'auth','middleware' => 'Lang']
             Route::post('/addDislike', [App\Http\Controllers\User\BlogController::class, 'createDisLike'])->name('user.add.dislike');
              ///add comment in blog
             Route::post('/addComment', [App\Http\Controllers\User\BlogController::class, 'createComment'])->name('user.add.comment');
-            Route::get('/blog/details/{id}', [App\Http\Controllers\User\BlogController::class, 'blogDetails'])->name('user.blog.details');
 
             ///send email
             Route::post('/sendMessage', [\App\Http\Controllers\MailController::class, 'user_send_message'])->name('user_send_message');
@@ -44,6 +43,9 @@ Route::group(['prefix' => 'user', 'middleware' => 'auth','middleware' => 'Lang']
 
             ///join ICO
             Route::post('/joinICO', [\App\Http\Controllers\User\UserICOsUsers::class, 'joinICO'])->name('user_join_ico');
+             /// add balance to database
+            Route::post('/add_balance', [\App\Http\Controllers\User\HomeController::class, 'addBalance'])->name('user.add.balance');
+
 
         });
 	}
@@ -70,6 +72,7 @@ Route::get('/singleICO/{ICO}', [App\Http\Controllers\User\HomeController::class,
 Route::get('/vote', [App\Http\Controllers\User\HomeController::class, 'vote'])->name('vote');
 Route::get('/about', [App\Http\Controllers\User\HomeController::class, 'about'])->name('about');
 Route::get('/Beteam', [App\Http\Controllers\User\HomeController::class, 'Beteam'])->name('Beteam');
+Route::get('/blog/details/{id}', [App\Http\Controllers\User\BlogController::class, 'blogDetails'])->name('user.blog.details');
 
 //blog details
 Route::get('/blog/{id}', [App\Http\Controllers\User\HomeController::class, 'blogDetails'])->name('blog-details');

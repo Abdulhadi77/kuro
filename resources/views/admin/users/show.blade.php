@@ -95,7 +95,7 @@
 
 			<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
 				<b>{{trans('admin.kuro_balance_wallet')}} :</b>
-				<span id="kuro" > {!! $users->kuro_balance_wallet !!} </span>
+				<span id="kuro" > {!! $users->kuro_balance !!} </span>
 			</div>
 
 			<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
@@ -112,19 +112,3 @@
 </div>
 @endsection
 
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
-<script>
-    window.onload = async function () {
-        if (window.ethereum) {
-            var accounts = await ethereum.request({ method: 'eth_requestAccounts' });
-            var currentAddress = accounts[0];
-            web3 = new Web3(window.ethereum);
-            var kuro_balance = await web3.eth.getBalance('0xA6fB39D69b09ECdc1a8b5f829DF11a40B7742603');
-            $('#kuro').empty().html(kuro_balance);
-
-        } else {
-            console.log("Please connect with metamask");
-        }
-    }
-
-</script>
