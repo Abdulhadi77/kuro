@@ -191,4 +191,7 @@
 		"requests"	=>		"Users Requests",
 		"subject"	=>		"Subject",
 		"message"	=>		"Message",
+		'admin.pancakeswap'=>'pancakeswap',
+		'admin.indoex'=>'indoex',
+		'admin.kuro_team'=>'kuro_team',
 ];

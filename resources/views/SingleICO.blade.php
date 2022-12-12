@@ -115,11 +115,11 @@
 
           <label class="form-label" for="form3Example3">Way of buy</label>
           <select name="buy" id="buy" type="buy" class="form-control @error('buy') is-invalid @enderror" name="buy" value="{{ old('buy') }}" required autocomplete="buy">
-
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
+         
+            <option value="1">{{trans('admin.indoex')}}</option>
+            <option value="2">{{trans('admin.pancakeswap')}}</option>
+            <option value="3">{{trans('admin.kuro_team')}}</option>
+           
           </select>
           @error('buy')
               <span class="invalid-feedback" role="alert">
