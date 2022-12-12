@@ -18,7 +18,9 @@ class ICOsDataTable extends DataTable
 
             ->addColumn('status', '{{ trans("admin.".$status) }}')
 
-   		->addColumn('created_at', '{{ date("Y-m-d H:i:s",strtotime($created_at)) }}')   		->addColumn('updated_at', '{{ date("Y-m-d H:i:s",strtotime($updated_at)) }}')            ->addColumn('checkbox', '<div  class="icheck-danger">
+   		->addColumn('created_at', '{{ date("Y-m-d H:i:s",strtotime($created_at)) }}')
+		   		->addColumn('updated_at', '{{ date("Y-m-d H:i:s",strtotime($updated_at)) }}')
+		            ->addColumn('checkbox', '<div  class="icheck-danger">
                   <input type="checkbox" class="selected_data" name="selected_data[]" id="selectdata{{ $id }}" value="{{ $id }}" >
                   <label for="selectdata{{ $id }}"></label>
                 </div>')
@@ -28,6 +30,7 @@ class ICOsDataTable extends DataTable
 
 	public function query()
     {
+		//return ICO::withTrashed();
         return ICO::query()->select("i_c_os.*");
 
     }

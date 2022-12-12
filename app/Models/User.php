@@ -125,7 +125,7 @@ protected $fillable = [
 	}
 
 	public function contacts(){
-		return $this->hasMany(\App\Models\Contact::class);
+		return $this->hasMany(\App\Models\Contact::class,'user_id', 'id');
 	}
 
 	/**

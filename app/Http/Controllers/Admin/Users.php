@@ -7,6 +7,7 @@ use App\Models\User;
 
 use App\Http\Controllers\Validations\UsersRequest;
 use App\Models\VotePlan;
+use App\Models\BFOTPlan;
 
 
 
@@ -81,12 +82,24 @@ class Users extends Controller
 
             public function show($id)
             {
+				;
+        		
         		$users =  User::find($id);
-        		return is_null($users) || empty($users)?
+				$vote_revenue = 0;
+				$bfot_revenue = 0;
+				if ($users){
+					if ($users->vote_plan_id != 0)
+						$vote_revenue = $users->vote_revenue(VotePlan::find($users->vote_plan_id));
+					if ($users->b_f_o_t_plan_id != 0)
+						$bfot_revenue = $users->bfot_revenue(BFOTPlan::find($users->b_f_o_t_plan_id));
+				}
+				return is_null($users) || empty($users)?
         		backWithError(trans("admin.undefinedRecord"),aurl("users")) :
         		view('admin.users.show',[
 				    'title'=>trans('admin.show'),
-					'users'=>$users
+					'users'=>$users,
+					'vote_revenue'=>$vote_revenue,
+					'bfot_revenue'=>$bfot_revenue,
         		]);
             }
 

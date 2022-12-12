@@ -2,7 +2,7 @@
 
 @if(auth()->user())
   @section('content')
-
+  <meta name="csrf-token" content="{{ csrf_token() }}">
   <div class="row">
     <section class="col-lg-12 connectedSortable">
       <div class="card" item_name="statistics">
@@ -77,7 +77,7 @@
 <script src="{{ asset('js/app.js') }}" defer></script>
 
 <script>
-	var web3 = new Web3(window.ethereum);
+	//var web3 = new Web3(window.ethereum);
 
 	window.data = {!! json_encode(auth()->user()) !!};		
     window.onload = async function () {
@@ -94,10 +94,30 @@
         window.data.kuro_balance = kuro_balance;
         
         //Save kuro_balance in DB
-        
+        $.ajaxSetup({
+          headers: {
+              'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+          }
+          });
+          var formData = new FormData()
+          var user_id =window.data.id;
+          var balance = kuro_balance;
+          formData.append('user_id', user_id);
+          formData.append('balance', balance);
+          $.ajax({
+              url:'/user/add_balance',
+              cache: false,
+              processData: false,
+              contentType: false,
+              type: 'POST',
+              data: formData,
+              success: function (data) {
+              }, error: function (reject) {
+              }
+          });
         
         //Show kuro_balance in view
-        $('#kuro_balance').empty().html(Auth::user()->kuro_balance);
+        //$('#kuro_balance').empty().html(Auth::user()->kuro_balance);
       }
 		
     }

@@ -16,10 +16,10 @@ class CreateContactsTable extends Migration
             $table->bigIncrements('id');
             $table->string('name');
             $table->string('email');
-            $table->string('subject');
             $table->string('message');
             $table->foreignId("user_id")->constrained("users")->references("id");
             $table->enum('status',['pending','done'])->nullable();
+            $table->enum('subject',['vote_revenue','bfot_revenue'])->nullable();
 			$table->softDeletes();
 
 			$table->timestamps();

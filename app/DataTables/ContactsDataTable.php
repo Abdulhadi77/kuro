@@ -2,6 +2,8 @@
 namespace App\DataTables;
 use App\Models\Contact;
 use App\Models\User;
+use App\Models\VotePlan;
+use App\Models\BFOTPlan;
 use Yajra\DataTables\DataTables;
 use Yajra\DataTables\Services\DataTable;
 
@@ -18,6 +20,16 @@ class ContactsDataTable extends DataTable
 					return "<a target=_blank href=users/".$contact->user_id. ">".User::find($contact->user_id)->user_name."</a>";
 				
 				
+			})
+			->addColumn('vote_revenue', function ($contact) {
+				if (!is_null($contact->user_id))
+					if (!is_null($contact->user->vote_plan_id))
+						return $contact->user->vote_revenue(VotePlan::find($contact->user->vote_plan_id));
+			})
+			->addColumn('bfot_revenue', function ($contact) {
+				if (!is_null($contact->user_id))
+					if (!is_null($contact->user->b_f_o_t_plan_id))
+						return $contact->user->bfot_revenue(BFOTPlan::find($contact->user->b_f_o_t_plan_id));
 			})
    		->addColumn('created_at', '{{ date("Y-m-d H:i:s",strtotime($created_at)) }}')
 		   		           ->addColumn('checkbox', '<div  class="icheck-danger">
@@ -78,7 +90,7 @@ class ContactsDataTable extends DataTable
 
 
             
-            ". filterElement('1,2,3,4,5', 'input') . "
+            ". filterElement('1,2,3,4', 'input') . "
 
             
 
@@ -86,7 +98,10 @@ class ContactsDataTable extends DataTable
             'pending'=>trans('admin.pending'),
             'done'=>trans('admin.done'),
             ]) . "
-
+			". filterElement('5', 'select', [
+				'vote_revenue'=>trans('admin.vote_revenue'),
+				'bfot_revenue'=>trans('admin.bfot_revenue'),
+				]) . "
 	            }",
                 'order' => [[1, 'desc']],
 
@@ -175,6 +190,16 @@ class ContactsDataTable extends DataTable
 				'name'=>'status',
 				'data'=>'status',
 				'title'=>trans('admin.status'),
+			],
+			[
+				'name'=>'vote_revenue',
+				'data'=>'vote_revenue',
+				'title'=>trans('admin.vote_revenue'),
+			],
+			[
+				'name'=>'bfot_revenue',
+				'data'=>'bfot_revenue',
+				'title'=>trans('admin.bfot_revenue'),
 			],
             [
 	                'name' => 'created_at',
