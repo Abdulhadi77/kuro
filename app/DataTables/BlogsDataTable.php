@@ -24,6 +24,9 @@ class BlogsDataTable extends DataTable
 			->addColumn('dislikes', function ($blog) {
 				return $blog->dislikes()->count('dislike');	
 			})
+			->addColumn('body', function ($blog) {
+				return \Illuminate\Support\Str::limit(strip_tags($blog->body), 30);
+			})
    			->addColumn('created_at', '{{ date("Y-m-d H:i:s",strtotime($created_at)) }}')
 			->addColumn('updated_at', '{{ date("Y-m-d H:i:s",strtotime($updated_at)) }}')
 			->addColumn('checkbox', '<div  class="icheck-danger">

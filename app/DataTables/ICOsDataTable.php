@@ -17,7 +17,10 @@ class ICOsDataTable extends DataTable
             ->addColumn('image', '{!! view("admin.show_image",["image"=>$image])->render() !!}')
 
             ->addColumn('status', '{{ trans("admin.".$status) }}')
-
+			->addColumn('description', function ($ico) {
+				return \Illuminate\Support\Str::limit(strip_tags($ico->description), 30);
+			})
+            
    		->addColumn('created_at', '{{ date("Y-m-d H:i:s",strtotime($created_at)) }}')
 		   		->addColumn('updated_at', '{{ date("Y-m-d H:i:s",strtotime($updated_at)) }}')
 		            ->addColumn('checkbox', '<div  class="icheck-danger">
