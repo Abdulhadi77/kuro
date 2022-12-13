@@ -39,7 +39,6 @@ class UserICOsUsers extends Controller
             public function show($id)
             {
                 $icos =  ICO::find($id);
-                dd($icos);
                 return is_null($icos) || empty($icos)?
                 backWithError(trans("user.undefinedRecord"),aurl("icos")) :
                 view('user.icos.show',[
@@ -51,16 +50,18 @@ class UserICOsUsers extends Controller
 
             public function joinICO(VotePlanRequest $request)
             {
+                //dd($request->id);
                 $user=auth()->user();
                 $ico_user=new IcoUser();
                 $ico_user->user_id =$user->id;
                 $ico_user->i_c_o_id  =$request->id;
                 $ico_user->amount =$request->amount;
                 $ico_user->purchase_method =$request->purchase_method;
-                if($request->status == 'opened')
-                    $ico_user->statua = 'joined';
-                elseif ($request->status == 'closed')
-                    $ico_user->statua = 'pending';
+                $ico_user->status = 'pending';
+                /*if($request->status == 'opened')
+                    $ico_user->status = 'joined';
+                elseif ($request->status == 'will_open')
+                    $ico_user->status = 'pending';*/
                 $ico_user->save();
                 return redirect('user/icousers');
 

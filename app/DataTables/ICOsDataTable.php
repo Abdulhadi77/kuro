@@ -91,6 +91,7 @@ class ICOsDataTable extends DataTable
             ". filterElement('5', 'select', [
             'opened'=>trans('admin.opened'),
             'closed'=>trans('admin.closed'),
+			'will_open'=>trans('admin.will_open'),
             ]) . "
 
 

@@ -62,6 +62,7 @@ class IcoUsers extends Controller
 
             public function show($id)
             {
+				dd('1');
         		$icousers =  IcoUser::find($id);
         		return is_null($icousers) || empty($icousers)?
         		backWithError(trans("admin.undefinedRecord"),aurl("icousers")) :
@@ -109,10 +110,12 @@ class IcoUsers extends Controller
               IcoUser::where('id',$id)->update($data);
 
               $icousers = IcoUser::find($id);
-              return successResponseJson([
+			  $redirect = isset($request["save_back"])?"/".$id."/edit":"";
+              return redirectWithSuccess(aurl('icousers'.$redirect), trans('admin.updated'));
+              /*return successResponseJson([
                "message" => trans("admin.updated"),
                "data" => $icousers,
-              ]);
+              ]);*/
 			}
 
             

@@ -20,8 +20,8 @@ class IcoUsersRequest extends FormRequest {
              'amount'=>'required',
              'status'=>'required|in:joined,pending',
              'purchase_method'=>'',
-             'user_id'=>'',
-             'i_c_o_id'=>'',
+             'user_id'=>'required',
+             'i_c_o_id'=>'required',
 		];
 	}
 
@@ -30,8 +30,8 @@ class IcoUsersRequest extends FormRequest {
              'amount'=>'required',
              'status'=>'required|in:joined,pending',
              'purchase_method'=>'',
-             'user_id'=>'',
-             'i_c_o_id'=>'',
+             'user_id'=>'required',
+             'i_c_o_id'=>'required',
 		];
 	}
 

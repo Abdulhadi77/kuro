@@ -12,7 +12,7 @@ class UserBFOTPlansDataTable extends DataTable
     {
         return datatables($query)
 		->addColumn('type', function ($bfot_plan_for_this_user) {
-			return "<a href=bfotplans/".$bfot_plan_for_this_user->id. ">".$bfot_plan_for_this_user->type."</a>";	
+			return $bfot_plan_for_this_user->type;	
 		})
 
 		->addColumn('num_refs', function ($bfot_plan_for_this_user) {

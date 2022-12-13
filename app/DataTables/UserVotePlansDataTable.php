@@ -13,7 +13,7 @@ class UserVotePlansDataTable extends DataTable
     {
         return datatables($query)
 			->addColumn('type', function ($vote_plan_for_this_user) {
-				return "<a href=voteplans/".$vote_plan_for_this_user->id. ">".$vote_plan_for_this_user->type."</a>";	
+				return $vote_plan_for_this_user->type;	
 			})
 
 			->addColumn('num_comments', function ($vote_plan_for_this_user) {

@@ -70,8 +70,14 @@
 <div class="col-md-6 col-lg-6 col-sm-6 col-xs-12">
 		<div class="form-group">
 			{!! Form::label('purchase_method',trans('admin.purchase_method'),['class'=>'control-label']) !!}
-			{!! Form::select('status',['pancakeswap'=>trans('admin.pancakeswap'),'indoex'=>trans('admin.indoex'),'kuro_team'=>trans('admin.kuro_team'),],$icousers->payment_method,['class'=>'form-control select2','placeholder'=>trans('admin.choose')]) !!}
+			{!! Form::select('purchase_method',['pancakeswap'=>trans('admin.pancakeswap'),'indoex'=>trans('admin.indoex'),'kuro_team'=>trans('admin.kuro_team'),],$icousers->purchase_method,['class'=>'form-control select2','placeholder'=>trans('admin.choose')]) !!}
 		</div>
+</div>
+<div class="col-md-6 col-lg-6 col-sm-6 col-xs-12">
+    <div class="form-group">
+        {!! Form::label('amount',trans('admin.amount'),['class'=>'control-label']) !!}
+        {!! Form::text('amount', $icousers->amount ,['class'=>'form-control','placeholder'=>trans('admin.amount')]) !!}
+    </div>
 </div>
 <div class="col-md-6 col-lg-6 col-sm-6 col-xs-12">
     <div class="form-group">

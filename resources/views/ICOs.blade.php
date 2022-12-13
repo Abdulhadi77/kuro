@@ -48,7 +48,17 @@
 
             </p>
             <div class="read-more">
-              <a href="{{route('SingleICO',$ICO)}}">Join</a>
+              @if($ICO->status == 'closed')
+                <h1  class="btn btn-warning">Closed</h1>
+              @elseif (auth()->user())
+                @if(\App\Models\IcoUser::where('user_id',auth()->user()->id)->where('i_c_o_id',$ICO->id)->first())
+                  <h1  class="btn btn-warning">Joined</h1>  
+                @else
+                  <a href="{{route('SingleICO',$ICO)}}">Join</a>
+                @endif
+              @else
+                <a href="{{route('login')}}">Join</a>
+              @endif
             </div>
           </div>
 

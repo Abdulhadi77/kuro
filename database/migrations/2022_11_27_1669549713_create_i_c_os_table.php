@@ -19,7 +19,7 @@ $table->foreignId("admin_id")->constrained("admins")->onUpdate("cascade")->onDel
             $table->string('image');
             $table->longtext('description');
             $table->dateTime('open_date')->nullable();
-            $table->enum('status',['opened','closed'])->nullable();
+            $table->enum('status',['opened','closed','will_open'])->nullable();
 			$table->softDeletes();
 
 			$table->timestamps();
@@ -33,6 +33,7 @@ $table->foreignId("admin_id")->constrained("admins")->onUpdate("cascade")->onDel
      */
     public function down()
     {
+        Schema::disableForeignKeyConstraints();
         Schema::dropIfExists('i_c_os');
     }
 }

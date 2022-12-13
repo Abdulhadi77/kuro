@@ -13,21 +13,21 @@ class UserIcoUsersDataTable extends DataTable
     {
         return datatables($query)
             ->addColumn('actions', 'admin.icousers.buttons.actions')
-			->addColumn('user_name', function ($comments) {
-				return "<a href=users/".User::find($comments->user_id)->id. ">".User::find($comments->user_id)->user_name."</a>";	
-			})
-			->addColumn('i_c_o_id', function ($comments) {
-				return "<a href=icos/".$comments->i_c_o_id. ">".$comments->i_c_o_id."</a>";	
+			
+			->addColumn('ico_status', function ($icouser) {
+				return trans(ICO::find($icouser->i_c_o_id)->status);
 			})
             ->addColumn('status', '{{ trans("admin.".$status) }}')
 
             ->addColumn('purchase_method', '{{ trans("admin.".$purchase_method) }}')
-
-   		->addColumn('created_at', '{{ date("Y-m-d H:i:s",strtotime($created_at)) }}')   		->addColumn('updated_at', '{{ date("Y-m-d H:i:s",strtotime($updated_at)) }}')            ->addColumn('checkbox', '<div  class="icheck-danger">
+            ->addColumn('open_date', function ($icouser) {
+				return date("Y-m-d H:i:s", strtotime(ICO::find($icouser->i_c_o_id)->open_date));
+			})
+            ->addColumn('created_at', '{{ date("Y-m-d H:i:s",strtotime($created_at)) }}')   		->addColumn('updated_at', '{{ date("Y-m-d H:i:s",strtotime($updated_at)) }}')            ->addColumn('checkbox', '<div  class="icheck-danger">
                   <input type="checkbox" class="selected_data" name="selected_data[]" id="selectdata{{ $id }}" value="{{ $id }}" >
                   <label for="selectdata{{ $id }}"></label>
                 </div>')
-            ->rawColumns(['checkbox','actions','user_name','i_c_o_id',]);
+            ->rawColumns(['checkbox','actions',]);
     }
   
 
@@ -78,7 +78,7 @@ class UserIcoUsersDataTable extends DataTable
 
 
             
-            ". filterElement('1,2,5,6', 'input') . "
+            ". filterElement('', 'input') . "
 
                         //statusamount,status,purchase_method,user_id,i_c_o_id3
             ". filterElement('3', 'select', [
@@ -167,18 +167,31 @@ class UserIcoUsersDataTable extends DataTable
                  'data'=>'purchase_method',
                  'title'=>trans('admin.purchase_method'),
 		    ],
-			'user_name' => [
-				'name' => 'user_name',
-				'data' => 'user_name'
-				
-			],
+            [
+                'name'=>'ico_status',
+                'data'=>'ico_status',
+                'title'=>trans('admin.ico_status'),
+           ],
+           [
+            'name' => 'open_date',
+            'data' => 'open_date',
+            'title' => trans('admin.open_date'),
+            'exportable' => false,
+            'printable'  => false,
+            'searchable' => false,
+            'orderable'  => false,
+        ],
+			[
+                'name' => 'created_at',
+                'data' => 'created_at',
+                'title' => trans('admin.joined_date'),
+                'exportable' => false,
+                'printable'  => false,
+                'searchable' => false,
+                'orderable'  => false,
+            ],
+
 			
-				
-				[
-                 'name'=>'i_c_o_id',
-                 'data'=>'i_c_o_id',
-                 'title'=>trans('admin.i_c_o_id'),
-		    ],
             
     	 ];
 			}

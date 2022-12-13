@@ -69,7 +69,7 @@
 <div class="col-md-6 col-lg-6 col-sm-6 col-xs-12">
 	<div class="form-group">
 		{!! Form::label('status',trans('admin.status')) !!}
-		{!! Form::select('status',['opened'=>trans('admin.opened'),'closed'=>trans('admin.closed'),],old('status'),['class'=>'form-control select2','placeholder'=>trans('admin.choose')]) !!}
+		{!! Form::select('status',['will_open'=>trans('admin.will_open'),'opened'=>trans('admin.opened'),'closed'=>trans('admin.closed'),],old('status'),['class'=>'form-control select2','placeholder'=>trans('admin.choose')]) !!}
 	</div>
 </div>
 
