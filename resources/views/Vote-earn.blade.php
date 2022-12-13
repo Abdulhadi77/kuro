@@ -55,18 +55,18 @@
                                 <h1  class="btn btn-warning">Joined </h1>
                             @elseif(!auth()->user()->vote_plan_id)
                                 <a href="{{route('user_join_vote_plan',$one->id)}}" class="btn-buy">Join</a>
-                            
+
 
                             @else
                                 <a href="{{route('user_join_vote_plan',$one->id)}}" class="btn-buy">Join</a>
 
 
                             @endif
-                                
+
                             @endauth
 
 
-                            
+
                             @guest
                             <a href="{{route('user_join_vote_plan',$one->id)}}" class="btn btn-primary">Join</a>
                             @endguest
@@ -143,9 +143,4 @@
 
 
     });
-
-
-
-
-
 </script>

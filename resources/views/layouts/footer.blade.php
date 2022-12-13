@@ -26,7 +26,7 @@
               <span>KURO</span>
             </a>
             <br>
-            <p>Cras fermentum odio eu feugiat lide par naso tierra. Justo eget nada terra videa magna derita valies darta donna mare fermentum iaculis eu non diam phasellus.</p>
+            <p>KURO is a cryptocurrency that supports youth projects around the world and provides humanitarian and educational assistance to bring the world to a higher level of cooperation. KURO also aims to improve token utility by lunching ecosystem projects that help those in need to get life basics</p>
             <div class="social-links mt-3">
               @foreach ($socials as $social)
               <a href="{{$social->link}}" class="{{$social->name}}"><img src="storage/{{$social->logo}}" width='30px'></a>

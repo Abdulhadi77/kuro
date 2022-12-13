@@ -107,7 +107,11 @@
 
               <div class="entry-content">
                 <p>
-                    {!!$blog->body!!}
+                    <a href="javascript:;" class="dropdown-item"  data-bs-toggle="modal"
+                       data-bs-target="#info-sub" data-desc="{{ $blog->body }}" data-id="{{ $blog->id }}" data-title="{{ $blog->title }}">
+                        {!! \Illuminate\Support\Str::limit(strip_tags($blog->body), 80) !!}
+                    </a>
+
                 </p>
 
 
@@ -142,7 +146,7 @@
                 <div class="reply-form">
                     <h4>Leave a Comment</h4>
                 @guest
-                    
+
                 <p>You Must Login Before leave Comment * </p>
                 @endguest
 
@@ -169,32 +173,32 @@
 
             <div class="sidebar">
 
-              <h3 class="sidebar-title">Search</h3>
-              <div class="sidebar-item search-form">
-                <form action="">
-                  <input type="text">
-                  <button type="submit"><i class="bi bi-search"></i></button>
-                </form>
-              </div><!-- End sidebar search formn-->
+{{--              <h3 class="sidebar-title">Search</h3>--}}
+{{--              <div class="sidebar-item search-form">--}}
+{{--                <form action="">--}}
+{{--                  <input type="text">--}}
+{{--                  <button type="submit"><i class="bi bi-search"></i></button>--}}
+{{--                </form>--}}
+{{--              </div><!-- End sidebar search formn-->--}}
 
-      
+
 
               <h3 class="sidebar-title">Recent Posts</h3>
 
               <div class="sidebar-item recent-posts">
                 @foreach ($recentblog as $blog)
-                    
+
                 <div class="post-item clearfix">
                     <img src="storage/{{$blog->image}}"  alt="" height="60px">
                     <h4><a href="{{route('user.blog.details',$blog->id)}}">{{$blog->title}}</a></h4>
                     <time datetime="{{$blog->created_at}}">{{$blog->created_at}}</time>
                 </div>
-                
+
                 @endforeach
-             
+
               </div><!-- End sidebar recent posts-->
 
-            
+
 
             </div><!-- End sidebar -->
 
@@ -202,6 +206,36 @@
         </div>
 
       </div>
+        <div class="shown-event-ex">
+            <div
+                class="modal fade text-start"
+                id="info-sub"
+                tabindex="-1"
+                aria-labelledby="myModalLabel22"
+                aria-hidden="true"
+            >
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+
+                            <h4 class="modal-title" id="myModalLabel22">Description For:<span id="blog_title"></span></h4>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+
+                            {{--                        <span class="la la-exclamation-circle fs-60 text-warning"></span>--}}
+                            <h4 class="modal-title fs-19 font-weight-semi-bold  pb-1"
+                                id="blog_desc"></h4>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-outline-secondary"
+                                    data-bs-dismiss="modal">Cancel</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </section><!-- End Blog Single Section -->
 
   </main><!-- End #main -->
@@ -242,5 +276,28 @@
             }, error: function (reject) {
             }
         });
+    });
+</script>
+<script>
+    $(function () {
+        'use strict';
+        $.ajaxSetup({
+
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        $('#info-sub').on('show.bs.modal', function (e) {
+
+            let name = $(e.relatedTarget).data('title');
+            let desc = $(e.relatedTarget).data('desc');
+
+            $('#blog_title')[0].innerHTML =  name;
+            $('#blog_desc')[0].innerHTML = desc;
+
+
+        });
+
+
     });
 </script>

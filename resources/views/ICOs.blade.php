@@ -23,6 +23,10 @@
 
 <section id="blog" class="blog">
   <div class="container" data-aos="fade-up">
+      <header class="section-header">
+          <p>ICO</p>
+
+      </header>
 
     <div class="row pt-5">
 
@@ -52,7 +56,7 @@
                 <h1  class="btn btn-warning">Closed</h1>
               @elseif (auth()->user())
                 @if(\App\Models\IcoUser::where('user_id',auth()->user()->id)->where('i_c_o_id',$ICO->id)->first())
-                  <h1  class="btn btn-warning">Joined</h1>  
+                  <h1  class="btn btn-warning">Joined</h1>
                 @else
                   <a href="{{route('SingleICO',$ICO)}}">Join</a>
                 @endif

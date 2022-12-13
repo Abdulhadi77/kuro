@@ -3,19 +3,23 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Admin\BFOTPlans;
+use App\Mail\SendICOMail;
 use App\Models\Banner;
 use App\Models\BFOTPlan;
 use App\Models\ICO;
 use App\Models\Blog;
+use App\Models\IcoUser;
 use App\Models\Info;
 use App\Models\Slide;
 use App\Models\Social;
 use App\Models\Setting;
 use App\Models\User;
 use App\Models\VotePlan;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Admin\Settings;
+use Illuminate\Support\Facades\Mail;
 
 class HomeController extends Controller
 {
@@ -36,6 +40,7 @@ class HomeController extends Controller
      */
     public function index()
     {
+
         $settings = Setting::find(1);
         $slides = Slide::all();
         $infos= Info::all();
@@ -70,6 +75,7 @@ class HomeController extends Controller
 
     public function Vote()
     {
+
         $settings = Setting::find(1);
         $socials= Social::all();
         $vote = VotePlan::all();
