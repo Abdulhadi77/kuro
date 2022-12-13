@@ -42,6 +42,9 @@
                 <div class="col-lg-8 entries">
                     @foreach ($blogs as $blog)
                     <article class="entry">
+                        <h2 class="entry-title">
+                            <a>{{$blog->id}}</a>
+                        </h2>
 
                         <div class="entry-img">
                             <img src="{{ asset('storage/'.$blog->image)  }}" alt="" class="img-fluid">
@@ -137,7 +140,7 @@
                         @foreach ($recentblog as $blog)
 
                         <div class="post-item clearfix">
-                            <img  src="storage/{{$blog->image}}"  alt="" height="60px">
+                            <img  src="{{ asset('storage/'.$blog->image) }}"  alt="" height="60px">
                             <h4><a href="{{route('user.blog.details',$blog->id)}}">{{$blog->title}}</a></h4>
                             <time datetime="{{$blog->created_at}}">{{$blog->created_at}}</time>
                         </div>
