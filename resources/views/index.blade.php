@@ -21,38 +21,38 @@
 
     <br><br><br><br>
 
-{{--    <section id="portfolio-details" class="portfolio-details">--}}
+    {{--    <section id="portfolio-details" class="portfolio-details">--}}
 
 
-{{--        <div class="row gy-12">--}}
+    {{--        <div class="row gy-12">--}}
 
-{{--            <div class="col-lg-12">--}}
-{{--                <div class="portfolio-details-slider swiper">--}}
-{{--                    <div class="swiper-wrapper align-items-center">--}}
+    {{--            <div class="col-lg-12">--}}
+    {{--                <div class="portfolio-details-slider swiper">--}}
+    {{--                    <div class="swiper-wrapper align-items-center">--}}
 
-{{--                        <div class="swiper-slide">--}}
-{{--                            <img src="storage/assets/img/portfolio/portfolio-1.jpg" alt="">--}}
-{{--                        </div>--}}
+    {{--                        <div class="swiper-slide">--}}
+    {{--                            <img src="storage/assets/img/portfolio/portfolio-1.jpg" alt="">--}}
+    {{--                        </div>--}}
 
-{{--                        <div class="swiper-slide">--}}
-{{--                            <img src="storage/assets/img/portfolio/portfolio-2.jpg" alt="">--}}
-{{--                        </div>--}}
+    {{--                        <div class="swiper-slide">--}}
+    {{--                            <img src="storage/assets/img/portfolio/portfolio-2.jpg" alt="">--}}
+    {{--                        </div>--}}
 
-{{--                        <div class="swiper-slide">--}}
-{{--                            <img src="storage/assets/img/portfolio/portfolio-3.jpg" alt="">--}}
-{{--                        </div>--}}
+    {{--                        <div class="swiper-slide">--}}
+    {{--                            <img src="storage/assets/img/portfolio/portfolio-3.jpg" alt="">--}}
+    {{--                        </div>--}}
 
-{{--                    </div>--}}
-{{--                    <div class="swiper-pagination"></div>--}}
-{{--                </div>--}}
-{{--            </div>--}}
-
-
-
-{{--        </div>--}}
+    {{--                    </div>--}}
+    {{--                    <div class="swiper-pagination"></div>--}}
+    {{--                </div>--}}
+    {{--            </div>--}}
 
 
-{{--    </section><!-- End Portfolio Details Section -->--}}
+
+    {{--        </div>--}}
+
+
+    {{--    </section><!-- End Portfolio Details Section -->--}}
 
 
     <section id="hero" class="hero d-flex align-items-center">
@@ -81,208 +81,209 @@
 
 
 
-  <main id="main">
+    <main id="main">
 
 
 
-      <section id="testimonials" class="testimonials">
+        <section id="testimonials" class="testimonials">
 
-          <div class="container" data-aos="fade-up">
+            <div class="container" data-aos="fade-up">
 
-              <header class="section-header">
-                  <h2>Home</h2>
-                  <p> Check Our Info Pages  </p>
-              </header>
+                <header class="section-header">
+                    <!--<h2>Home</h2>-->
+                    <p> Check Our Info Pages  </p>
+                </header>
 
-              <div class="testimonials-slider swiper" data-aos="fade-up" data-aos-delay="200">
-                  <div class="swiper-wrapper">
-                      @foreach ($slides as $slide)
-                      <div class="swiper-slide">
-                          <div class="testimonial-item">
-{{--                              <div class="stars">--}}
-{{--                                  <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>--}}
-{{--                              </div>--}}
-                              <p>
-                                  <a href="#"> <img style="margin-left: -23px" src="{{ asset('storage/'.$slide->image)  }}" class="testimonial-img" alt=""></a>
+                <div class="testimonials-slider swiper" data-aos="fade-up" data-aos-delay="200">
+                    <div class="swiper-wrapper">
+                        @foreach ($slides as $slide)
+                            <div class="swiper-slide">
+                                <div class="testimonial-item">
+                                    {{--                              <div class="stars">--}}
+                                    {{--                                  <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>--}}
+                                    {{--                              </div>--}}
+                                    <p>
+                                        <a href="{{url($slide->page->page_name)}}"> <img style="margin-left: -23px" src="{{ asset('storage/'.$slide->image)  }}" class="testimonial-img" alt=""></a>
 
-                              </p>
-                              <div class="profile mt-auto">
-                                  <img src="assets/img/testimonials/testimonials-1.jpg" class="testimonial-img" alt="">
-                                  <a href="#"><h3>@isset($slide->page->page_name){{$slide->page->page_name}}@endisset</h3></a>
-{{--                                  <h4>Ceo &amp; Founder</h4>--}}
-                              </div>
-                          </div>
-                      </div><!-- End testimonial item -->
-                      @endforeach
+                                    </p>
+                                    <div class="profile mt-auto">
+                                        <img src="assets/img/testimonials/testimonials-1.jpg" class="testimonial-img" alt="">
+                                        <a href="{{url('/'.$slide->page->page_name)}}"><h3>@isset($slide->page->page_name){{$slide->page->page_name}}@endisset</h3></a>
+                                        {{--                                  <h4>Ceo &amp; Founder</h4>--}}
+                                    </div>
+                                </div>
+                            </div><!-- End testimonial item -->
+                        @endforeach
 
-                  </div>
-                  <div class="swiper-pagination"></div>
-              </div>
-
-          </div>
-
-      </section><!-- End Testimonials Section -->
-
-
-
-
-
-
-
-
-
-      <section id="portfolio" class="portfolio">
-
-          <div class="container" data-aos="fade-up">
-
-              <header class="section-header">
-                  <h2>Banners</h2>
-                  <p>Check our latest Banners</p>
-              </header>
-
-              <div class="row" data-aos="fade-up" data-aos-delay="100">
-                  <div class="col-lg-12 d-flex justify-content-center">
-
-                  </div>
-              </div>
-
-              <div class="row gy-4 portfolio-container" data-aos="fade-up" data-aos-delay="200">
-                  @foreach ($banners as $banner)
-                  <div class="col-lg-3 col-md-6 portfolio-item filter-app justify-content-center">
-                      <div class="portfolio-wrap">
-                          <img src="{{ asset('storage/'.$banner->image)  }}" class="img-fluid" alt="">
-                          <div class="portfolio-info">
-                              <h4>{{$banner->created_at}}</h4>
-{{--                              <p>{{$banner->description}}</p>--}}
-                              <div class="portfolio-links">
-                                  <a href="{{ asset('storage/'.$banner->image)  }}" data-gallery="portfolioGallery" class="portfokio-lightbox" title="{{$banner->description}}"><i class="bi bi-plus"></i></a>
-{{--                                  <a href="portfolio-details.html" title="More Details"><i class="bi bi-link"></i></a>--}}
-                              </div>
-                          </div>
-                      </div>
-                  </div>
-
-                  @endforeach
-
-              </div>
-
-          </div>
-
-      </section><!-- End Portfolio Section -->
-
-
-  <!--  You Can Find Us  -->
-
-
-      <section id="clients" class="clients">
-
-          <div class="container" data-aos="fade-up">
-
-              <header class="section-header">
-                  <h2>Our Clients</h2>
-                  <p>Check Our Clients</p>
-              </header>
-
-              <div class="clients-slider swiper">
-                  <div class="swiper-wrapper align-items-center">
-
-                      @foreach ($infos as $info)
-                          <div class="swiper-slide"><a href="{{$info->url}}"><img src="{{ asset('storage/'.$info->logo)  }}" class="img-fluid" alt=""></a></div>
-                      @endforeach
-                  </div>
-                  <div class="swiper-pagination"></div>
-              </div>
-          </div>
-
-      </section><!-- End Clients Section -->
-
-    <!-- ======= Contact Section ======= -->
-    <section id="contact" class="contact">
-
-      <div class="container" data-aos="fade-up">
-
-        <header class="section-header">
-          <h2>Contact</h2>
-          <p>Contact Us</p>
-        </header>
-
-        <div class="row gy-4">
-
-          <div class="col-lg-3">
-
-{{--            <div class="row gy-4">--}}
-{{--              <div class="col-md-6">--}}
-{{--                <div class="info-box">--}}
-{{--                  <i class="bi bi-geo-alt"></i>--}}
-{{--                  <h3>Address</h3>--}}
-{{--                  <p>A108 Adam Street,<br>New York, NY 535022</p>--}}
-{{--                </div>--}}
-{{--              </div>--}}
-{{--              <div class="col-md-6">--}}
-{{--                <div class="info-box">--}}
-{{--                  <i class="bi bi-telephone"></i>--}}
-{{--                  <h3>Call Us</h3>--}}
-{{--                  <p>+1 5589 55488 55<br>+1 6678 254445 41</p>--}}
-{{--                </div>--}}
-{{--              </div>--}}
-{{--              <div class="col-md-6">--}}
-{{--                <div class="info-box">--}}
-{{--                  <i class="bi bi-envelope"></i>--}}
-{{--                  <h3>Email Us</h3>--}}
-{{--                  <p>{{$settings->email}}</p>--}}
-{{--                </div>--}}
-{{--              </div>--}}
-{{--              <div class="col-md-6">--}}
-{{--                <div class="info-box">--}}
-{{--                  <i class="bi bi-clock"></i>--}}
-{{--                  <h3>Open Hours</h3>--}}
-{{--                  <p>Monday - Friday<br>9:00AM - 05:00PM</p>--}}
-{{--                </div>--}}
-{{--              </div>--}}
-{{--            </div>--}}
-
-          </div>
-
-          <div class="col-lg-6">
-            <form action="forms/contact.php" method="post" action="{{route('user_send_message')}}" class="php-email-form">
-              <div class="row gy-4">
-
-                <div class="col-md-6">
-                  <input type="text" name="name" class="form-control" placeholder="Your Name" required>
+                    </div>
+                    <div class="swiper-pagination"></div>
                 </div>
 
-                <div class="col-md-6 ">
-                  <input type="email" class="form-control" name="email" placeholder="Your Email" required>
+            </div>
+
+        </section><!-- End Testimonials Section -->
+
+
+
+
+
+
+
+
+
+        <section id="portfolio" class="portfolio">
+
+            <div class="container" data-aos="fade-up">
+
+                <header class="section-header">
+                    <!--<h2>Banners</h2>-->
+                    <p>Check Our Latest Banners</p>
+                </header>
+
+                <div class="row" data-aos="fade-up" data-aos-delay="100">
+                    <div class="col-lg-12 d-flex justify-content-center">
+
+                    </div>
                 </div>
 
-                <div class="col-md-12">
-                  <input type="text" class="form-control" name="subject" placeholder="Subject" required>
+                <div class="row gy-4 portfolio-container" data-aos="fade-up" data-aos-delay="200">
+                    @foreach ($banners as $banner)
+                        <div class="col-lg-3 col-md-6 portfolio-item filter-app justify-content-center">
+                            <div class="portfolio-wrap">
+                                <img src="{{ asset('storage/'.$banner->image)  }}" class="img-fluid" alt="">
+                                <div class="portfolio-info">
+                                    <h4>{{$banner->created_at}}</h4>
+                                    {{--                              <p>{{$banner->description}}</p>--}}
+                                    <div class="portfolio-links">
+                                        <a href="{{ asset('storage/'.$banner->image)  }}" data-gallery="portfolioGallery" class="portfokio-lightbox" title="{{$banner->description}}"><i class="bi bi-plus"></i></a>
+                                        {{--                                  <a href="portfolio-details.html" title="More Details"><i class="bi bi-link"></i></a>--}}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    @endforeach
+
                 </div>
 
-                <div class="col-md-12">
-                  <textarea class="form-control" name="message" rows="6" placeholder="Message" required></textarea>
+            </div>
+
+        </section><!-- End Portfolio Section -->
+
+
+        <!--  You Can Find Us  -->
+
+
+        <section id="clients" class="clients">
+
+            <div class="container" data-aos="fade-up">
+
+                <header class="section-header">
+                    <!--<h2>Our Clients</h2>-->
+                    <p>Buy The Token From</p>
+                </header>
+
+                <div class="clients-slider swiper">
+                    <div class="swiper-wrapper align-items-center">
+
+                        @foreach ($infos as $info)
+                            <div class="swiper-slide"><a href="{{$info->url}}"><img src="{{ asset('storage/'.$info->logo)  }}" class="img-fluid" alt=""></a></div>
+                        @endforeach
+                    </div>
+                    <div class="swiper-pagination"></div>
+                </div>
+            </div>
+
+        </section><!-- End Clients Section -->
+
+        <!-- ======= Contact Section ======= -->
+        <section id="contact" class="contact">
+
+            <div class="container" data-aos="fade-up">
+
+                <header class="section-header">
+                    <!--<h2>Contact</h2>-->
+                    <p>Contact Us</p>
+                </header>
+
+                <div class="row gy-4">
+
+                    <div class="col-lg-3">
+
+                        {{--            <div class="row gy-4">--}}
+                        {{--              <div class="col-md-6">--}}
+                        {{--                <div class="info-box">--}}
+                        {{--                  <i class="bi bi-geo-alt"></i>--}}
+                        {{--                  <h3>Address</h3>--}}
+                        {{--                  <p>A108 Adam Street,<br>New York, NY 535022</p>--}}
+                        {{--                </div>--}}
+                        {{--              </div>--}}
+                        {{--              <div class="col-md-6">--}}
+                        {{--                <div class="info-box">--}}
+                        {{--                  <i class="bi bi-telephone"></i>--}}
+                        {{--                  <h3>Call Us</h3>--}}
+                        {{--                  <p>+1 5589 55488 55<br>+1 6678 254445 41</p>--}}
+                        {{--                </div>--}}
+                        {{--              </div>--}}
+                        {{--              <div class="col-md-6">--}}
+                        {{--                <div class="info-box">--}}
+                        {{--                  <i class="bi bi-envelope"></i>--}}
+                        {{--                  <h3>Email Us</h3>--}}
+                        {{--                  <p>{{$settings->email}}</p>--}}
+                        {{--                </div>--}}
+                        {{--              </div>--}}
+                        {{--              <div class="col-md-6">--}}
+                        {{--                <div class="info-box">--}}
+                        {{--                  <i class="bi bi-clock"></i>--}}
+                        {{--                  <h3>Open Hours</h3>--}}
+                        {{--                  <p>Monday - Friday<br>9:00AM - 05:00PM</p>--}}
+                        {{--                </div>--}}
+                        {{--              </div>--}}
+                        {{--            </div>--}}
+
+                    </div>
+
+                    <div class="col-lg-6">
+                        <form action="{{route('user_send_message')}}" method="post" action="{{route('user_send_message')}}" class="php-email-form">
+                            @csrf
+                            <div class="row gy-4">
+
+                                <div class="col-md-6">
+                                    <input type="text" name="name" class="form-control" placeholder="Your Name" required>
+                                </div>
+
+                                <div class="col-md-6 ">
+                                    <input type="email" class="form-control" name="email" placeholder="Your Email" required>
+                                </div>
+
+                                <div class="col-md-12">
+                                    <input type="text" class="form-control" name="subject" placeholder="Subject" required>
+                                </div>
+
+                                <div class="col-md-12">
+                                    <textarea class="form-control" name="message" rows="6" placeholder="Message" required></textarea>
+                                </div>
+
+
+
+                                <div class="col-md-12 text-center">
+
+
+                                    <button type="submit">Send Message</button>
+                                </div>
+
+                            </div>
+                        </form>
+
+                    </div>
+
                 </div>
 
-                <div class="col-md-12 text-center">
-                  <div class="loading">Loading</div>
-                  <div class="error-message"></div>
-                  <div class="sent-message">Your message has been sent. Thank you!</div>
+            </div>
 
-                  <button type="submit">Send Message</button>
-                </div>
+        </section><!-- End Contact Section -->
 
-              </div>
-            </form>
-
-          </div>
-
-        </div>
-
-      </div>
-
-    </section><!-- End Contact Section -->
-
-  </main><!-- End #main -->
+    </main><!-- End #main -->
 
 
 
@@ -290,10 +291,10 @@
 @endsection
 
 @section('js')
-<script src="yall.min.js"></script>
-<script>
-  document.addEventListener("DOMContentLoaded", yall);
-</script>
+    <script src="yall.min.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", yall);
+    </script>
 
     <script>
 
@@ -343,26 +344,26 @@
 
 
         $('.carousel').carousel({
-  interval:5000
-})
+            interval:5000
+        })
 
-$('.carousel .carousel-item').each(function(){
-    var minPerSlide = 1;
-    var next = $(this).next();
-    if (!next.length) {
-    next = $(this).siblings(':first');
-    }
-    next.children(':first-child').clone().appendTo($(this));
+        $('.carousel .carousel-item').each(function(){
+            var minPerSlide = 1;
+            var next = $(this).next();
+            if (!next.length) {
+                next = $(this).siblings(':first');
+            }
+            next.children(':first-child').clone().appendTo($(this));
 
-    for (var i=0;i<minPerSlide;i++) {
-        next=next.next();
-        if (!next.length) {
-        	next = $(this).siblings(':first');
-      	}
+            for (var i=0;i<minPerSlide;i++) {
+                next=next.next();
+                if (!next.length) {
+                    next = $(this).siblings(':first');
+                }
 
-        next.children(':first-child').clone().appendTo($(this));
-      }
-});
+                next.children(':first-child').clone().appendTo($(this));
+            }
+        });
 
 
 

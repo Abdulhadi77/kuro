@@ -34,8 +34,7 @@ Route::group(['prefix' => 'user', 'middleware' => 'auth','middleware' => 'Lang']
              ///add comment in blog
             Route::post('/addComment', [App\Http\Controllers\User\BlogController::class, 'createComment'])->name('user.add.comment');
 
-            ///send email
-            Route::post('/sendMessage', [\App\Http\Controllers\MailController::class, 'user_send_message'])->name('user_send_message');
+
             ///join Vote  Plan
             Route::get('/joinVotePlan/{id}', [\App\Http\Controllers\User\UserVotePlans::class, 'joinVotePlan'])->name('user_join_vote_plan');
             ///join b_f_o_t_plan
@@ -73,21 +72,13 @@ Route::get('/vote', [App\Http\Controllers\User\HomeController::class, 'vote'])->
 Route::get('/about', [App\Http\Controllers\User\HomeController::class, 'about'])->name('about');
 Route::get('/Beteam', [App\Http\Controllers\User\HomeController::class, 'Beteam'])->name('Beteam');
 Route::get('/blog/details/{id}', [App\Http\Controllers\User\BlogController::class, 'blogDetails'])->name('user.blog.details');
-
+///send email
+Route::post('/sendMessage', [\App\Http\Controllers\MailController::class, 'user_send_message'])->name('user_send_message');
 //blog details
 Route::get('/blog/{id}', [App\Http\Controllers\User\HomeController::class, 'blogDetails'])->name('blog-details');
 
 
-//login
-/*Route::group(['middleware' => ['guest:web']], function () {
-    Route::get('login',  [App\Http\Controllers\User\LoginController::class, 'getLogin'])->name('user.getLogin');
-    Route::post('login',  [App\Http\Controllers\User\LoginController::class, 'login'])->name('user.login');
 
-});
-//register
-Route::get('register', [App\Http\Controllers\Auth\RegisterController::class, 'showRegistrationForm'])->name('register');
-Route::post('register/create', [App\Http\Controllers\Auth\RegisterController::class, 'create'])->name('user.register.create');
-*/
 
 Auth::routes();
 
