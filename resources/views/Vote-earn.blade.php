@@ -30,56 +30,57 @@
             </header>
 
             <div class="row gy-4" data-aos="fade-left">
-                @if(!auth()->user()->vote_plan_id)
-                @foreach($vote as $one)
-                    <div class="col-lg-3 col-md-6" data-aos="zoom-in" data-aos-delay="100">
-                        <div class="box">
-                            <h3 style="color: #07d5c0;">{{$one->type}}</h3>
-                            <img src="assets/img/pricing-free.png" class="img-fluid" alt="">
-                            <div class="card">
-                                <div class="card-body">
 
-                                    <p class=" card-text">
-                                        <a href="javascript:;" class="dropdown-item"  data-bs-toggle="modal"
-                                           data-bs-target="#info-sub" data-desc="{{ $one->description }}" data-id="{{ $one->id }}" data-title="{{ $one->type }}">
-                                            {!! \Illuminate\Support\Str::limit(strip_tags($one->description), 20) !!}
-                                        </a>
-                                    </p>
+                @if( !auth()->user())
+                    @foreach($vote as $one)
+                        <div class="col-lg-3 col-md-6" data-aos="zoom-in" data-aos-delay="100">
+                            <div class="box">
+                                <h3 style="color: #07d5c0;">{{$one->type}}</h3>
+                                <img src="assets/img/pricing-free.png" class="img-fluid" alt="">
+                                <div class="card">
+                                    <div class="card-body">
 
+                                        <p class=" card-text">
+                                            <a href="javascript:;" class="dropdown-item"  data-bs-toggle="modal"
+                                               data-bs-target="#info-sub" data-desc="{{ $one->description }}" data-id="{{ $one->id }}" data-title="{{ $one->type }}">
+                                                {!! \Illuminate\Support\Str::limit(strip_tags($one->description), 20) !!}
+                                            </a>
+                                        </p>
+
+                                    </div>
                                 </div>
+                                <br>
+
+                                {{--@if(\App\Models\User::where('vote_plan_id',$one->id)->first())--}}
+                                @auth
+                                    @if(auth()->user()->vote_plan_id == $one->id)
+                                        <h1  class="btn btn-warning">Joined </h1>
+                                    @elseif(!auth()->user()->vote_plan_id)
+                                        <a href="{{route('user_join_vote_plan',$one->id)}}" class="btn-buy">Join</a>
+
+
+                                    @else
+                                        <a href="{{route('user_join_vote_plan',$one->id)}}" class="btn-buy">Join</a>
+
+
+                                    @endif
+
+                                @endauth
+
+
+
+                                @guest
+                                    <a href="{{route('user_join_vote_plan',$one->id)}}" class="btn btn-primary">Join</a>
+                                @endguest
                             </div>
-                            <br>
-
-                            {{--@if(\App\Models\User::where('vote_plan_id',$one->id)->first())--}}
-                            @auth
-                            @if(auth()->user()->vote_plan_id == $one->id)
-                                <h1  class="btn btn-warning">Joined </h1>
-                            @elseif(!auth()->user()->vote_plan_id)
-                                <a href="{{route('user_join_vote_plan',$one->id)}}" class="btn-buy">Join</a>
-
-
-                            @else
-                                <a href="{{route('user_join_vote_plan',$one->id)}}" class="btn-buy">Join</a>
-
-
-                            @endif
-
-                            @endauth
-
-
-
-                            @guest
-                            <a href="{{route('user_join_vote_plan',$one->id)}}" class="btn btn-primary">Join</a>
-                            @endguest
                         </div>
-                    </div>
 
-                @endforeach
+                    @endforeach
                 @else
                     @foreach($vote as $one)
                         @auth
                             @if(auth()->user()->vote_plan_id == $one->id)
-                                
+
                                 <div class="col-lg-3 col-md-6" data-aos="zoom-in" data-aos-delay="100">
                                     <div class="box">
                                         <h3 style="color: #07d5c0;">{{$one->type}}</h3>
@@ -89,7 +90,7 @@
 
                                                 <p class=" card-text">
                                                     <a href="javascript:;" class="dropdown-item"  data-bs-toggle="modal"
-                                                    data-bs-target="#info-sub" data-desc="{{ $one->description }}" data-id="{{ $one->id }}" data-title="{{ $one->type }}">
+                                                       data-bs-target="#info-sub" data-desc="{{ $one->description }}" data-id="{{ $one->id }}" data-title="{{ $one->type }}">
                                                         {!! \Illuminate\Support\Str::limit(strip_tags($one->description), 20) !!}
                                                     </a>
                                                 </p>
@@ -97,11 +98,11 @@
                                             </div>
                                         </div>
                                         <br>
-                          
 
-                            </div>
-                        </div>
-                        @endif   
+
+                                    </div>
+                                </div>
+                            @endif
                         @endauth
 
                     @endforeach

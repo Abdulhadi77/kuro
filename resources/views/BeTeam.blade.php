@@ -19,129 +19,129 @@
 
 @section('content')
 
-<section id="pricing" class="pricing">
+    <section id="pricing" class="pricing">
 
-<div class="container" data-aos="fade-up">
+        <div class="container" data-aos="fade-up">
 
-  <header class="section-header">
-    <p>Be From Our Team</p>
-
-
-  </header>
-
-  <div class="row gy-4" data-aos="fade-left">
-@if(!auth()->user()->b_f_o_t_plan_id)
- @foreach($Bfotplane as $one)
-          <div class="col-lg-3 col-md-6" data-aos="zoom-in" data-aos-delay="100">
-              <div class="box">
-                  <h3 style="color: #07d5c0;">{{$one->type}}</h3>
-                  <img src="assets/img/pricing-free.png" class="img-fluid" alt="">
-                  <div class="card">
-                      <div class="card-body">
-
-                          <p class=" card-text">
-                              <a href="javascript:;" class="dropdown-item"  data-bs-toggle="modal"
-                                 data-bs-target="#info-sub" data-desc="{{ $one->description }}" data-id="{{ $one->id }}" data-title="{{ $one->type }}">
-                                  {!! \Illuminate\Support\Str::limit(strip_tags($one->description), 20) !!}
-                              </a>
-                          </p>
-
-                      </div>
-                  </div>
-                  <br>
-                  {{--@if(\App\Models\User::where('b_f_o_t_plan_id',$one->id)->first())--}}
-                  @if(auth()->user())
-                  @if(auth()->user()->b_f_o_t_plan_id == $one->id)
-                      <h1  class="btn btn-warning">Joined</h1>
-
-                  @elseif(!auth()->user()->b_f_o_t_plan_id)
-                      <a href="{{route('user_join_b_f_o_t_plan',$one->id)}}" class="btn-buy">Join</a>
-                  @endif
-                  @else
-                      <a href="{{route('user_join_b_f_o_t_plan',$one->id)}}" class="btn-buy">Join</a>
+            <header class="section-header">
+                <p>Be From Our Team</p>
 
 
-                  @endif
-              </div>
-          </div>
+            </header>
 
-      @endforeach
-    @else
-    @foreach($Bfotplane as $one)
-    @auth
-        @if(auth()->user()->b_f_o_t_plan_id == $one->id)
-        <div class="col-lg-3 col-md-6" data-aos="zoom-in" data-aos-delay="100">
-            <div class="box">
-                <h3 style="color: #07d5c0;">{{$one->type}}</h3>
-                <img src="assets/img/pricing-free.png" class="img-fluid" alt="">
-                <div class="card">
-                    <div class="card-body">
+            <div class="row gy-4" data-aos="fade-left">
+                @if( !auth()->user())
+                    @foreach($Bfotplane as $one)
+                        <div class="col-lg-3 col-md-6" data-aos="zoom-in" data-aos-delay="100">
+                            <div class="box">
+                                <h3 style="color: #07d5c0;">{{$one->type}}</h3>
+                                <img src="assets/img/pricing-free.png" class="img-fluid" alt="">
+                                <div class="card">
+                                    <div class="card-body">
 
-                        <p class=" card-text">
-                            <a href="javascript:;" class="dropdown-item"  data-bs-toggle="modal"
-                            data-bs-target="#info-sub" data-desc="{{ $one->description }}" data-id="{{ $one->id }}" data-title="{{ $one->type }}">
-                                {!! \Illuminate\Support\Str::limit(strip_tags($one->description), 20) !!}
-                            </a>
-                        </p>
+                                        <p class=" card-text">
+                                            <a href="javascript:;" class="dropdown-item"  data-bs-toggle="modal"
+                                               data-bs-target="#info-sub" data-desc="{{ $one->description }}" data-id="{{ $one->id }}" data-title="{{ $one->type }}">
+                                                {!! \Illuminate\Support\Str::limit(strip_tags($one->description), 20) !!}
+                                            </a>
+                                        </p>
 
-                    </div>
-                </div>
-                <br>
-                {{--@if(\App\Models\User::where('b_f_o_t_plan_id',$one->id)->first())--}}
-                @if(auth()->user())
-                @if(auth()->user()->b_f_o_t_plan_id == $one->id)
-                    <h1  class="btn btn-warning">Joined</h1>
+                                    </div>
+                                </div>
+                                <br>
+                                {{--@if(\App\Models\User::where('b_f_o_t_plan_id',$one->id)->first())--}}
+                                @if(auth()->user())
+                                    @if(auth()->user()->b_f_o_t_plan_id == $one->id)
+                                        <h1  class="btn btn-warning">Joined</h1>
 
-                @elseif(!auth()->user()->b_f_o_t_plan_id)
-                    <a href="{{route('user_join_b_f_o_t_plan',$one->id)}}" class="btn-buy">Join</a>
-                @endif
+                                    @elseif(!auth()->user()->b_f_o_t_plan_id)
+                                        <a href="{{route('user_join_b_f_o_t_plan',$one->id)}}" class="btn-buy">Join</a>
+                                    @endif
+                                @else
+                                    <a href="{{route('user_join_b_f_o_t_plan',$one->id)}}" class="btn-buy">Join</a>
+
+
+                                @endif
+                            </div>
+                        </div>
+
+                    @endforeach
                 @else
-                    <a href="{{route('user_join_b_f_o_t_plan',$one->id)}}" class="btn-buy">Join</a>
+                    @foreach($Bfotplane as $one)
+                        @auth
+                            @if(auth()->user()->b_f_o_t_plan_id == $one->id)
+                                <div class="col-lg-3 col-md-6" data-aos="zoom-in" data-aos-delay="100">
+                                    <div class="box">
+                                        <h3 style="color: #07d5c0;">{{$one->type}}</h3>
+                                        <img src="assets/img/pricing-free.png" class="img-fluid" alt="">
+                                        <div class="card">
+                                            <div class="card-body">
+
+                                                <p class=" card-text">
+                                                    <a href="javascript:;" class="dropdown-item"  data-bs-toggle="modal"
+                                                       data-bs-target="#info-sub" data-desc="{{ $one->description }}" data-id="{{ $one->id }}" data-title="{{ $one->type }}">
+                                                        {!! \Illuminate\Support\Str::limit(strip_tags($one->description), 20) !!}
+                                                    </a>
+                                                </p>
+
+                                            </div>
+                                        </div>
+                                        <br>
+                                        {{--@if(\App\Models\User::where('b_f_o_t_plan_id',$one->id)->first())--}}
+                                        @if(auth()->user())
+                                            @if(auth()->user()->b_f_o_t_plan_id == $one->id)
+                                                <h1  class="btn btn-warning">Joined</h1>
+
+                                            @elseif(!auth()->user()->b_f_o_t_plan_id)
+                                                <a href="{{route('user_join_b_f_o_t_plan',$one->id)}}" class="btn-buy">Join</a>
+                                            @endif
+                                        @else
+                                            <a href="{{route('user_join_b_f_o_t_plan',$one->id)}}" class="btn-buy">Join</a>
+                                        @endif
+                                    </div>
+                                </div>
+                            @endif
+                        @endauth
+                    @endforeach
                 @endif
+
+
             </div>
+
+
+
         </div>
-        @endif
-        @endauth
-        @endforeach
-    @endif
+        <div class="shown-event-ex">
+            <div
+                class="modal fade text-start"
+                id="info-sub"
+                tabindex="-1"
+                aria-labelledby="myModalLabel22"
+                aria-hidden="true"
+            >
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
 
+                            <h4 class="modal-title" id="myModalLabel22">Description For:<span id="blog_title"></span></h4>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
 
-  </div>
-
-
-
-</div>
-    <div class="shown-event-ex">
-        <div
-            class="modal fade text-start"
-            id="info-sub"
-            tabindex="-1"
-            aria-labelledby="myModalLabel22"
-            aria-hidden="true"
-        >
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content">
-                    <div class="modal-header">
-
-                        <h4 class="modal-title" id="myModalLabel22">Description For:<span id="blog_title"></span></h4>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-
-                        {{--                        <span class="la la-exclamation-circle fs-60 text-warning"></span>--}}
-                        <h4 class="modal-title fs-19 font-weight-semi-bold pt-2 pb-1"
-                            id="blog_desc"></h4>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-outline-secondary"
-                                data-bs-dismiss="modal">Cancel</button>
+                            {{--                        <span class="la la-exclamation-circle fs-60 text-warning"></span>--}}
+                            <h4 class="modal-title fs-19 font-weight-semi-bold pt-2 pb-1"
+                                id="blog_desc"></h4>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-outline-secondary"
+                                    data-bs-dismiss="modal">Cancel</button>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
 
 
