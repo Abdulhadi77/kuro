@@ -24,6 +24,10 @@ class DatabaseSeeder extends Seeder {
 						'admin_id' => 1,
 						'group_name' => 'Full Permission - Admin',
 					]);
+					\App\Models\AdminGroup::UpdateOrCreate([
+						'admin_id' => 1,
+						'group_name' => 'Joined Users',
+					]);
 				}
 				// admingroups Role
 				\App\Models\AdminGroupRole::UpdateOrCreate([
@@ -62,7 +66,7 @@ class DatabaseSeeder extends Seeder {
 				]);
 				\App\Models\AdminGroupRole::UpdateOrCreate([
 					'name' => 'contacts',
-					'admin_groups_id' => 1,
+					'admin_groups_id' => 2,
 					'show' => 'yes',
 					'add' => 'yes',
 					'edit' => 'no',
@@ -200,7 +204,7 @@ class DatabaseSeeder extends Seeder {
 
 				\App\Models\AdminGroupRole::UpdateOrCreate([
 					'name' => 'icousers',
-					'admin_groups_id' => 1,
+					'admin_groups_id' => 2,
 					'show' => 'yes',
 					'add' => 'no',
 					'edit' => 'no',
@@ -208,7 +212,7 @@ class DatabaseSeeder extends Seeder {
 				]);
 				\App\Models\AdminGroupRole::UpdateOrCreate([
 					'name' => 'icos',
-					'admin_groups_id' => 1,
+					'admin_groups_id' => 2,
 					'show' => 'yes',
 					'add' => 'no',
 					'edit' => 'no',
@@ -216,7 +220,7 @@ class DatabaseSeeder extends Seeder {
 				]);
 				\App\Models\AdminGroupRole::UpdateOrCreate([
 					'name' => 'voteplans',
-					'admin_groups_id' => 1,
+					'admin_groups_id' => 2,
 					'show' => 'yes',
 					'add' => 'no',
 					'edit' => 'no',
@@ -224,7 +228,7 @@ class DatabaseSeeder extends Seeder {
 				]);
 				\App\Models\AdminGroupRole::UpdateOrCreate([
 					'name' => 'bfotplans',
-					'admin_groups_id' => 1,
+					'admin_groups_id' => 2,
 					'show' => 'yes',
 					'add' => 'no',
 					'edit' => 'no',
@@ -232,7 +236,7 @@ class DatabaseSeeder extends Seeder {
 				]);
 				\App\Models\AdminGroupRole::UpdateOrCreate([
 					'name' => 'reactions',
-					'admin_groups_id' => 1,
+					'admin_groups_id' => 2,
 					'show' => 'yes',
 					'add' => 'no',
 					'edit' => 'no',
@@ -240,7 +244,7 @@ class DatabaseSeeder extends Seeder {
 				]);
 				\App\Models\AdminGroupRole::UpdateOrCreate([
 					'name' => 'comments',
-					'admin_groups_id' => 1,
+					'admin_groups_id' => 2,
 					'show' => 'yes',
 					'add' => 'no',
 					'edit' => 'no',
@@ -248,11 +252,33 @@ class DatabaseSeeder extends Seeder {
 				]);
 				\App\Models\AdminGroupRole::UpdateOrCreate([
 					'name' => 'blogs',
-					'admin_groups_id' => 1,
+					'admin_groups_id' => 2,
 					'show' => 'yes',
 					'add' => 'no',
 					'edit' => 'no',
 					'delete' => 'no',
+				]);
+				\App\Models\Page::UpdateOrCreate([
+					'page_name' => 'vote',
+					
+				]);
+				\App\Models\Page::UpdateOrCreate([
+					'page_name' => 'Beteam',
+					
+				]);
+				\App\Models\Page::UpdateOrCreate([
+					'page_name' => 'ICO',
+					
+				]);
+				\App\Models\Page::UpdateOrCreate([
+					'page_name' => 'blog',
+					
+				]);
+				\App\Models\Setting::UpdateOrCreate([
+					'sitename_en' => 'Kuro',
+					'sitename_ar' => 'Kuro',
+					'sitename_fr' => 'Kuro',
+					'email'=>'info@kurocoin.digital',
 				]);
 			}
 		}

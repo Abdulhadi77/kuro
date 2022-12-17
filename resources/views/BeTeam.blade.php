@@ -24,7 +24,7 @@
         <div class="container" data-aos="fade-up">
 
             <header class="section-header">
-                <p>Be From Our Team</p>
+                <p>Join our Team</p>
 
 
             </header>

@@ -137,7 +137,7 @@
 
                 <header class="section-header">
                     <!--<h2>Banners</h2>-->
-                    <p>Check Our Latest Banners</p>
+                    <p>Check Our Latest News</p>
                 </header>
 
                 <div class="row" data-aos="fade-up" data-aos-delay="100">

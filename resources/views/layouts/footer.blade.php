@@ -42,7 +42,7 @@
                         <li><i class="bi bi-chevron-right"></i> <a href="/">Home</a></li>
                         <li><i class="bi bi-chevron-right"></i> <a href="{{route('blog')}}">Blogs</a></li>
                         <li><i class="bi bi-chevron-right"></i> <a href="{{route('vote')}}">Vote To Earn</a></li>
-                        <li><i class="bi bi-chevron-right"></i> <a href="{{route('Beteam')}}">Be from our team</a></li>
+                        <li><i class="bi bi-chevron-right"></i> <a href="{{route('Beteam')}}">Join our Team</a></li>
                         <li><i class="bi bi-chevron-right"></i> <a href="{{route('ICO')}}">ICO</a></li>
                     </ul>
                 </div>

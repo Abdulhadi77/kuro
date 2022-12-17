@@ -18,7 +18,7 @@
               <li><a class="nav-link scrollto active" href="{{route('home')}}">Home</a></li>
 
               <li><a class="nav-link scrollto" href="{{route('vote')}}">Vote To Earn</a></li>
-              <li><a class="nav-link scrollto" href="{{route('Beteam')}}">Be from our team </a></li>
+              <li><a class="nav-link scrollto" href="{{route('Beteam')}}">Join our Team</a></li>
               <li><a class="nav-link scrollto" href="{{route('ICO')}}">ICO</a></li>
               <li><a href="{{route('blog')}}">Blog</a></li>
 
