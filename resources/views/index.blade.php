@@ -107,7 +107,7 @@
 
                                     </p>
                                     <div class="profile mt-auto">
-                                        <img src="assets/img/testimonials/testimonials-1.jpg" class="testimonial-img" alt="">
+                                        {!! $slide->description !!}
                                         <a href="{{url('/'.$slide->page->page_name)}}"><h3>@isset($slide->page->page_name){{$slide->page->page_name}}@endisset</h3></a>
                                         {{--                                  <h4>Ceo &amp; Founder</h4>--}}
                                     </div>

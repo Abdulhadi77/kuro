@@ -29,14 +29,14 @@
 
             </header>
 
-            <div class="row gy-4" data-aos="fade-left">
 
                 @if( !auth()->user())
+                    <div class="row gy-6" data-aos="fade-left">
                     @foreach($vote as $one)
                         <div class="col-lg-3 col-md-6" data-aos="zoom-in" data-aos-delay="100">
                             <div class="box">
                                 <h3 style="color: #07d5c0;">{{$one->type}}</h3>
-                                <img src="assets/img/pricing-free.png" class="img-fluid" alt="">
+                                <img src="{{ asset('storage/'.$one->image)  }}" class="img-fluid" alt="">
                                 <div class="card">
                                     <div class="card-body">
 
@@ -52,39 +52,29 @@
                                 <br>
 
                                 {{--@if(\App\Models\User::where('vote_plan_id',$one->id)->first())--}}
-                                @auth
-                                    @if(auth()->user()->vote_plan_id == $one->id)
-                                        <h1  class="btn btn-warning">Joined </h1>
-                                    @elseif(!auth()->user()->vote_plan_id)
-                                        <a href="{{route('user_join_vote_plan',$one->id)}}" class="btn-buy">Join</a>
-
-
-                                    @else
-                                        <a href="{{route('user_join_vote_plan',$one->id)}}" class="btn-buy">Join</a>
-
-
-                                    @endif
-
-                                @endauth
+                                <a href="{{route('user_join_vote_plan',$one->id)}}" class="btn-buy">Join</a>
 
 
 
-                                @guest
+
+                            @guest
                                     <a href="{{route('user_join_vote_plan',$one->id)}}" class="btn btn-primary">Join</a>
                                 @endguest
                             </div>
                         </div>
 
                     @endforeach
-                @else
+
+                    </div>
+                @elseif(auth()->user()->vote_plan_id ==null)
+                    <div class="row gy-6" data-aos="fade-left">
                     @foreach($vote as $one)
-                        @auth
-                            @if(auth()->user()->vote_plan_id == $one->id)
+
 
                                 <div class="col-lg-3 col-md-6" data-aos="zoom-in" data-aos-delay="100">
                                     <div class="box">
                                         <h3 style="color: #07d5c0;">{{$one->type}}</h3>
-                                        <img src="assets/img/pricing-free.png" class="img-fluid" alt="">
+                                        <img src="{{ asset('storage/'.$one->image)  }}" class="img-fluid" alt="">
                                         <div class="card">
                                             <div class="card-body">
 
@@ -94,22 +84,48 @@
                                                         {!! \Illuminate\Support\Str::limit(strip_tags($one->description), 20) !!}
                                                     </a>
                                                 </p>
-                                                <h1  class="btn btn-warning">Joined </h1>
+
                                             </div>
                                         </div>
                                         <br>
-
+                                        <a href="{{route('user_join_vote_plan',$one->id)}}" class="btn-buy">Join</a>
 
                                     </div>
                                 </div>
-                            @endif
-                        @endauth
+
 
                     @endforeach
+                    </div>
+                @else
+                    <div class="row gy-1" data-aos="fade-left">
+                        <div style="margin-right: 143px" class="col-lg-3 col-md-6" data-aos="zoom-in" data-aos-delay="100">
+
+                        </div>
+                    <div class="col-lg-3 col-md-6" data-aos="zoom-in" data-aos-delay="100">
+                        <div class="box">
+                            <h3 style="color: #07d5c0;">{{\App\Models\VotePlan::find(auth()->user()->vote_plan_id)->type}}</h3>
+                            <img src="{{ asset('storage/'.\App\Models\VotePlan::find(auth()->user()->vote_plan_id)->image)  }}" class="img-fluid" alt="">
+                            <div class="card">
+                                <div class="card-body">
+
+                                    <p class=" card-text">
+                                        <a href="javascript:;" class="dropdown-item"  data-bs-toggle="modal"
+                                           data-bs-target="#info-sub" data-desc="{{ \App\Models\VotePlan::find(auth()->user()->vote_plan_id)->description }}" data-id="{{ \App\Models\VotePlan::find(auth()->user()->vote_plan_id)->id }}" data-title="{{ \App\Models\VotePlan::find(auth()->user()->vote_plan_id)->type }}">
+                                            {!! \Illuminate\Support\Str::limit(strip_tags(\App\Models\VotePlan::find(auth()->user()->vote_plan_id)->description), 20) !!}
+                                        </a>
+                                    </p>
+
+                                </div>
+                            </div>
+                            <br>
+                            <h1  class="btn btn-warning">Joined </h1>
+
+                        </div>
+                    </div>
+                    </div>
                 @endif
 
 
-            </div>
 
         </div>
         <div class="shown-event-ex">

@@ -17,7 +17,7 @@ class CreateSlidesTable extends Migration
             $table->bigIncrements('id');
             $table->foreignId("admin_id")->constrained("admins")->onUpdate("cascade")->onDelete("cascade");
             $table->string('image');
-            $table->string('description');
+            $table->longtext('description');
             $table->foreignId("page_id")->nullable()->constrained("pages")->references("id");
 			$table->softDeletes();
 
