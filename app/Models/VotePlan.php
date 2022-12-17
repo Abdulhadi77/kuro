@@ -12,6 +12,7 @@ protected $fillable = [
 		'admin_id',
         'type',
         'description',
+        'image',
         'num_votes_cond',
         'kuro_balance_cond',
         'revenue',

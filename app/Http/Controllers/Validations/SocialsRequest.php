@@ -27,7 +27,7 @@ class SocialsRequest extends FormRequest {
 	protected function onUpdate() {
 		return [
              'name'=>'',
-             'logo'=>'required|image',
+             'logo'=>'image',
              'link'=>'',
              'file'=>'',
 		];

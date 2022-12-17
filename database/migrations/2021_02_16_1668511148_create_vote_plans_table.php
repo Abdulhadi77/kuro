@@ -18,6 +18,7 @@ class CreateVotePlansTable extends Migration
             $table->foreignId("admin_id")->constrained("admins")->onUpdate("cascade")->onDelete("cascade");
             $table->string('type');
             $table->longtext('description');
+            $table->string('image');
             $table->integer('num_votes_cond');
             $table->double('kuro_balance_cond');
             $table->double('revenue');

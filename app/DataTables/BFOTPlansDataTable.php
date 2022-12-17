@@ -13,12 +13,12 @@ class BFOTPlansDataTable extends DataTable
     {
         return datatables($query)
             ->addColumn('actions', 'admin.bfotplans.buttons.actions')
-
+			->addColumn('image', '{!! view("admin.show_image",["image"=>$image])->render() !!}')
    		->addColumn('created_at', '{{ date("Y-m-d H:i:s",strtotime($created_at)) }}')   		->addColumn('updated_at', '{{ date("Y-m-d H:i:s",strtotime($updated_at)) }}')            ->addColumn('checkbox', '<div  class="icheck-danger">
                   <input type="checkbox" class="selected_data" name="selected_data[]" id="selectdata{{ $id }}" value="{{ $id }}" >
                   <label for="selectdata{{ $id }}"></label>
                 </div>')
-            ->rawColumns(['checkbox','actions',]);
+            ->rawColumns(['checkbox','actions','image']);
     }
   
 
@@ -77,7 +77,7 @@ class BFOTPlansDataTable extends DataTable
 
 
             
-            ". filterElement('1,2,3,4,5', 'input') . "
+            ". filterElement('1,2,3,5,6', 'input') . "
 
             
 
@@ -149,6 +149,11 @@ class BFOTPlansDataTable extends DataTable
                  'data'=>'description',
                  'title'=>trans('admin.description'),
 		    ],
+			[
+				'name'=>'image',
+				'data'=>'image',
+				'title'=>trans('admin.image'),
+		   ],
 				[
                  'name'=>'num_of_refs_cond',
                  'data'=>'num_of_refs_cond',

@@ -17,6 +17,7 @@ class BFOTPlansRequest extends FormRequest {
 
 	protected function onCreate() {
 		return [
+			'image'=>'required|image',
              'type'=>'required',
              'description'=>'required',
              'num_of_refs_cond'=>'required|integer',
@@ -27,6 +28,7 @@ class BFOTPlansRequest extends FormRequest {
 
 	protected function onUpdate() {
 		return [
+			'image'=>'image',
              'type'=>'required',
              'description'=>'required',
              'num_of_refs_cond'=>'required|integer',
@@ -46,6 +48,7 @@ class BFOTPlansRequest extends FormRequest {
 
 	public function attributes() {
 		return [
+			'image'=>trans('admin.image'),
              'type'=>trans('admin.type'),
              'description'=>trans('admin.description'),
              'num_of_refs_cond'=>trans('admin.num_of_refs_cond'),

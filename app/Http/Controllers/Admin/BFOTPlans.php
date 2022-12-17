@@ -50,11 +50,25 @@ class BFOTPlans extends Controller
             public function store(BFOTPlansRequest $request)
             {
                 $data = $request->except("_token", "_method");
-            	  $data['admin_id'] = admin()->id(); 
-		  		      $bfotplans = BFOTPlan::create($data); 
+				$data['image'] = "";
+            	$data['admin_id'] = admin()->id(); 
+		  		$bfotplans = BFOTPlan::create($data); 
+				if(request()->hasFile('image')){
+					$bfotplans->image=  self::uploadImage($request->image,'bfot_plans');
+					// $blogs->image = it()->upload('image','voteplans/'.$voteplans->id);
+					$bfotplans->save();
+				}
                 $redirect = isset($request["add_back"])?"/create":"";
-                return redirectWithSuccess(aurl('bfotplans'.$redirect), trans('admin.added')); }
+                return redirectWithSuccess(aurl('bfotplans'.$redirect), trans('admin.added'));
+			}
+			function uploadImage($image , $fileName)
+			{
+				$imageName =  time().'.'. $image->extension();
+				$imageToSave = $fileName . DIRECTORY_SEPARATOR . time().'.'. $image->extension();
 
+				$image->move(public_path('storage'. DIRECTORY_SEPARATOR .$fileName), $imageName);
+				return $imageToSave;
+			}
             
 
             public function show($id)
@@ -104,6 +118,11 @@ class BFOTPlans extends Controller
               }
               $data = $this->updateFillableColumns(); 
               $data['admin_id'] = admin()->id(); 
+			  dd($data['image']);
+			  if($request->hasFile('image')){
+				it()->delete($bfotplans->image);
+				$data['image'] = it()->upload('image','bfot_plans');
+				} 
               BFOTPlan::where('id',$id)->update($data);
               $redirect = isset($request["save_back"])?"/".$id."/edit":"";
               return redirectWithSuccess(aurl('bfotplans'.$redirect), trans('admin.updated'));
@@ -116,7 +135,9 @@ class BFOTPlans extends Controller
 		if(is_null($bfotplans) || empty($bfotplans)){
 			return backWithSuccess(trans('admin.undefinedRecord'),aurl("bfotplans"));
 		}
-               
+        if(!empty($bfotplans->image)){
+			it()->delete($bfotplans->image);		
+		}
 		it()->delete('bfotplan',$id);
 		$bfotplans->delete();
 		return redirectWithSuccess(aurl("bfotplans"),trans('admin.deleted'));
@@ -131,7 +152,9 @@ class BFOTPlans extends Controller
 				if(is_null($bfotplans) || empty($bfotplans)){
 					return backWithError(trans('admin.undefinedRecord'),aurl("bfotplans"));
 				}
-                    	
+                if(!empty($bfotplans->image)){
+					it()->delete($bfotplans->image);
+				}	
 				it()->delete('bfotplan',$id);
 				$bfotplans->delete();
 			}

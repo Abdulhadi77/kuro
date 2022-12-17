@@ -67,6 +67,27 @@
         {!! Form::text('type', $bfotplans->type ,['class'=>'form-control','placeholder'=>trans('admin.type')]) !!}
     </div>
 </div>
+<div class="col-md-6 col-lg-6 col-sm-6 col-xs-12 image">
+    <div class="row">
+        <div class="col-md-9">
+            <div class="form-group">
+                <label for="'image'">{{ trans('admin.image') }}</label>
+                <div class="input-group">
+                    <div class="custom-file">
+                        {!! Form::file('image',['class'=>'custom-file-input','placeholder'=>trans('admin.image'),"accept"=>it()->acceptedMimeTypes("image"),"id"=>"image"]) !!}
+                        {!! Form::label('image',trans('admin.image'),['class'=>'custom-file-label']) !!}
+                    </div>
+                    <div class="input-group-append">
+                        <span class="input-group-text" id="">{{ trans('admin.upload') }}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-2" style="padding-top: 30px;">
+            @include("admin.show_image",["image"=>$bfotplans->image])
+        </div>
+    </div>
+</div>
 <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
     <div class="form-group">
         {!! Form::label('description',trans('admin.description'),['class'=>'control-label']) !!}

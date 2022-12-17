@@ -81,6 +81,11 @@
 			</div>
 
 			<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+				<b>{{trans('admin.image')}} :</b>
+				@include("admin.show_image",["image"=>$bfotplans->image])
+			</div>
+
+			<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
 				<b>{{trans('admin.kuro_balance_cond')}} :</b>
 				{!! $bfotplans->kuro_balance_cond !!}
 			</div>

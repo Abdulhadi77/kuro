@@ -17,6 +17,7 @@ class VotePlansRequest extends FormRequest {
 
 	protected function onCreate() {
 		return [
+			'image'=>'required|image',
              'type'=>'required',
              'description'=>'required',
              'num_votes_cond'=>'required|integer',
@@ -27,6 +28,7 @@ class VotePlansRequest extends FormRequest {
 
 	protected function onUpdate() {
 		return [
+			'image'=>'image',
              'type'=>'required',
              'description'=>'required',
              'num_votes_cond'=>'required|integer',
@@ -45,6 +47,7 @@ class VotePlansRequest extends FormRequest {
 
 	public function attributes() {
 		return [
+			'image'=>trans('admin.image'),
              'type'=>trans('admin.type'),
              'description'=>trans('admin.description'),
              'num_votes_cond'=>trans('admin.num_votes_cond'),

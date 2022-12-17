@@ -16,6 +16,7 @@ protected $fillable = [
 		'admin_id',
         'type',
         'description',
+        'image',
         'num_of_refs_cond',
         'kuro_balance_cond',
         'revenue',
