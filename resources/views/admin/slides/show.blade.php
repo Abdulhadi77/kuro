@@ -62,21 +62,30 @@
 			</div>
 			<div class="clearfix"></div>
 			<hr />
-			@if(!empty($slides->admin_id()->first()))
+
+			@if(!empty($slides->admin_id()->first()))
 			<div class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
 				<b>{{trans('admin.admin_id')}} :</b>
 				{{ $slides->admin_id()->first()->name }}
 			</div>
 			@endif
-			<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+
+			<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
 				<b>{{trans('admin.image')}} :</b>
 				@include("admin.show_image",["image"=>$slides->image])
 			</div>
-			<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+
+			<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+				<b>{{trans('admin.description')}} :</b>
+				{{ trans("admin.".$slides->description) }}
+			</div>
+
+			<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
 				<b>{{trans('admin.page_id')}} :</b>
 				{{ trans("admin.".$slides->page_id) }}
 			</div>
-			<!-- /.row -->
+
+			<!-- /.row -->
 		</div>
 	</div>
 	<!-- /.card-body -->

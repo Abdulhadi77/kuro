@@ -153,6 +153,11 @@ class SlidesDataTable extends DataTable
                  'title'=>trans('admin.image'),
 		    ],
 			[
+				'name'=>'description',
+				'data'=>'description',
+				'title'=>trans('admin.description'),
+		   ],
+			[
 				'name'=>'page_name',
 				'data'=>'page_name',
 				'title'=>trans('admin.page_name'),

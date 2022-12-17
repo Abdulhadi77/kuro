@@ -15,6 +15,7 @@ protected $fillable = [
 		'id',
 		'admin_id',
         'image',
+        'description',
         'page_id',
 		'created_at',
 		'updated_at',

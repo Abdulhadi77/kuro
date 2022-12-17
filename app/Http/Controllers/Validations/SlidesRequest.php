@@ -18,6 +18,7 @@ class SlidesRequest extends FormRequest {
 	protected function onCreate() {
 		return [
              'image'=>'required|image',
+			 'description'=>'required',
              'page_id'=>'',
 		];
 	}
@@ -25,6 +26,7 @@ class SlidesRequest extends FormRequest {
 	protected function onUpdate() {
 		return [
              'image'=>'image',
+			 'description'=>'required',
              'page_id'=>'',
 		];
 	}
@@ -40,7 +42,7 @@ class SlidesRequest extends FormRequest {
 	public function attributes() {
 		return [
              'image'=>trans('admin.image'),
-             'page_id'=>trans('admin.page_id'),
+             'description'=>trans('admin.description'),
              'page_id'=>trans('admin.page_id'),
 		];
 	}

@@ -82,10 +82,16 @@
         </div>
     </div>
 </div>
+<div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+    <div class="form-group">
+        {!! Form::label('description',trans('admin.description'),['class'=>'control-label']) !!}
+        {!! Form::textarea('description', $slides->description ,['class'=>'form-control ckeditor','placeholder'=>trans('admin.description')]) !!}
+    </div>
+</div>
 <div class="col-md-6 col-lg-6 col-sm-6 col-xs-12">
 		<div class="form-group">
 				{!! Form::label('page_id',trans('admin.page_id'),['class'=>'control-label']) !!}
-{!! Form::select('page_id',App\Models\Page::pluck('page_name', 'id'), $slides->page_id ,['class'=>'form-control select2','placeholder'=>trans('admin.page_id')]) !!}
+				{!! Form::select('page_id',App\Models\Page::pluck('page_name', 'id'), $slides->page_id ,['class'=>'form-control select2','placeholder'=>trans('admin.page_id')]) !!}
 		</div>
 </div>
 
