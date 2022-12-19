@@ -124,12 +124,15 @@ $data['admin_id'] = admin()->id();
               $data = $this->updateFillableColumns();
               $data['admin_id'] = admin()->id();
                if(request()->hasFile('logo')){
-              it()->delete($socials->logo);
-              $data['logo'] = it()->upload('logo','socials');
+
+                   $data['logo'] =  self::uploadImage($request->logo,'socials');
+             // it()->delete($socials->logo);
+             // $data['logo'] = it()->upload('logo','socials');
                }
                if(request()->hasFile('file')){
-              it()->delete($socials->file);
-              $data['file'] = it()->upload('file','socials');
+             // it()->delete($socials->file);
+            //  $data['file'] = it()->upload('file','socials');
+                   $data['file'] =  self::uploadImage($request->file,'socials');
                }
               Social::where('id',$id)->update($data);
               $redirect = isset($request["save_back"])?"/".$id."/edit":"";

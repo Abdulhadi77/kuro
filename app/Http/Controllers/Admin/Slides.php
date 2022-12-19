@@ -120,8 +120,9 @@ class Slides extends Controller
               $data = $this->updateFillableColumns();
               $data['admin_id'] = admin()->id();
                if(request()->hasFile('image')){
-                  it()->delete($slides->image);
-                  $data['image'] = it()->upload('image','slides');
+                   $data['image'] =  self::uploadImage($request->image,'slides');
+                //  it()->delete($slides->image);
+                 // $data['image'] = it()->upload('image','slides');
                }
               Slide::where('id',$id)->update($data);
               $redirect = isset($request["save_back"])?"/".$id."/edit":"";

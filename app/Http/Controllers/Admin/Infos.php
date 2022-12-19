@@ -119,8 +119,9 @@ $data['admin_id'] = admin()->id();
               $data = $this->updateFillableColumns();
               $data['admin_id'] = admin()->id();
                if(request()->hasFile('logo')){
-              it()->delete($infos->logo);
-              $data['logo'] = it()->upload('logo','infos');
+                   $data['logo']  =  self::uploadImage($request->logo,'logoInfos');
+             // it()->delete($infos->logo);
+              //$data['logo'] = it()->upload('logo','infos');
                }
               Info::where('id',$id)->update($data);
               $redirect = isset($request["save_back"])?"/".$id."/edit":"";

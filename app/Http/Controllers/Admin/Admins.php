@@ -110,8 +110,10 @@ class Admins extends Controller {
 		}
 
 		if (request()->hasFile('photo_profile')) {
-			it()->delete($admins->photo_profile);
-			$data['photo_profile'] = it()->upload('photo_profile', 'admins');
+            $data['photo_profile'] =  self::uploadImage($request->photo_profile,'photo_profile');
+
+           // it()->delete($admins->photo_profile);
+			//$data['photo_profile'] = it()->upload('photo_profile', 'admins');
 		}
 		Admin::where('id', $id)->update($data);
 		return redirectWithSuccess(aurl('admins'), trans('admin.updated'));

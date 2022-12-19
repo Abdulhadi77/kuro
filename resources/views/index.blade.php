@@ -10,8 +10,13 @@
 
 @section('css')
 
-
-
+<style>
+    element.style {
+        position: absolute;
+        left: 150px;
+        top: 0px;
+    }
+</style>
 @endsection
 
 
@@ -146,23 +151,65 @@
                     </div>
                 </div>
 
+
                 <div class="row gy-4 portfolio-container" data-aos="fade-up" data-aos-delay="200">
+
+                @if($banners->count() == 1)
+                        <div class="col-lg-1 col-md-6 portfolio-item filter-app justify-content-center">
+
+                        </div>
+                        <div class="col-lg-1 col-md-6 portfolio-item filter-app justify-content-center">
+
+                        </div>
+                        <div class="col-lg-1 col-md-6 portfolio-item filter-app justify-content-center">
+
+                        </div>
+                        <div class="col-lg-1 col-md-6 portfolio-item filter-app justify-content-center">
+
+                        </div>
+
                     @foreach ($banners as $banner)
+                                <div   class=" test col-lg-3 col-md-6 portfolio-item filter-app justify-content-center">
+                                    <div class="portfolio-wrap">
+                                        <img src="{{ asset('storage/'.$banner->image)  }}" class="img-fluid" alt="">
+                                        <div class="portfolio-info">
+                                            <h4>{{$banner->created_at}}</h4>
+                                            {{--                              <p>{{$banner->description}}</p>--}}
+                                            <div class="portfolio-links">
+                                                <a href="{{ asset('storage/'.$banner->image)  }}" data-gallery="portfolioGallery" class="portfokio-lightbox" title="{{$banner->description}}"><i class="bi bi-plus"></i></a>
+                                                {{--                                  <a href="portfolio-details.html" title="More Details"><i class="bi bi-link"></i></a>--}}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                        @endforeach
+
+                        @else
                         <div class="col-lg-3 col-md-6 portfolio-item filter-app justify-content-center">
-                            <div class="portfolio-wrap">
-                                <img src="{{ asset('storage/'.$banner->image)  }}" class="img-fluid" alt="">
-                                <div class="portfolio-info">
-                                    <h4>{{$banner->created_at}}</h4>
-                                    {{--                              <p>{{$banner->description}}</p>--}}
-                                    <div class="portfolio-links">
-                                        <a href="{{ asset('storage/'.$banner->image)  }}" data-gallery="portfolioGallery" class="portfokio-lightbox" title="{{$banner->description}}"><i class="bi bi-plus"></i></a>
-                                        {{--                                  <a href="portfolio-details.html" title="More Details"><i class="bi bi-link"></i></a>--}}
+
+                        </div>
+
+                    @foreach ($banners as $banner)
+
+                            <div class="col-lg-3 col-md-6 portfolio-item filter-app justify-content-center">
+                                <div class="portfolio-wrap">
+                                    <img src="{{ asset('storage/'.$banner->image)  }}" class="img-fluid" alt="">
+                                    <div class="portfolio-info">
+                                        <h4>{{$banner->created_at}}</h4>
+                                        {{--                              <p>{{$banner->description}}</p>--}}
+                                        <div class="portfolio-links">
+                                            <a href="{{ asset('storage/'.$banner->image)  }}" data-gallery="portfolioGallery" class="portfokio-lightbox" title="{{$banner->description}}"><i class="bi bi-plus"></i></a>
+                                            {{--                                  <a href="portfolio-details.html" title="More Details"><i class="bi bi-link"></i></a>--}}
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
 
-                    @endforeach
+                        @endforeach
+
+                        @endif
+
+
 
                 </div>
 
