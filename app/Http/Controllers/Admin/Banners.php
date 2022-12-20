@@ -121,8 +121,9 @@ $data['admin_id'] = admin()->id();
               $data = $this->updateFillableColumns();
               $data['admin_id'] = admin()->id();
                if(request()->hasFile('image')){
-              it()->delete($banners->image);
-              $data['image'] = it()->upload('image','banners');
+            //  it()->delete($banners->image);
+           //   $data['image'] = it()->upload('image','banners');
+                   $data['image'] =  self::uploadImage($request->image,'banners');
                }
               Banner::where('id',$id)->update($data);
               $redirect = isset($request["save_back"])?"/".$id."/edit":"";

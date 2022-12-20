@@ -46,6 +46,7 @@
                             <a>{{$blog->id}}</a>
                         </h2>
 
+
                         <div class="entry-img">
                             <img src="{{ asset('storage/'.$blog->image)  }}" alt="" class="img-fluid">
                         </div>

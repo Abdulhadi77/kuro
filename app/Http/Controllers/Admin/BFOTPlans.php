@@ -27,9 +27,9 @@ class BFOTPlans extends Controller
 		]);
 	}
 
-	
 
-            
+
+
 
             public function index(BFOTPlansDataTable $bfotplans)
             {
@@ -37,22 +37,22 @@ class BFOTPlans extends Controller
             }
 
 
-            
+
 
             public function create()
             {
-            	
+
                return view('admin.bfotplans.create',['title'=>trans('admin.create')]);
             }
 
-            
+
 
             public function store(BFOTPlansRequest $request)
             {
                 $data = $request->except("_token", "_method");
 				$data['image'] = "";
-            	$data['admin_id'] = admin()->id(); 
-		  		$bfotplans = BFOTPlan::create($data); 
+            	$data['admin_id'] = admin()->id();
+		  		$bfotplans = BFOTPlan::create($data);
 				if(request()->hasFile('image')){
 					$bfotplans->image=  self::uploadImage($request->image,'bfot_plans');
 					// $blogs->image = it()->upload('image','voteplans/'.$voteplans->id);
@@ -69,7 +69,7 @@ class BFOTPlans extends Controller
 				$image->move(public_path('storage'. DIRECTORY_SEPARATOR .$fileName), $imageName);
 				return $imageToSave;
 			}
-            
+
 
             public function show($id)
             {
@@ -83,7 +83,7 @@ class BFOTPlans extends Controller
             }
 
 
-            
+
 
             public function edit($id)
             {
@@ -97,7 +97,7 @@ class BFOTPlans extends Controller
             }
 
 
-            
+
 
             public function updateFillableColumns() {
 				$fillableCols = [];
@@ -116,19 +116,18 @@ class BFOTPlans extends Controller
               if(is_null($bfotplans) || empty($bfotplans)){
               	return backWithError(trans("admin.undefinedRecord"),aurl("bfotplans"));
               }
-              $data = $this->updateFillableColumns(); 
-              $data['admin_id'] = admin()->id(); 
-			  dd($data['image']);
+              $data = $this->updateFillableColumns();
+              $data['admin_id'] = admin()->id();
+
 			  if($request->hasFile('image')){
-				it()->delete($bfotplans->image);
-				$data['image'] = it()->upload('image','bfot_plans');
-				} 
+                  $data['image']=  self::uploadImage($request->image,'bfot_plans');
+				}
               BFOTPlan::where('id',$id)->update($data);
               $redirect = isset($request["save_back"])?"/".$id."/edit":"";
               return redirectWithSuccess(aurl('bfotplans'.$redirect), trans('admin.updated'));
             }
 
-            
+
 
 	public function destroy($id){
 		$bfotplans = BFOTPlan::find($id);
@@ -136,7 +135,7 @@ class BFOTPlans extends Controller
 			return backWithSuccess(trans('admin.undefinedRecord'),aurl("bfotplans"));
 		}
         if(!empty($bfotplans->image)){
-			it()->delete($bfotplans->image);		
+			it()->delete($bfotplans->image);
 		}
 		it()->delete('bfotplan',$id);
 		$bfotplans->delete();
@@ -154,7 +153,7 @@ class BFOTPlans extends Controller
 				}
                 if(!empty($bfotplans->image)){
 					it()->delete($bfotplans->image);
-				}	
+				}
 				it()->delete('bfotplan',$id);
 				$bfotplans->delete();
 			}
@@ -164,12 +163,12 @@ class BFOTPlans extends Controller
 			if(is_null($bfotplans) || empty($bfotplans)){
 				return backWithError(trans('admin.undefinedRecord'),aurl("bfotplans"));
 			}
-                    
+
 			it()->delete('bfotplan',$data);
 			$bfotplans->delete();
 			return redirectWithSuccess(aurl("bfotplans"),trans('admin.deleted'));
 		}
 	}
-            
+
 
 }

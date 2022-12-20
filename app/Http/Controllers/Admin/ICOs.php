@@ -120,8 +120,9 @@ class ICOs extends Controller
               $data = $this->updateFillableColumns();
               $data['admin_id'] = admin()->id();
                if(request()->hasFile('image')){
-              it()->delete($icos->image);
-              $data['image'] = it()->upload('image','icos');
+                   $data['image']=  self::uploadImage($request->image,'icos');
+            //  it()->delete($icos->image);
+         //     $data['image'] = it()->upload('image','icos');
                }
               $data['open_date'] = date('Y-m-d H:i', strtotime(request('open_date')));
               ICO::where('id',$id)->update($data);

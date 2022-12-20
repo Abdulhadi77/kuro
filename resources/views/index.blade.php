@@ -10,8 +10,13 @@
 
 @section('css')
 
-
-
+<style>
+    element.style {
+        position: absolute;
+        left: 150px;
+        top: 0px;
+    }
+</style>
 @endsection
 
 
@@ -140,11 +145,15 @@
                     <p>Check Our Latest News</p>
                 </header>
 
-               
+                <div class="row" data-aos="fade-up" data-aos-delay="100">
+                    <div class="col-lg-12 d-flex justify-content-center">
 
-                <div class="row gy-4 " style="justify-content: center; position: relative; height: auto;" data-aos="fade-up" data-aos-delay="200">
+                    </div>
+                </div>
+
+                <div class="row gy-4 portfolio-container" data-aos="fade-up" data-aos-delay="200">
                     @foreach ($banners as $banner)
-                        <div class="col-lg-3 col-md-6  filter-app " >
+                        <div class="col-lg-3 col-md-6 portfolio-item filter-app justify-content-center">
                             <div class="portfolio-wrap">
                                 <img src="{{ asset('storage/'.$banner->image)  }}" class="img-fluid" alt="">
                                 <div class="portfolio-info">
@@ -158,7 +167,11 @@
                             </div>
                         </div>
 
-                    @endforeach
+                        @endforeach
+
+                        @endif
+
+
 
                 </div>
 

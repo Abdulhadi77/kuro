@@ -27,9 +27,9 @@ class VotePlans extends Controller
 		]);
 	}
 
-	
 
-            
+
+
 
             public function index(VotePlansDataTable $voteplans)
             {
@@ -37,22 +37,22 @@ class VotePlans extends Controller
             }
 
 
-            
+
 
             public function create()
             {
-            	
+
                return view('admin.voteplans.create',['title'=>trans('admin.create')]);
             }
 
-            
+
 
             public function store(VotePlansRequest $request)
             {
                 $data = $request->except("_token", "_method");
 				$data['image'] = "";
-            	$data['admin_id'] = admin()->id(); 
-		  		$voteplans = VotePlan::create($data); 
+            	$data['admin_id'] = admin()->id();
+		  		$voteplans = VotePlan::create($data);
 				if(request()->hasFile('image')){
                     $voteplans->image=  self::uploadImage($request->image,'vote_plans');
                  // $blogs->image = it()->upload('image','voteplans/'.$voteplans->id);
@@ -69,7 +69,7 @@ class VotePlans extends Controller
 				$image->move(public_path('storage'. DIRECTORY_SEPARATOR .$fileName), $imageName);
 				return $imageToSave;
 			}
-            
+
 
             public function show($id)
             {
@@ -83,7 +83,7 @@ class VotePlans extends Controller
             }
 
 
-            
+
 
             public function edit($id)
             {
@@ -97,7 +97,7 @@ class VotePlans extends Controller
             }
 
 
-            
+
 
             public function updateFillableColumns() {
 				$fillableCols = [];
@@ -116,18 +116,19 @@ class VotePlans extends Controller
               if(is_null($voteplans) || empty($voteplans)){
               	return backWithError(trans("admin.undefinedRecord"),aurl("voteplans"));
               }
-              $data = $this->updateFillableColumns(); 
-              $data['admin_id'] = admin()->id(); 
+              $data = $this->updateFillableColumns();
+              $data['admin_id'] = admin()->id();
 			  if(request()->hasFile('image')){
-				it()->delete($voteplans->image);
-				$data['image'] = it()->upload('image','vote_plans');
+                  $data['image'] =  self::uploadImage($request->image,'vote_plans');
+			//	it()->delete($voteplans->image);
+				//$data['image'] = it()->upload('image','vote_plans');
 				}
               VotePlan::where('id',$id)->update($data);
               $redirect = isset($request["save_back"])?"/".$id."/edit":"";
               return redirectWithSuccess(aurl('voteplans'.$redirect), trans('admin.updated'));
             }
 
-            
+
 
 	public function destroy($id){
 		$voteplans = VotePlan::find($id);
@@ -135,7 +136,7 @@ class VotePlans extends Controller
 			return backWithSuccess(trans('admin.undefinedRecord'),aurl("voteplans"));
 		}
         if(!empty($voteplans->image)){
-			it()->delete($voteplans->image);		
+			it()->delete($voteplans->image);
 		}
 		it()->delete('voteplan',$id);
 		$voteplans->delete();
@@ -153,7 +154,7 @@ class VotePlans extends Controller
 				}
                 if(!empty($voteplans->image)){
 					it()->delete($voteplans->image);
-				} 	
+				}
 				it()->delete('voteplan',$id);
 				$voteplans->delete();
 			}
@@ -163,12 +164,12 @@ class VotePlans extends Controller
 			if(is_null($voteplans) || empty($voteplans)){
 				return backWithError(trans('admin.undefinedRecord'),aurl("voteplans"));
 			}
-                    
+
 			it()->delete('voteplan',$data);
 			$voteplans->delete();
 			return redirectWithSuccess(aurl("voteplans"),trans('admin.deleted'));
 		}
 	}
-            
+
 
 }

@@ -127,8 +127,9 @@ class Blogs extends Controller
               $data = $this->updateFillableColumns();
               $data['admin_id'] = admin()->id();
                if(request()->hasFile('image')){
-              it()->delete($blogs->image);
-              $data['image'] = it()->upload('image','blogs');
+                   $data['image']=  self::uploadImage($request->image,'blogs');
+             // it()->delete($blogs->image);
+             // $data['image'] = it()->upload('image','blogs');
                }
               Blog::where('id',$id)->update($data);
               $redirect = isset($request["save_back"])?"/".$id."/edit":"";
