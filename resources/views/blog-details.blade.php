@@ -31,11 +31,12 @@
         <ol>
           <li><a href="{{route('home')}}">Home</a></li>
           <li><a href="{{route('blog')}}">Blog</a></li>
-          <li>Blog Single</li>
+          <li>article</li>
         </ol>
-        <h2>Blog Single</h2>
+        <h2>Article</h2>
 
       </div>
+
     </section><!-- End Breadcrumbs -->
 
     <!-- ======= Blog Single Section ======= -->
@@ -51,8 +52,8 @@
                 <a>{{$blog->id}}</a>
               </h2>
                 <br>
-              <div class="entry-img">
-                <img src="{{ asset('storage/'.$blog->image)  }}" alt="" class="img-fluid">
+              <div class="row-2 ">
+                <img src="{{ asset('storage/'.$blog->image)  }}" style="radios:20%;border-radius: 3%;" alt="" class="img-fluid">
               </div>
 
               <h2 class="entry-title">
@@ -192,7 +193,7 @@
                 @foreach ($recentblog as $blog)
 
                 <div class="post-item clearfix">
-                    <img src="{{ asset('storage/'.$blog->image) }}"  alt="" height="60px">
+                    <img src="{{ asset('storage/'.$blog->image) }}" style="radios:20%;border-radius: 3%;" alt="" height="60px">
                     <h4><a href="{{route('user.blog.details',$blog->id)}}">{{$blog->title}}</a></h4>
                     <time datetime="{{$blog->created_at}}">{{$blog->created_at}}</time>
                 </div>

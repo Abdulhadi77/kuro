@@ -42,20 +42,21 @@
                 <div class="col-lg-8 entries">
                     @foreach ($blogs as $blog)
                     <article class="entry">
+                        <header>
                         <h2 class="entry-title">
-                            <a>{{$blog->id}}</a>
+                            <a>{{$blog->title}}</a>
                         </h2>
+                    </header>
 
-
-                        <div class="entry-img">
-                            <img src="{{ asset('storage/'.$blog->image)  }}" alt="" class="img-fluid">
+                        <div class="row-2">
+                            <img src="{{ asset('storage/'.$blog->image)  }}" style="radios:20%;border-radius: 3%;" alt="" class="img-fluid">
                         </div>
-
+{{-- 
                         <h2 class="entry-title">
                             <a href="{{route('user.blog.details',$blog->id)}}">{{$blog->title}}</a>
-                        </h2>
+                        </h2> --}}
 {{--                        href="{{route('user.blog.details',$blog->id)}}"--}}
-                        <div class="entry-meta">
+                        <div class="entry-meta pt-2">
                             <ul>
                                 <li class="d-flex align-items-center"><i class="bi bi-clock"></i> <a href="#"><time datetime="{{$blog->created_at}}">{{$blog->created_at}}</time></a></li>
                                 <li class="d-flex align-items-center"><i class="bi bi-chat-dots"></i> <a href="{{route('user.blog.details',$blog->id)}}"  >{{$blog->comments->count()}}</a></li>
@@ -140,7 +141,7 @@
                         @foreach ($recentblog as $blog)
 
                         <div class="post-item clearfix">
-                            <img  src="{{ asset('storage/'.$blog->image) }}"  alt="" height="60px">
+                            <img  src="{{ asset('storage/'.$blog->image) }}" style="radios:20%;border-radius: 3%;" alt="" height="60px">
                             <h4><a href="{{route('user.blog.details',$blog->id)}}">{{$blog->title}}</a></h4>
                             <time datetime="{{$blog->created_at}}">{{$blog->created_at}}</time>
                         </div>

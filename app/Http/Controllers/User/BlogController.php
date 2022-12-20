@@ -31,6 +31,7 @@ use Illuminate\Support\Facades\Validator;
 class BlogController extends Controller
 {
 
+    
 
     public function createLike(Request $request)
     {
