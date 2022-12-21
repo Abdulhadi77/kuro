@@ -76,8 +76,12 @@
                                                     <span id="likes">{{$blog->likes->count()}}</span> </li>
                                             @endif
                                         @else
-                                            <li  class="d-flex align-items-center"><a class="changeColor" id="addlike" data-action="{{$blog->id}}" href="{{route('user.add.like',$blog->id)}}"><iconify-icon icon="uiw:like-o"></iconify-icon></a>
-                                                <span id="likes">{{$blog->likes->count()}}</span> </li>
+                                            <li  class="d-flex align-items-center">
+                                                <a href="javascript:;"  data-action="{{$blog->id}}" class=" changeColor"  data-bs-toggle="modal"
+                                                   data-bs-target="#info-sub"> <iconify-icon icon="uiw:like-o"></iconify-icon>
+                                                </a>
+                                                <span id="likes">{{$blog->likes->count()}}</span>
+                                            </li>
                                         @endif
 
                                         @if(auth()->user())
@@ -95,7 +99,12 @@
                                                     <span id="dislikes" >{{$blog->dislikes->count()}}</span></li>
                                             @endif
                                         @else
-                                            <li  class="d-flex align-items-center"><a class="changeColorDisLike" id="adddislike" data-action="{{$blog->id}}" href="{{route('user.add.dislike',$blog->id)}}"><iconify-icon icon="uiw:dislike-o"></iconify-icon></a>
+                                            <li  class="d-flex align-items-center">
+                                                <a href="javascript:;"  data-action="{{$blog->id}}" class=" changeColorDisLike"  data-bs-toggle="modal"
+                                                   data-bs-target="#info-sub"> <iconify-icon icon="uiw:dislike-o"></iconify-icon>
+                                                </a>
+
+                                                {{--                                            <a class="changeColorDisLike" id="adddislike" data-action="{{$blog->id}}" href="{{route('user.add.dislike',$blog->id)}}"><iconify-icon icon="uiw:dislike-o"></iconify-icon></a>--}}
                                                 <span id="dislikes" >{{$blog->dislikes->count()}}</span></li>
                                         @endif
                                     </ul>
@@ -105,7 +114,7 @@
                                     <p>
 
                                         <a href="javascript:;" class="dropdown-item"  data-bs-toggle="modal"
-                                           data-bs-target="#info-sub" data-desc="{{ $blog->body }}" data-id="{{ $blog->id }}" data-title="{{ $blog->title }}">
+                                           data-bs-target="#info-sub-one" data-desc="{{ $blog->body }}" data-id="{{ $blog->id }}" data-title="{{ $blog->title }}">
                                             {!! \Illuminate\Support\Str::limit(strip_tags($blog->body), 40) !!}
                                         </a>
                                     </p>
@@ -160,7 +169,7 @@
             <div class="shown-event-ex">
                 <div
                     class="modal fade text-start"
-                    id="info-sub"
+                    id="info-sub-one"
                     tabindex="-1"
                     aria-labelledby="myModalLabel22"
                     aria-hidden="true"
@@ -178,6 +187,36 @@
                                 {{--                        <span class="la la-exclamation-circle fs-60 text-warning"></span>--}}
                                 <h4 class="modal-title fs-19 font-weight-semi-bold  pb-1"
                                     id="blog_desc"></h4>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-outline-secondary"
+                                        data-bs-dismiss="modal">Cancel</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="shown-event-ex">
+                <div
+                    class="modal fade text-start"
+                    id="info-sub"
+                    tabindex="-1"
+                    aria-labelledby="myModalLabel22"
+                    aria-hidden="true"
+                >
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header">
+
+                                <h4 class="modal-title" id="myModalLabel22">Alert:</h4>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+
+
+                                <h4 class="modal-title fs-19 font-weight-semi-bold  pb-1"
+                                    id="blog_desc_alert"></h4>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-outline-secondary"
@@ -205,13 +244,21 @@
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                     }
                 });
-                $('#info-sub').on('show.bs.modal', function (e) {
+                $('#info-sub-one').on('show.bs.modal', function (e) {
 
                     let name = $(e.relatedTarget).data('title');
                     let desc = $(e.relatedTarget).data('desc');
 
                     $('#blog_title')[0].innerHTML =  name;
                     $('#blog_desc')[0].innerHTML = desc;
+
+
+                });
+                $('#info-sub').on('show.bs.modal', function (e) {
+
+                    let desc = 'You Must Login First';
+
+                    $('#blog_desc_alert')[0].innerHTML = desc;
 
 
                 });

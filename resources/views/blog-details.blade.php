@@ -78,8 +78,12 @@
                                                 <span id="likes">{{$blog->likes->count()}}</span> </li>
                                         @endif
                                     @else
-                                        <li  class="d-flex align-items-center"><a class="changeColor" id="addlike" data-action="{{$blog->id}}" href="{{route('user.add.like',$blog->id)}}"><iconify-icon icon="uiw:like-o"></iconify-icon></a>
-                                            <span id="likes">{{$blog->likes->count()}}</span> </li>
+                                        <li  class="d-flex align-items-center">
+                                            <a href="javascript:;"  data-action="{{$blog->id}}" class=" changeColor"  data-bs-toggle="modal"
+                                               data-bs-target="#info-sub"> <iconify-icon icon="uiw:like-o"></iconify-icon>
+                                            </a>
+                                            <span id="likes">{{$blog->likes->count()}}</span>
+                                        </li>
                                     @endif
 
                                     @if(auth()->user())
@@ -97,7 +101,12 @@
                                                 <span id="dislikes" >{{$blog->dislikes->count()}}</span></li>
                                         @endif
                                     @else
-                                        <li  class="d-flex align-items-center"><a class="changeColorDisLike" id="adddislike" data-action="{{$blog->id}}" href="{{route('user.add.dislike',$blog->id)}}"><iconify-icon icon="uiw:dislike-o"></iconify-icon></a>
+                                        <li  class="d-flex align-items-center">
+                                            <a href="javascript:;"  data-action="{{$blog->id}}" class=" changeColorDisLike"  data-bs-toggle="modal"
+                                               data-bs-target="#info-sub"> <iconify-icon icon="uiw:dislike-o"></iconify-icon>
+                                            </a>
+
+{{--                                            <a class="changeColorDisLike" id="adddislike" data-action="{{$blog->id}}" href="{{route('user.add.dislike',$blog->id)}}"><iconify-icon icon="uiw:dislike-o"></iconify-icon></a>--}}
                                             <span id="dislikes" >{{$blog->dislikes->count()}}</span></li>
                                     @endif
 
@@ -111,7 +120,7 @@
                             <div class="entry-content">
                                 <p>
                                     <a href="javascript:;" class="dropdown-item"  data-bs-toggle="modal"
-                                       data-bs-target="#info-sub" data-desc="{{ $blog->body }}" data-id="{{ $blog->id }}" data-title="{{ $blog->title }}">
+                                       data-bs-target="#info-sub-one" data-desc="{{ $blog->body }}" data-id="{{ $blog->id }}" data-title="{{ $blog->title }}">
                                         {!! \Illuminate\Support\Str::limit(strip_tags($blog->body), 80) !!}
                                     </a>
 
@@ -131,7 +140,7 @@
 
                                     <div id="comment-{{$one->id}}" class="comment">
                                         <div class="d-flex">
-                                            <div class="comment-img"><img src="assets/img/blog/comments-6.jpg" alt=""></div>
+                                            <div class="comment-img"><img src="{{ asset('storage/assets/img/person.png')  }}" alt=""></div>
                                             <div>
                                                 <h5><a href="">{{$one->user->name}}</a> </h5>
                                                 <time datetime="2020-01-01">{{$one->created_at}}</time>
@@ -162,7 +171,14 @@
                                         </div>
                                     </div>
                                     <input hidden id="blog_id" value="{{$blog->id}}" />
+                                    @if(auth()->user())
                                     <button id="addComment" type="submit" class="btn btn-primary">Post Comment</button>
+                                    @else
+{{--                                        <button  data-bs-toggle="modal" data-bs-target="#info-sub"  class="btn btn-primary">Post Comment</button>--}}
+                                        <a href="javascript:;" class=" btn btn-primary"  data-bs-toggle="modal"
+                                           data-bs-target="#info-sub"> Post Comment
+                                        </a>
+                                    @endif
 
                                 </form>
 
@@ -173,19 +189,7 @@
 
 
                     <div class="col-lg-4">
-
                         <div class="sidebar">
-
-                            {{--              <h3 class="sidebar-title">Search</h3>--}}
-                            {{--              <div class="sidebar-item search-form">--}}
-                            {{--                <form action="">--}}
-                            {{--                  <input type="text">--}}
-                            {{--                  <button type="submit"><i class="bi bi-search"></i></button>--}}
-                            {{--                </form>--}}
-                            {{--              </div><!-- End sidebar search formn-->--}}
-
-
-
                             <h3 class="sidebar-title">Recent Posts</h3>
 
                             <div class="sidebar-item recent-posts">
@@ -209,10 +213,11 @@
                 </div>
 
             </div>
+
             <div class="shown-event-ex">
                 <div
                     class="modal fade text-start"
-                    id="info-sub"
+                    id="info-sub-one"
                     tabindex="-1"
                     aria-labelledby="myModalLabel22"
                     aria-hidden="true"
@@ -239,6 +244,37 @@
                     </div>
                 </div>
             </div>
+            <div class="shown-event-ex">
+                <div
+                    class="modal fade text-start"
+                    id="info-sub"
+                    tabindex="-1"
+                    aria-labelledby="myModalLabel22"
+                    aria-hidden="true"
+                >
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header">
+
+                                <h4 class="modal-title" id="myModalLabel22">Alert:</h4>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+
+
+                                <h4 class="modal-title fs-19 font-weight-semi-bold  pb-1"
+                                    id="blog_desc_alert"></h4>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-outline-secondary"
+                                        data-bs-dismiss="modal">Cancel</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </section><!-- End Blog Single Section -->
 
     </main><!-- End #main -->
@@ -251,8 +287,16 @@
 <script src="https://code.iconify.design/iconify-icon/1.0.2/iconify-icon.min.js"></script>
 <script src="{{asset('assets/js/list.js')}}"></script>
 <script>
+    $(document).on('click', '.close', function () {
+
+        $('.not-loggedin-modal').css("display", "none");
+    });
     $(document).on('click', '#addComment', function (e) {
         e.preventDefault();
+        @guest()
+
+        $('.not-loggedin-modal').css('display', 'block');
+        @endguest
         $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -290,13 +334,21 @@
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
         });
-        $('#info-sub').on('show.bs.modal', function (e) {
+        $('#info-sub-one').on('show.bs.modal', function (e) {
 
             let name = $(e.relatedTarget).data('title');
             let desc = $(e.relatedTarget).data('desc');
 
             $('#blog_title')[0].innerHTML =  name;
             $('#blog_desc')[0].innerHTML = desc;
+
+
+        });
+        $('#info-sub').on('show.bs.modal', function (e) {
+
+            let desc = 'You Must Login First';
+
+            $('#blog_desc_alert')[0].innerHTML = desc;
 
 
         });
