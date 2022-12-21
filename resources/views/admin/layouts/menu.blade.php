@@ -75,33 +75,6 @@ with font-awesome or any other icon font library -->
 
 
 
-  <!--pages_start_route-->
-  @if(admin()->user()->role("pages_show"))
-  <li class="nav-item {{active_link('pages','menu-open')}} ">
-    <a href="#" class="nav-link {{active_link('pages','active')}}">
-      <i class="nav-icon fa fa-icons"></i>
-      <p>
-        {{trans('admin.pages')}} 
-        <i class="right fas fa-angle-left"></i>
-      </p>
-    </a>
-    <ul class="nav nav-treeview">
-      <li class="nav-item">
-        <a href="{{aurl('pages')}}" class="nav-link  {{active_link('pages','active')}}">
-          <i class="fa fa-icons nav-icon"></i>
-          <p>{{trans('admin.pages')}} </p>
-        </a>
-      </li>
-      <li class="nav-item">
-        <a href="{{ aurl('pages/create') }}" class="nav-link">
-          <i class="fas fa-plus nav-icon"></i>
-          <p>{{trans('admin.create')}} </p>
-        </a>
-      </li>
-    </ul>
-  </li>
-  @endif
-  <!--pages_end_route-->
 
   <!--slides_start_route-->
   @if(admin()->user()->role("slides_show"))
