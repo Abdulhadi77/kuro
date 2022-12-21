@@ -10,13 +10,13 @@
 
 @section('css')
 
-<style>
-    element.style {
-        position: absolute;
-        left: 150px;
-        top: 0px;
-    }
-</style>
+    <style>
+        element.style {
+            position: absolute;
+            left: 150px;
+            top: 0px;
+        }
+    </style>
 @endsection
 
 
@@ -25,6 +25,7 @@
 @section('content')
 
     <br><br><br><br>
+    <br>
 
     {{--    <section id="portfolio-details" class="portfolio-details">--}}
 
@@ -65,8 +66,8 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-6 d-flex flex-column justify-content-center">
-                    <h1 data-aos="fade-up">Our Site</h1>
-                    <h2 data-aos="fade-up" data-aos-delay="400">KURO is a cryptocurrency that supports youth projects around the world and provides humanitarian and educational assistance to bring the world to a higher level of cooperation. KURO also aims to improve token utility by lunching ecosystem projects that help those in need to get life basics</h2>
+                    <h1 data-aos="fade-up">KURO</h1>
+                    <h2 data-aos="fade-up" data-aos-delay="400">KURO is a cryptocurrency that supports youth-led projects, delivers humanitarian aid, and provides educational assistance to lift the world to a higher level of collaboration. KUR also aims to improve token utility by launching ecosystem projects that help those in need.</h2>
                     <div data-aos="fade-up" data-aos-delay="600">
                         <div class="text-center text-lg-start">
                             <a target="_blank" href="https://kurocoin.digital/" class="btn-get-started scrollto d-inline-flex align-items-center justify-content-center align-self-center">
@@ -108,13 +109,23 @@
                                     {{--                                  <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>--}}
                                     {{--                              </div>--}}
                                     <p>
-                                        <a href="{{url($slide->page->page_name)}}"> <img style="margin-left: -23px" src="{{ asset('storage/'.$slide->image)  }}" class="testimonial-img" alt=""></a>
+                                        @if($slide->page)
+                                            <a href="{{url($slide->page->page_name)}}"> <img style="margin-left: -23px" src="{{ asset('storage/'.$slide->image)  }}" class="testimonial-img" alt=""></a>
+                                        @else
+                                            <img style="margin-left: -23px" src="{{ asset('storage/'.$slide->image)  }}" class="testimonial-img" alt="">
+                                        @endif
+
+
 
                                     </p>
                                     <div class="profile mt-auto">
                                         {!! $slide->description !!}
-                                        <a href="{{url('/'.$slide->page->page_name)}}"><h3>@isset($slide->page->page_name){{$slide->page->page_name}}@endisset</h3></a>
-                                        {{--                                  <h4>Ceo &amp; Founder</h4>--}}
+                                        @if($slide->page)
+                                            <a href="{{url('/'.$slide->page->page_name)}}"><h3>@isset($slide->page->page_name){{$slide->page->page_name}}@endisset</h3></a>
+                                        @else
+                                            <h3>@isset($slide->page->page_name){{$slide->page->page_name}}@endisset</h3>
+                                        @endif
+
                                     </div>
                                 </div>
                             </div><!-- End testimonial item -->
@@ -141,35 +152,64 @@
             <div class="container" data-aos="fade-up">
 
                 <header class="section-header">
-                    <!--<h2>Banners</h2>-->
                     <p>Check Our Latest News</p>
                 </header>
 
                 <div class="row" data-aos="fade-up" data-aos-delay="100">
                     <div class="col-lg-12 d-flex justify-content-center">
+                        <ul id="portfolio-flters">
 
+                        </ul>
                     </div>
                 </div>
 
                 <div class="row gy-4 portfolio-container" data-aos="fade-up" data-aos-delay="200">
-                    @foreach ($banners as $banner)
-                        <div class="col-lg-3 col-md-6 portfolio-item filter-app justify-content-center">
-                            <div class="portfolio-wrap">
-                                <img src="{{ asset('storage/'.$banner->image)  }}" class="img-fluid" alt="">
-                                <div class="portfolio-info">
-                                    <h4>{{$banner->created_at}}</h4>
-                                    {{--                              <p>{{$banner->description}}</p>--}}
-                                    <div class="portfolio-links">
-                                        <a href="{{ asset('storage/'.$banner->image)  }}" data-gallery="portfolioGallery" class="portfokio-lightbox" title="{{$banner->description}}"><i class="bi bi-plus"></i></a>
-                                        {{--                                  <a href="portfolio-details.html" title="More Details"><i class="bi bi-link"></i></a>--}}
+                    @if($banners->count() == 1)
+                        @foreach ($banners as $banner)
+                            <div class="col-lg-4 col-md-6 portfolio-item filter-app">
+                            </div>
+                            <div class="col-lg-4 col-md-6 portfolio-item filter-web">
+                                <div class="portfolio-wrap">
+                                    <img src="{{ asset('storage/'.$banner->image)  }}" class="img-fluid" alt="">
+                                    <div class="portfolio-info">
+                                        <h4>{{$banner->created_at}}</h4>
+                                        {{--                              <p>{{$banner->description}}</p>--}}
+                                        <div class="portfolio-links">
+                                            <a href="{{ asset('storage/'.$banner->image)  }}" data-gallery="portfolioGallery" class="portfokio-lightbox" title="{{$banner->description}}"><i class="bi bi-plus"></i></a>
+                                            {{--                                  <a href="portfolio-details.html" title="More Details"><i class="bi bi-link"></i></a>--}}
+                                        </div>
                                     </div>
                                 </div>
                             </div>
+                            <div class="col-lg-4 col-md-6 portfolio-item filter-app">
+                            </div>
+                        @endforeach
+                    @else
+                        <div class="col-lg-3 col-md-6 portfolio-item filter-app justify-content-center">
+
                         </div>
+
+                        @foreach ($banners as $banner)
+
+                            <div class="col-lg-3 col-md-6 portfolio-item filter-app justify-content-center">
+                                <div class="portfolio-wrap">
+                                    <img src="{{ asset('storage/'.$banner->image)  }}" class="img-fluid" alt="">
+                                    <div class="portfolio-info">
+                                        <h4>{{$banner->created_at}}</h4>
+                                        {{--                              <p>{{$banner->description}}</p>--}}
+                                        <div class="portfolio-links">
+                                            <a href="{{ asset('storage/'.$banner->image)  }}" data-gallery="portfolioGallery" class="portfokio-lightbox" title="{{$banner->description}}"><i class="bi bi-plus"></i></a>
+                                            {{--                                  <a href="portfolio-details.html" title="More Details"><i class="bi bi-link"></i></a>--}}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
 
                         @endforeach
 
-                      
+
+
+                    @endif
 
 
 
