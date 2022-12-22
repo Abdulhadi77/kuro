@@ -151,9 +151,9 @@
                     </div>
                 </div>
 
-                <div class="row gy-4 portfolio-container" data-aos="fade-up" data-aos-delay="200">
+                <div class="row gy-4 " style=" position: relative; height: auto;justify-content: center"  data-aos="fade-up" data-aos-delay="200">
                     @foreach ($banners as $banner)
-                        <div class="col-lg-3 col-md-6 portfolio-item filter-app justify-content-center">
+                        <div class="col-lg-3 col-md-6  filter-app justify-content-center">
                             <div class="portfolio-wrap">
                                 <img src="{{ asset('storage/'.$banner->image)  }}" class="img-fluid" alt="">
                                 <div class="portfolio-info">
