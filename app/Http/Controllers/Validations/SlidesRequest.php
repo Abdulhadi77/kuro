@@ -19,7 +19,7 @@ class SlidesRequest extends FormRequest {
 		return [
              'image'=>'required|image',
 			 'description'=>'required',
-             'page_id'=>'',
+             'page_id'=>'required',
 		];
 	}
 
@@ -27,7 +27,7 @@ class SlidesRequest extends FormRequest {
 		return [
              'image'=>'image',
 			 'description'=>'required',
-             'page_id'=>'',
+             'page_id'=>'required',
 		];
 	}
 
