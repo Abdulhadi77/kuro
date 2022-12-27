@@ -60,7 +60,7 @@
                                 <div class="entry-meta">
                                     <ul>
                                         <li class="d-flex align-items-center"><i class="bi bi-clock"></i> <a href="#"><time datetime="{{$blog->created_at}}">{{$blog->created_at}}</time></a></li>
-                                        <li class="d-flex align-items-center"><i class="bi bi-chat-dots"></i> <a href="{{route('user.blog.details',$blog->id)}}"  >{{$blog->comments->count()}}</a></li>
+                                        <li class="d-flex align-items-center"><i class="bi bi-chat-dots"></i> <a id="click1_6" href="{{route('user.blog.details',$blog->id)}}"  >{{$blog->comments->count()}}</a></li>
                                         @if(auth()->user())
                                             @if(\App\Models\Reaction::where('user_id',auth()->user()->id)->where('blog_id',$blog->id)->first())
                                                 @if(\App\Models\Reaction::where('user_id',auth()->user()->id)->where('blog_id',$blog->id)->first()->like)
@@ -120,7 +120,7 @@
                                     </p>
 
                                     <div class="read-more">
-                                        <a href="{{route('user.blog.details',$blog->id)}}">Read More</a>
+                                        <a id="click1_6" href="{{route('user.blog.details',$blog->id)}}">Read More</a>
                                     </div>
                                 </div>
 
@@ -146,7 +146,7 @@
 
                                     <div class="post-item clearfix">
                                         <img  src="{{ asset('storage/'.$blog->image) }}"  alt="" height="60px">
-                                        <h4><a href="{{route('user.blog.details',$blog->id)}}">{{$blog->title}}</a></h4>
+                                        <h4><a id="click1_6" href="{{route('user.blog.details',$blog->id)}}">{{$blog->title}}</a></h4>
                                         <time datetime="{{$blog->created_at}}">{{$blog->created_at}}</time>
                                     </div>
 
@@ -208,7 +208,7 @@
                         <div class="modal-content">
                             <div class="modal-header">
 
-                                <h4 class="modal-title" id="myModalLabel22">Alert:</h4>
+                                <h4 class="modal-title" id="myModalLabel22">Alert:</span></h4>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal"
                                         aria-label="Close"></button>
                             </div>
@@ -266,4 +266,5 @@
 
             });
         </script>
+
 

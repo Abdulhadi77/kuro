@@ -39,6 +39,14 @@
     <script type="text/javascript" src="{{asset('storage/assets/js/main.js')}}"></script>
 
 </head>
+<style>
+    .header {
+        transition: all 0.5s;
+        z-index: 978;
+        padding: 17px 0;
+        background-color: white;
+    }
+</style>
 <body>
 <header id="header" class="header fixed-top">
     <script src="{{ asset('js/app.js') }}" defer></script>
@@ -97,7 +105,6 @@
         </nav>
     </div>
 </header>
-
 <div id="app ">
     <main class="py-4">
         @yield('content')

@@ -5,7 +5,7 @@
         START HEADER AREA
     ======================================-->
     <header id="header" class="header fixed-top">
-      <script src="{{ asset('js/app.js') }}" defer></script>
+{{--      <script src="{{ asset('js/app.js') }}" defer></script>--}}
         <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
 
           <a href="{{route('home')}}" class="logo d-flex align-items-center">
@@ -15,12 +15,11 @@
 
           <nav id="navbar" class="navbar">
             <ul>
-              <li><a class="nav-link scrollto active" href="{{route('home')}}">Home</a></li>
-
-              <li><a class="nav-link scrollto" href="{{route('vote')}}">Vote To Earn</a></li>
-              <li><a class="nav-link scrollto" href="{{route('Beteam')}}">Join our Team</a></li>
-              <li><a class="nav-link scrollto" href="{{route('ICO')}}">ICO</a></li>
-              <li><a href="{{route('blog')}}">Blog</a></li>
+              <li><a id="click1_1" data-id1="1" class="nav-link scrollto " href="{{route('home')}}">Home</a></li>
+              <li><a id="click1_2" data-id2="2" class="nav-link scrollto " href="{{route('vote')}}">Vote To Earn</a></li>
+              <li><a id="click1_3" data-id3="3" class="nav-link scrollto " href="{{route('Beteam')}}">Join our Team</a></li>
+              <li><a id="click1_4" data-id4="4" class="nav-link scrollto " href="{{route('ICO')}}">ICO</a></li>
+              <li><a id="click1_5" data-id5="5" class="nav-link scrollto "  href="{{route('blog')}}">Blog</a></li>
 
 
 
@@ -57,7 +56,57 @@
 <!--======================================
         END HEADER AREA
 ======================================-->
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
 
+<script>
+    $(document).ready(function(){
+
+        if($("#click1_1").attr("href")+'/'==window.location.href){
+            $("#click1_1").addClass('active')
+        }
+        else{
+            $("#click1_1").removeClass('active');
+        }
+
+        if($("#click1_2").attr("href")==window.location.href){
+
+            $("#click1_2").addClass('active')
+        }
+        else{
+            $("#click1_2").removeClass('active');
+        }
+
+        if($("#click1_3").attr("href")==window.location.href){
+
+            $("#click1_3").addClass('active')
+        }
+        else{
+            $("#click1_3").removeClass('active');
+        }
+
+
+        if($("#click1_4").attr("href")==window.location.href){
+
+            $("#click1_4").addClass('active')
+        }
+        else{
+            $("#click1_4").removeClass('active');
+        }
+
+        if($("#click1_5").attr("href")==window.location.href){
+
+            $("#click1_5").addClass('active')
+        }
+        else{
+            $("#click1_5").removeClass('active');
+        }
+
+
+
+    });
+
+
+</script>
 
 
 

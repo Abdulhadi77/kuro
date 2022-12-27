@@ -121,7 +121,7 @@
                                     <div class="profile mt-auto">
                                         {!! $slide->description !!}
                                         @if($slide->page)
-                                            <a href="{{url('/'.$slide->page->page_name)}}"><h3>@isset($slide->page->page_name){{$slide->page->page_name}}@endisset</h3></a>
+                                            <a href="{{url('/'.$slide->page->page_name)}}"><h3>@isset($slide->page->showed_page_name){{$slide->page->showed_page_name}}@endisset</h3></a>
                                         @else
                                             <h3>@isset($slide->page->page_name){{$slide->page->page_name}}@endisset</h3>
                                         @endif

@@ -36,7 +36,7 @@
                 <div class="row gy-4">
                     @foreach($Bfotplane as $one)
                         <div class="col-lg-3 col-md-6 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="100">
-                            <div class="member">
+                            <div style="height: 518px" class="member">
                                 <div class="member-img">
                                     <img style="height: 261px;width: 390px" src="{{ asset('storage/'.$one->image)  }}" class="img-fluid" alt="">
                                 </div>
@@ -62,8 +62,8 @@
                 <div class="row gy-4">
                     @foreach($Bfotplane as $one)
                         <div class="col-lg-3 col-md-6 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="100">
-                            <div class="member">
-                                <div class="member-img">
+                            <div  style="height: 518px" class="member">
+                                <div  class="member-img">
                                     <img style="height: 261px;width: 390px" src="{{ asset('storage/'.$one->image)  }}" class="img-fluid" alt="">
                                 </div>
                                 <div class="member-info">
@@ -91,7 +91,7 @@
 
                     </div>
                     <div  class="col-lg-3 col-md-6 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="100">
-                        <div class="member">
+                        <div  style="height: 518px" class="member">
                             <div class="member-img">
                                 <img style="height: 261px;width: 390px" src="{{ asset('storage/'.\App\Models\BFOTPlan::find(auth()->user()->b_f_o_t_plan_id)->image)  }}" class="img-fluid" alt="">
                             </div>

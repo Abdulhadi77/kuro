@@ -4,7 +4,7 @@
     @foreach($comments as $one)
         <div id="comment-{{$one->id}}" class="comment">
             <div class="d-flex">
-                <div class="comment-img"><img src="storage/assets/img/person.png" alt=""></div>
+                <div class="comment-img"><img src="storage/assets/img/person.pngcookieConsent::index" alt=""></div>
                 <div>
                     <h5><a href="">{{$one->user->name}}</a> </h5>
                     <time datetime="2020-01-01">{{$one->created_at}}</time>

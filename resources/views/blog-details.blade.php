@@ -106,7 +106,7 @@
                                                data-bs-target="#info-sub"> <iconify-icon icon="uiw:dislike-o"></iconify-icon>
                                             </a>
 
-{{--                                            <a class="changeColorDisLike" id="adddislike" data-action="{{$blog->id}}" href="{{route('user.add.dislike',$blog->id)}}"><iconify-icon icon="uiw:dislike-o"></iconify-icon></a>--}}
+                                            {{--                                            <a class="changeColorDisLike" id="adddislike" data-action="{{$blog->id}}" href="{{route('user.add.dislike',$blog->id)}}"><iconify-icon icon="uiw:dislike-o"></iconify-icon></a>--}}
                                             <span id="dislikes" >{{$blog->dislikes->count()}}</span></li>
                                     @endif
 
@@ -140,7 +140,7 @@
 
                                     <div id="comment-{{$one->id}}" class="comment">
                                         <div class="d-flex">
-                                            <div class="comment-img"><img src="{{ asset('storage/assets/img/person.png')  }}" alt=""></div>
+                                            <div class="comment-img"><img src="{{ asset('assets/img/person.png') }}" alt=""></div>
                                             <div>
                                                 <h5><a href="">{{$one->user->name}}</a> </h5>
                                                 <time datetime="2020-01-01">{{$one->created_at}}</time>
@@ -172,9 +172,9 @@
                                     </div>
                                     <input hidden id="blog_id" value="{{$blog->id}}" />
                                     @if(auth()->user())
-                                    <button id="addComment" type="submit" class="btn btn-primary">Post Comment</button>
+                                        <button id="addComment" type="submit" class="btn btn-primary">Post Comment</button>
                                     @else
-{{--                                        <button  data-bs-toggle="modal" data-bs-target="#info-sub"  class="btn btn-primary">Post Comment</button>--}}
+                                        {{--                                        <button  data-bs-toggle="modal" data-bs-target="#info-sub"  class="btn btn-primary">Post Comment</button>--}}
                                         <a href="javascript:;" class=" btn btn-primary"  data-bs-toggle="modal"
                                            data-bs-target="#info-sub"> Post Comment
                                         </a>
