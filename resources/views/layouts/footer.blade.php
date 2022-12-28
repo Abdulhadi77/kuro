@@ -29,7 +29,7 @@
                     <p>KURO is a cryptocurrency that supports youth-led projects, delivers humanitarian aid, and provides educational assistance to lift the world to a higher level of collaboration. KUR also aims to improve token utility by launching ecosystem projects that help those in need.</p>
                     <div class="social-links mt-3">
                         @foreach ($socials as $social)
-                            <a href="{{$social->link}}" class="{{$social->name}}"><img src="storage/{{$social->logo}}" width='30px' title="{{$social->name}}"></a>
+                            <a href="{{$social->link}}" class="{{$social->name}}"><img src="{{asset('storage/'.$social->logo)}}" width='30px' title="{{$social->name}}"></a>
                         @endforeach
 
 

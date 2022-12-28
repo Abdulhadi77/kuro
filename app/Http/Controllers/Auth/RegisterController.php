@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Mail\SendICOMail;
+use App\Mail\SendMailRef;
 use App\Models\User;
 use App\Mail\SendMail;
 use App\Models\Social;
@@ -123,7 +125,7 @@ class RegisterController extends Controller
                 'body' => 'There Is one User His Name '.$user->name.' '. 'Registered By Your Location'
             ];
 
-            Mail::to($main_user->email)->send(new SendMail($details));
+            Mail::to($main_user->email)->send(new SendMailRef($details));
 
             //Notification::send($user->referrer, new ReferrerBonus($user));
         }

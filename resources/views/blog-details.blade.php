@@ -47,10 +47,10 @@
                     <div class="col-lg-8 entries">
 
                         <article class="entry entry-single">
-                            <h2 class="entry-title">
-                                <a>{{$blog->id}}</a>
-                            </h2>
-                            <br>
+{{--                            <h2 class="entry-title">--}}
+{{--                                <a>{{$blog->id}}</a>--}}
+{{--                            </h2>--}}
+{{--                            <br>--}}
                             <div class="entry-img">
                                 <img src="{{ asset('storage/'.$blog->image)  }}" alt="" class="img-fluid">
                             </div>

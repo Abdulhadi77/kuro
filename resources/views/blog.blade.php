@@ -42,11 +42,11 @@
                     <div class="col-lg-8 entries">
                         @foreach ($blogs as $blog)
                             <article class="entry">
-                                <h2 class="entry-title">
-                                    <a>{{$blog->id}}</a>
-                                </h2>
+{{--                                <h2 class="entry-title">--}}
+{{--                                    <a>{{$blog->id}}</a>--}}
+{{--                                </h2>--}}
 
-                                <br>
+{{--                                <br>--}}
 
 
                                 <div class="entry-img">

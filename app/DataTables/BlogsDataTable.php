@@ -13,16 +13,16 @@ class BlogsDataTable extends DataTable
     {
         return datatables($query)
             ->addColumn('actions', 'admin.blogs.buttons.actions')
-			
+
             ->addColumn('image', '{!! view("admin.show_image",["image"=>$image])->render() !!}')
 			->addColumn('comments', function ($blog) {
-				return $blog->comments()->count('id');	
+				return $blog->comments()->count('id');
 			})
 			->addColumn('likes', function ($blog) {
-				return $blog->likes()->count('like');	
+				return $blog->likes()->count('like');
 			})
 			->addColumn('dislikes', function ($blog) {
-				return $blog->dislikes()->count('dislike');	
+				return $blog->dislikes()->count('dislike');
 			})
 			->addColumn('body', function ($blog) {
 				return \Illuminate\Support\Str::limit(strip_tags($blog->body), 30);
@@ -90,13 +90,13 @@ class BlogsDataTable extends DataTable
                 'initComplete' => "function () {
 
 
-            
+
             ". filterElement('1,2,3', 'input') . "
 
-            
+
 
 	            }",
-                'order' => [[1, 'desc']],
+                'order' => [[1, 'asc']],
 
                     'language' => [
                        'sProcessing' => trans('admin.sProcessing'),
@@ -131,7 +131,7 @@ class BlogsDataTable extends DataTable
 	protected function getColumns()
 	    {
 	        return [
-	       	
+
  			[
                 'name' => 'checkbox',
                 'data' => 'checkbox',
@@ -153,7 +153,7 @@ class BlogsDataTable extends DataTable
                 'width'          => '10px',
                 'aaSorting'      => 'none'
             ],
-			
+
 				[
                  'name'=>'title',
                  'data'=>'title',
@@ -219,5 +219,5 @@ class BlogsDataTable extends DataTable
 	    {
 	        return 'blogs_' . time();
 	    }
-    	
+
 }

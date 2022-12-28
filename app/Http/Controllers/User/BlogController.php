@@ -31,7 +31,7 @@ use Illuminate\Support\Facades\Validator;
 class BlogController extends Controller
 {
 
-    
+
 
     public function createLike(Request $request)
     {
@@ -152,6 +152,9 @@ class BlogController extends Controller
 
 
         $recentblog = Blog::paginate(10);
+
+
+
         return view('blog-details', compact('settings','socials','blog','recentblog'));
     }
 

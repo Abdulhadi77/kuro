@@ -67,7 +67,8 @@ return [
 	'description'=>'description',
 	'num_votes_cond'=>'Number of votes',
 	'kuro_balance_cond'=>'Balance',
-	
+    'no_vote_revenue'=>'The conditions of the subscribed plan have not been met yet',
+    'no_bfot_revenue'=>'The conditions of the subscribed plan have not been met yet',
 
 
 
