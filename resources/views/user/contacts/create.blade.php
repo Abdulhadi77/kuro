@@ -26,7 +26,7 @@
 	</div>
 	<!-- /.card-header -->
 	<div class="card-body">
-								
+
 {!! Form::open(['url'=>url('user/contacts'),'id'=>'contacts','files'=>true,'class'=>'form-horizontal form-row-seperated']) !!}
 <div class="row">
 
@@ -43,6 +43,13 @@
     </div>
 </div>
 
+    <div class="col-md-6 col-lg-6 col-sm-6 col-xs-12">
+        <div class="form-group">
+            {!! Form::label('kuro Address',trans('user.Kuro Address'),['class'=>' control-label']) !!}
+            {!! Form::text('kuroaddress',old('kuroaddress'),['class'=>'form-control','placeholder'=>trans('user.Kuro Address')]) !!}
+        </div>
+    </div>
+
 </div>
 		<!-- /.row -->
 	</div>
@@ -55,14 +62,14 @@
 
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
 <script src="{{ asset('js/app.js') }}" defer></script>
-  
+
 <script>
-  
+
     //var web3 = new Web3(window.ethereum);
-  
+
     window.data = {!! json_encode(Auth::user()) !!};
-  
-  
+
+
      // alert(window.data);
       window.onload = async function () {
           var web3 = new Web3(window.ethereum);
@@ -72,15 +79,15 @@
         if (window.data.eth_address != null){
           let walletAddress = window.data.eth_address;
           let minABI = [{"inputs":[],"stateMutability":"nonpayable","type":"constructor"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"owner","type":"address"},{"indexed":true,"internalType":"address","name":"spender","type":"address"},{"indexed":false,"internalType":"uint256","name":"value","type":"uint256"}],"name":"Approval","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"from","type":"address"},{"indexed":true,"internalType":"address","name":"to","type":"address"},{"indexed":false,"internalType":"uint256","name":"value","type":"uint256"}],"name":"Transfer","type":"event"},{"inputs":[{"internalType":"address","name":"","type":"address"},{"internalType":"address","name":"","type":"address"}],"name":"allowance","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"spender","type":"address"},{"internalType":"uint256","name":"value","type":"uint256"}],"name":"approve","outputs":[{"internalType":"bool","name":"","type":"bool"}],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"owner","type":"address"}],"name":"balanceOf","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"","type":"address"}],"name":"balances","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"decimals","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"name","outputs":[{"internalType":"string","name":"","type":"string"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"symbol","outputs":[{"internalType":"string","name":"","type":"string"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"totalSupply","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"to","type":"address"},{"internalType":"uint256","name":"value","type":"uint256"}],"name":"transfer","outputs":[{"internalType":"bool","name":"","type":"bool"}],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"from","type":"address"},{"internalType":"address","name":"to","type":"address"},{"internalType":"uint256","name":"value","type":"uint256"}],"name":"transferFrom","outputs":[{"internalType":"bool","name":"","type":"bool"}],"stateMutability":"nonpayable","type":"function"}];
-  
+
           let contract = new web3.eth.Contract(minABI,tokenAddress);
           kuro_balance = await contract.methods.balanceOf(walletAddress).call();
           kuro_balance = parseFloat(kuro_balance) / 1000000000;
           window.data.kuro_balance = kuro_balance;
-  
-  
+
+
           //Save kuro_balance in DB
-  
+
             $.ajaxSetup({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -99,14 +106,13 @@
                 type: 'POST',
                 data: formData,
                 success: function (data) {
-  
+
                 }, error: function (reject) {
                 }
             });
-  
+
           }
-  
+
       }
-  
+
 </script>
-  

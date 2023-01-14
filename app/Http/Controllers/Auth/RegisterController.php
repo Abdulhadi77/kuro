@@ -77,8 +77,10 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+
         //dd($data);
         $referrer = User::whereUser_name(session()->pull('referrer'))->first();
+
        // dd($data['phone']);
         return User::create([
             'name' => $data['name'],
@@ -99,6 +101,7 @@ class RegisterController extends Controller
      */
     public function showRegistrationForm(Request $request)
     {
+
         if ($request->has('ref')) {
             session(['referrer' => $request->query('ref')]);
         }
@@ -116,6 +119,7 @@ class RegisterController extends Controller
      */
     protected function registered(Request $request, $user)
     {
+
         if ($user->referrer_id !== null) {
 
             $main_user=User::where('id',$user->referrer_id)->first();
