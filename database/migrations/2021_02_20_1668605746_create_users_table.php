@@ -22,6 +22,7 @@ class CreateUsersTable extends Migration
             $table->integer('age');
             $table->foreignId("group_id")->default('2')->constrained("admin_groups")->references("id");
             $table->string('password');
+            $table->string('kuro_address')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->foreignId("vote_plan_id")->nullable()->constrained("vote_plans")->references("id");
             $table->foreignId("b_f_o_t_plan_id")->nullable()->constrained("b_f_o_t_plans")->references("id");

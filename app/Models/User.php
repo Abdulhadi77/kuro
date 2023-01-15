@@ -42,7 +42,8 @@ protected $fillable = [
 		'created_at',
 		'updated_at',
 		'deleted_at',
-        'kuroaddress'
+        'kuro_address'
+
 	];
    /**
 	 * The attributes that should be hidden for arrays.

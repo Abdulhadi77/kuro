@@ -46,7 +46,7 @@
     <div class="col-md-6 col-lg-6 col-sm-6 col-xs-12">
         <div class="form-group">
             {!! Form::label('kuro Address',trans('user.Kuro Address'),['class'=>' control-label']) !!}
-            {!! Form::text('kuroaddress',old('kuroaddress'),['class'=>'form-control','placeholder'=>trans('user.Kuro Address')]) !!}
+            {!! Form::text('kuro_address',old('kuro_address'),['class'=>'form-control','placeholder'=>trans('user.Kuro Address')]) !!}
         </div>
     </div>
 
