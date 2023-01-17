@@ -197,4 +197,5 @@
 		'admin.kuro_team'=>'kuro_team',
 		'ico_status'=>'ICO Status',
 		'joined_date'=>'Joined Date',
+            'kuro_address'=>'kuro_address'
 ];

@@ -18,24 +18,24 @@ class UsersDataTable extends DataTable
 			->addColumn('vote_plan_type', function ($user) {
 				if (!is_null($user->vote_plan_id))
 					return "<a href=voteplans/".$user->vote_plan_id. ">".VotePlan::find($user->vote_plan_id)->type."</a>";
-				
+
 			})
 
 			->addColumn('b_f_o_t_plan_type', function ($user) {
 				if (!is_null($user->b_f_o_t_plan_id))
-					return "<a href=bfotplans/".$user->b_f_o_t_plan_id. ">".BFOTPlan::find($user->b_f_o_t_plan_id)->type."</a>";	
-				
+					return "<a href=bfotplans/".$user->b_f_o_t_plan_id. ">".BFOTPlan::find($user->b_f_o_t_plan_id)->type."</a>";
+
 			})
 
 			->addColumn('vote_revenue', function ($user) {
 				if (!is_null($user->vote_plan_id))
-					return $user->vote_revenue(VotePlan::query()->select("vote_plans.*")->where('id', $user->vote_plan_id)->firstOrFail());	
-		
+					return $user->vote_revenue(VotePlan::query()->select("vote_plans.*")->where('id', $user->vote_plan_id)->firstOrFail());
+
 				})
 
 			->addColumn('bfot_revenue', function ($user) {
 				if (!is_null($user->b_f_o_t_plan_id))
-					return $user->bfot_revenue(BFOTPlan::query()->select("b_f_o_t_plans.*")->where('id', $user->b_f_o_t_plan_id)->firstOrFail());	
+					return $user->bfot_revenue(BFOTPlan::query()->select("b_f_o_t_plans.*")->where('id', $user->b_f_o_t_plan_id)->firstOrFail());
 
 			})
 
@@ -45,14 +45,14 @@ class UsersDataTable extends DataTable
                 </div>')
             ->rawColumns(['checkbox','actions','vote_plan_type', 'b_f_o_t_plan_type']);
     }
-  
+
 
 	public function query()
     {
         return User::query()->select("users.*");
 
     }
-    	
+
 
     	public function html()
 	    {
@@ -96,10 +96,10 @@ class UsersDataTable extends DataTable
                 'initComplete' => "function () {
 
 
-            
+
             ". filterElement('1,2,3,4,5,6,7,8,9,10,11,12,13,14', 'input') . "
 
-            
+
 
 	            }",
                 'order' => [[1, 'desc']],
@@ -134,12 +134,12 @@ class UsersDataTable extends DataTable
 
 	    }
 
-    	
+
 
 	    protected function getColumns()
 	    {
 	        return [
-	       	
+
  			[
                 'name' => 'checkbox',
                 'data' => 'checkbox',
@@ -181,7 +181,7 @@ class UsersDataTable extends DataTable
                  'data'=>'age',
                  'title'=>trans('admin.age'),
 		    ],
-				
+
 				[
                  'name'=>'vote_plan_type',
                  'data'=>'vote_plan_type',
@@ -227,6 +227,11 @@ class UsersDataTable extends DataTable
 				'data'=>'paid_bfot_plan_balance',
 				'title'=>trans('admin.paid_bfot_plan_balance'),
 			],
+                [
+                    'name'=>'kuro_address',
+                    'data'=>'kuro_address',
+                    'title'=>trans('admin.kuro_address'),
+                ],
             [
 	                'name' => 'created_at',
 	                'data' => 'created_at',
@@ -261,5 +266,5 @@ class UsersDataTable extends DataTable
 	    {
 	        return 'users_' . time();
 	    }
-    	
+
 }
